@@ -140,6 +140,48 @@ cardTemplate.innerHTML = `
   </div>
 `;
 
+// --- GROUP NAVIGATION LOGIC ---
+const groupMap = {
+  june16: 0,
+  june17: 1,
+  june18: 2, // Placeholder for future data
+  june19: 3, // Placeholder for future data
+  travelprep: null, // Placeholder for future data
+  companion: null // Placeholder for future data
+};
+
+function showGroupSection(groupKey) {
+  document.getElementById('group-selection').style.display = 'none';
+  document.getElementById('group-content').style.display = 'block';
+  document.getElementById('back-to-groups').style.display = 'inline-block';
+  // Hide all sections
+  [
+    'section-june16', 'section-june17', 'section-june18', 'section-june19', 'section-travelprep', 'section-companion'
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  // Show selected
+  const sectionId = {
+    june16: 'section-june16',
+    june17: 'section-june17',
+    june18: 'section-june18',
+    june19: 'section-june19',
+    travelprep: 'section-travelprep',
+    companion: 'section-companion'
+  }[groupKey];
+  if (sectionId) {
+    const el = document.getElementById(sectionId);
+    if (el) el.style.display = 'block';
+  }
+}
+
+function backToGroups() {
+  document.getElementById('group-selection').style.display = 'flex';
+  document.getElementById('group-content').style.display = 'none';
+  document.getElementById('back-to-groups').style.display = 'none';
+}
+
 function renderTimeline(timelineArr, container) {
   timelineArr.forEach(item => {
     const node = timelineTemplate.content.cloneNode(true);
@@ -181,4 +223,17 @@ document.addEventListener('DOMContentLoaded', function() {
       renderCards(day.cards, cardGrid);
     }
   });
+
+  // Hide all group content by default
+  document.getElementById('group-content').style.display = 'none';
+  // Group card click
+  document.querySelectorAll('.group-card').forEach(card => {
+    card.onclick = function() {
+      showGroupSection(this.dataset.group);
+    };
+  });
+  // Back button
+  document.getElementById('back-to-groups').onclick = backToGroups;
+  // Show group selection by default
+  document.getElementById('group-selection').style.display = 'flex';
 });

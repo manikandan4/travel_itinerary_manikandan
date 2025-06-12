@@ -20,48 +20,82 @@
             </div>
         </div>
         
-        <div class="date-section">
-            <div class="date-header">
-                <h2>📅 Monday, June 16th, 2025</h2>
-                <p>Day One: Arrival & First Impressions</p>
+        <div id="group-selection" class="group-selection">
+            <div class="group-card" data-group="june16">
+                <h2>📅 June 16th</h2>
+                <p>Arrival & First Impressions</p>
             </div>
-            <div class="trip-timeline" id="timeline-june16"></div>
-            <div class="card-grid" id="cards-june16"></div>
+            <div class="group-card" data-group="june17">
+                <h2>📅 June 17th</h2>
+                <p>SkyBridge, Paddy Fields & Beach Bliss</p>
+            </div>
+            <div class="group-card" data-group="june18">
+                <h2>📅 June 18th</h2>
+                <p>Sky High Adventures & Island Hopping</p>
+            </div>
+            <div class="group-card" data-group="june19">
+                <h2>📅 June 19th</h2>
+                <p>Farewell to Paradise</p>
+            </div>
+            <div class="group-card" data-group="travelprep">
+                <h2>🧳 Travel Prep</h2>
+                <p>Pre-trip essentials & planning</p>
+            </div>
+            <div class="group-card" data-group="companion">
+                <h2>📖 Companion</h2>
+                <p>Guides & Memories</p>
+            </div>
         </div>
         
-        <div class="date-section">
-            <div class="date-header">
-                <h2>📅 Tuesday, June 17th, 2025</h2>
-                <p>Day Two: SkyBridge, Paddy Fields & Beach Bliss</p>
+        <!-- Group content containers below, hidden by default and shown on group selection -->
+        <div id="group-content">
+            <button id="back-to-groups" class="back-btn" style="display:none;">← Back to All Days</button>
+            <div class="date-section" id="section-june16" style="display:none;">
+                <div class="date-header">
+                    <h2>📅 Monday, June 16th, 2025</h2>
+                    <p>Day One: Arrival & First Impressions</p>
+                </div>
+                <div class="trip-timeline" id="timeline-june16"></div>
+                <div class="card-grid" id="cards-june16"></div>
             </div>
-            <div class="trip-timeline" id="timeline-june17"></div>
-            <div class="card-grid" id="cards-june17"></div>
-        </div>
-        
-        <div class="date-section">
-            <div class="date-header">
-                <h2>📅 Wednesday, June 18th, 2025</h2>
-                <p>Day Three: Sky High Adventures & Island Hopping</p>
+            <div class="date-section" id="section-june17" style="display:none;">
+                <div class="date-header">
+                    <h2>📅 Tuesday, June 17th, 2025</h2>
+                    <p>Day Two: SkyBridge, Paddy Fields & Beach Bliss</p>
+                </div>
+                <div class="trip-timeline" id="timeline-june17"></div>
+                <div class="card-grid" id="cards-june17"></div>
             </div>
-            <div class="trip-timeline" id="timeline-june18"></div>
-            <div class="card-grid" id="cards-june18"></div>
-        </div>
-        
-        <div class="date-section">
-            <div class="date-header">
-                <h2>📅 Thursday, June 19th, 2025</h2>
-                <p>Day Four: Farewell to Paradise</p>
+            <div class="date-section" id="section-june18" style="display:none;">
+                <div class="date-header">
+                    <h2>📅 Wednesday, June 18th, 2025</h2>
+                    <p>Day Three: Sky High Adventures & Island Hopping</p>
+                </div>
+                <div class="trip-timeline" id="timeline-june18"></div>
+                <div class="card-grid" id="cards-june18"></div>
             </div>
-            <div class="trip-timeline" id="timeline-june19"></div>
-            <div class="card-grid" id="cards-june19"></div>
-        </div>
-        
-        <div class="date-section">
-            <div class="date-header">
-                <h2>📖 Travel Companion</h2>
-                <p>Essential guides and cherished memories for the journey</p>
+            <div class="date-section" id="section-june19" style="display:none;">
+                <div class="date-header">
+                    <h2>📅 Thursday, June 19th, 2025</h2>
+                    <p>Day Four: Farewell to Paradise</p>
+                </div>
+                <div class="trip-timeline" id="timeline-june19"></div>
+                <div class="card-grid" id="cards-june19"></div>
             </div>
-            <div class="card-grid" id="cards-companion"></div>
+            <div class="date-section" id="section-travelprep" style="display:none;">
+                <div class="date-header">
+                    <h2>🧳 Travel Prep</h2>
+                    <p>Pre-trip essentials & planning</p>
+                </div>
+                <div class="card-grid" id="cards-travelprep"></div>
+            </div>
+            <div class="date-section" id="section-companion" style="display:none;">
+                <div class="date-header">
+                    <h2>📖 Travel Companion</h2>
+                    <p>Essential guides and cherished memories for the journey</p>
+                </div>
+                <div class="card-grid" id="cards-companion"></div>
+            </div>
         </div>
     </div>
 </body>
