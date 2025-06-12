@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -27,15 +27,15 @@ body {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
     border-radius: 25px;
-    margin: 40px 0;
-    padding: 60px 40px;
+    margin: 25px 0;
+    padding: 35px 30px;
     box-shadow: 0 10px 40px rgba(116, 185, 255, 0.15);
     border: 2px solid rgba(116, 185, 255, 0.1);
     text-align: center;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -43,13 +43,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin-bottom: 30px;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .author-avatar {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background: linear-gradient(135deg, #74b9ff, #00cec9);
     display: flex;
@@ -59,7 +59,7 @@ body {
 }
 
 .avatar-emoji {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
 }
 
 .author-details {
@@ -103,21 +103,21 @@ body {
 }
 
 .hero-description {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .hero-description p {
-    font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
     color: #636e72;
-    line-height: 1.7;
+    line-height: 1.5;
     opacity: 0.9;
 }
 
 /* Navigation */
 .main-nav {
     text-align: center;
-    margin: 30px 0;
+    margin: 25px 0;
 }
 
 .nav-links {
@@ -172,14 +172,17 @@ body {
 
 /* Destinations Section */
 .destinations-section {
-    margin: 80px 0;
+    margin: 60px 0;
 }
 
 .destinations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
     margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .destination-card {
@@ -236,7 +239,7 @@ body {
 }
 
 .card-image {
-    height: 200px;
+    height: 180px;
     background: linear-gradient(135deg, #74b9ff, #00cec9);
     display: flex;
     align-items: center;
@@ -245,7 +248,7 @@ body {
 }
 
 .destination-emoji {
-    font-size: 4rem;
+    font-size: 3.5rem;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
@@ -344,45 +347,45 @@ body {
 .about-section {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
-    padding: 60px 40px;
-    margin: 80px 0;
+    padding: 45px 35px;
+    margin: 50px 0;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
 }
 
 .about-text p {
     font-size: 1.1rem;
     color: #636e72;
-    line-height: 1.7;
-    margin-bottom: 30px;
+    line-height: 1.6;
+    margin-bottom: 25px;
     text-align: center;
-    max-width: 800px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .travel-philosophy {
-    margin: 40px 0;
+    margin: 30px 0;
 }
 
 .travel-philosophy h3 {
     font-family: 'Caveat', cursive;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: #2d3436;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     text-align: center;
 }
 
 .travel-philosophy ul {
     list-style: none;
-    max-width: 700px;
+    max-width: 850px;
     margin: 0 auto;
 }
 
 .travel-philosophy li {
-    padding: 15px 0;
+    padding: 12px 0;
     border-bottom: 1px solid rgba(116, 185, 255, 0.1);
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .travel-philosophy li:last-child {
@@ -392,8 +395,8 @@ body {
 .stats-showcase {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-top: 40px;
+    gap: 30px;
+    margin-top: 30px;
     flex-wrap: wrap;
 }
 
@@ -421,11 +424,11 @@ body {
 
 /* Contact Section */
 .contact-section {
-    margin: 80px 0;
+    margin: 60px 0;
 }
 
 .contact-content {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -629,6 +632,102 @@ body {
 
     .footer-links {
         gap: 20px;
+    }
+}
+
+/* Desktop Optimizations */
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .hero-section {
+        padding: 30px 35px;
+        margin: 20px 0;
+    }
+    
+    .hero-description {
+        max-width: 600px;
+    }
+    
+    .author-intro {
+        gap: 25px;
+        margin-bottom: 18px;
+    }
+    
+    .destinations-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        max-width: 1300px;
+    }
+    
+    .destination-card {
+        max-width: none;
+    }
+    
+    .card-image {
+        height: 190px;
+    }
+    
+    .destination-emoji {
+        font-size: 3.8rem;
+    }
+    
+    .about-section {
+        padding: 40px 45px;
+    }
+    
+    .about-text p {
+        max-width: 800px;
+        font-size: 1.08rem;
+    }
+    
+    .stats-showcase {
+        gap: 45px;
+    }
+    
+    .contact-options {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+    }
+    
+    .travel-philosophy ul {
+        max-width: 750px;
+    }
+    
+    .travel-philosophy li {
+        padding: 14px 0;
+        font-size: 0.98rem;
+    }
+}
+
+/* Large Desktop Optimizations */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1500px;
+        padding: 0 40px;
+    }
+    
+    .hero-content {
+        max-width: 1100px;
+    }
+    
+    .destinations-grid {
+        max-width: 1400px;
+        gap: 35px;
+    }
+    
+    .about-text p {
+        max-width: 1000px;
+        font-size: 1.15rem;
+    }
+    
+    .travel-philosophy ul {
+        max-width: 1000px;
+    }
+    
+    .contact-content {
+        max-width: 1200px;
     }
 }
 
