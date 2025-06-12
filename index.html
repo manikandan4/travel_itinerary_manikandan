@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langkawi Itinerary and Routes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .trip-dates {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .date-section {
+            margin-bottom: 40px;
+        }
+        
+        .date-header {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .date-header h2 {
+            margin: 0 0 5px 0;
+            font-size: 1.8rem;
+        }
+        
+        .date-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .trip-timeline {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-time {
+            font-weight: bold;
+            color: #ffd54f;
+            min-width: 80px;
+        }
+        
+        .timeline-desc {
+            flex: 1;
+            margin-left: 15px;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .route-card .card-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .info-card .card-icon {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+        
+        .card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .time-badge {
+            background: #e8f4fd;
+            color: #1976D2;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .date-badge {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .duration {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .coming-soon {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .coming-soon:hover {
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .coming-soon .card-icon {
+            background: #ddd;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏝️ Langkawi Travel Itinerary</h1>
+            <p>Your complete guide to exploring the beautiful island</p>
+            
+            <div class="trip-dates">
+                <h3>📅 Travel Dates: June 16-19, 2025</h3>
+                <p>4 amazing days in paradise</p>
+            </div>
+        </div>
+        
+        <div class="date-section">
+            <div class="date-header">
+                <h2>📅 Monday, June 16th, 2025</h2>
+                <p>Arrival Day - Airport, Eagle Square, Shopping & Dinner</p>
+            </div>
+            
+            <div class="trip-timeline">
+                <div class="timeline-item">
+                    <span class="timeline-time">2:20 PM</span>
+                    <span class="timeline-desc">✈️ Flight Landing & Immigration</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">3:00 PM</span>
+                    <span class="timeline-desc">🚗 Car Rental Pickup (Gate 3)</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">4:30 PM</span>
+                    <span class="timeline-desc">🏨 Hotel Check-in & Rest</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">5:30 PM</span>
+                    <span class="timeline-desc">🦅 Eagle Square Visit</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">6:45 PM</span>
+                    <span class="timeline-desc">🛍️ Shopping Mall Visit</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">8:00 PM</span>
+                    <span class="timeline-desc">🍽️ Dinner at AROOS DAMASCUS</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">9:30 PM</span>
+                    <span class="timeline-desc">🌙 Return to Hotel</span>
+                </div>
+            </div>
+            
+            <div class="card-grid">
+                <!-- June 16th Route Cards in Chronological Order -->
+                <div class="card route-card" onclick="location.href='airport_bayview.html'">
+                    <div class="card-icon">🚗</div>
+                    <h3>Airport to Bayview Hotel</h3>
+                    <p>Your arrival journey from Langkawi International Airport to your accommodation at Bayview Hotel.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">3:30 - 4:00 PM</span>
+                        <span class="date-badge">June 16</span>
+                        <span class="duration">~30 mins</span>
+                    </div>
+                </div>
+                
+                <div class="card route-card" onclick="location.href='bayview_eaglesquare.html'">
+                    <div class="card-icon">🦅</div>
+                    <h3>Hotel to Eagle Square</h3>
+                    <p>Evening visit to the iconic Eagle Square (Dataran Lang) - perfect for sunset photos and local atmosphere.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">5:30 - 5:45 PM</span>
+                        <span class="date-badge">June 16</span>
+                        <span class="duration">~15 mins</span>
+                    </div>
+                </div>
+                
+                <div class="card route-card" onclick="location.href='eagle_shopping.html'">
+                    <div class="card-icon">🛍️</div>
+                    <h3>Eagle Square to Shopping Mall</h3>
+                    <p>Quick shopping visit at Langkawi Fair Shopping Mall before dinner - browse local goods and souvenirs.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">6:45 - 7:00 PM</span>
+                        <span class="date-badge">June 16</span>
+                        <span class="duration">~15 mins</span>
+                    </div>
+                </div>
+                
+                <div class="card route-card" onclick="location.href='shopping_dinner.html'">
+                    <div class="card-icon">🍽️</div>
+                    <h3>Shopping Mall to Dinner</h3>
+                    <p>Journey to AROOS DAMASCUS restaurant for authentic Middle Eastern cuisine - perfect evening dining experience.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">7:45 - 8:00 PM</span>
+                        <span class="date-badge">June 16</span>
+                        <span class="duration">~15 mins</span>
+                    </div>
+                </div>
+                
+                <div class="card route-card" onclick="location.href='dinner_hotel.html'">
+                    <div class="card-icon">🌙</div>
+                    <h3>Dinner to Hotel</h3>
+                    <p>Return journey back to Bayview Hotel after a delicious dinner to end the first day of your Langkawi adventure.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">9:15 - 9:30 PM</span>
+                        <span class="date-badge">June 16</span>
+                        <span class="duration">~15 mins</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="date-section">
+            <div class="date-header">
+                <h2>📅 Tuesday, June 17th, 2025</h2>
+                <p>Beach Day - Pantai Cenang & Local Exploration</p>
+            </div>
+            
+            <div class="card-grid">
+                <!-- June 17th Route Cards -->
+                <div class="card route-card coming-soon">
+                    <div class="card-icon">🏖️</div>
+                    <h3>Hotel to Pantai Cenang Beach</h3>
+                    <p>Morning journey to the famous white sand beach with crystal clear waters and beach activities.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">Coming Soon</span>
+                        <span class="date-badge">June 17</span>
+                        <span class="duration">TBD</span>
+                    </div>
+                </div>
+                
+                <div class="card route-card coming-soon">
+                    <div class="card-icon">🍹</div>
+                    <h3>Beach to Lunch</h3>
+                    <p>Beachside lunch at one of the popular restaurants along Pantai Cenang.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">Coming Soon</span>
+                        <span class="date-badge">June 17</span>
+                        <span class="duration">TBD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="date-section">
+            <div class="date-header">
+                <h2>📅 Wednesday, June 18th, 2025</h2>
+                <p>Adventure Day - Cable Car & Island Hopping</p>
+            </div>
+            
+            <div class="card-grid">
+                <!-- June 18th Route Cards -->
+                <div class="card route-card coming-soon">
+                    <div class="card-icon">🚠</div>
+                    <h3>Cable Car Adventure</h3>
+                    <p>Journey to Langkawi Cable Car and Sky Bridge for breathtaking panoramic views.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">Coming Soon</span>
+                        <span class="date-badge">June 18</span>
+                        <span class="duration">TBD</span>
+                    </div>
+                </div>
+                
+                <div class="card route-card coming-soon">
+                    <div class="card-icon">🚤</div>
+                    <h3>Island Hopping Tour</h3>
+                    <p>Explore nearby islands including Pulau Dayang Bunting and Beras Basah Island.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">Coming Soon</span>
+                        <span class="date-badge">June 18</span>
+                        <span class="duration">Full Day</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="date-section">
+            <div class="date-header">
+                <h2>📅 Thursday, June 19th, 2025</h2>
+                <p>Departure Day - Final Moments & Airport</p>
+            </div>
+            
+            <div class="card-grid">
+                <!-- June 19th Route Cards -->
+                <div class="card route-card coming-soon">
+                    <div class="card-icon">☕</div>
+                    <h3>Final Breakfast & Check-out</h3>
+                    <p>Last morning in paradise with breakfast and hotel check-out preparations.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">Coming Soon</span>
+                        <span class="date-badge">June 19</span>
+                        <span class="duration">TBD</span>
+                    </div>
+                </div>
+                
+                <div class="card route-card coming-soon">
+                    <div class="card-icon">✈️</div>
+                    <h3>Hotel to Airport</h3>
+                    <p>Your departure journey back to Langkawi International Airport.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">Coming Soon</span>
+                        <span class="date-badge">June 19</span>
+                        <span class="duration">TBD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="date-section">
+            <div class="date-header">
+                <h2>📋 Travel Information & Resources</h2>
+                <p>Essential guides and recommendations for your trip</p>
+            </div>
+            
+            <div class="card-grid">
+            <div class="card-grid">
+                <!-- Information Cards -->
+                <div class="card info-card">
+                    <div class="card-icon">📋</div>
+                    <h3>Travel Tips & Information</h3>
+                    <p>Essential information about local customs, weather, currency, and useful phrases for your Langkawi trip.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">Reference</span>
+                        <span class="date-badge">All Days</span>
+                        <span class="duration">Info</span>
+                    </div>
+                </div>
+                
+                <div class="card info-card">
+                    <div class="card-icon">🍽️</div>
+                    <h3>Restaurant Recommendations</h3>
+                    <p>Curated list of must-try local restaurants, street food, and dining experiences in Langkawi.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">Meals</span>
+                        <span class="date-badge">All Days</span>
+                        <span class="duration">Guide</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add smooth animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card:not(.coming-soon)');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Add click handler for coming soon cards
+            const comingSoonCards = document.querySelectorAll('.coming-soon');
+            comingSoonCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    alert('This route will be added soon! Stay tuned for more travel details.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
