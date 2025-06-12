@@ -187,6 +187,74 @@ const timelineData = [
       },
     ],
   },
+  {
+    date: 'Thursday, June 19th, 2025',
+    subtitle: 'Day Four: Farewell to Paradise',
+    timeline: [
+      { time: '7:00 AM', desc: '🍳 Breakfast at Bayview Hotel' },
+      { time: '8:00 AM', desc: '🧳 Hotel Checkout' },
+      { time: '8:15 AM', desc: '🚗 Bayview Hotel → Langkawi International Airport' },
+      { time: '8:45 AM', desc: '🚗 Car Rental Handover at Airport' },
+      { time: '9:30 AM', desc: '🛫 Airport Check-in & Departure' },
+      { time: '3:15 PM', desc: '🏠 Arrive Johor Bahru' },
+    ],
+    cards: [
+      {
+        icon: '🚗',
+        title: 'Bayview Hotel → Langkawi International Airport',
+        desc: 'Final morning drive from Bayview Hotel to the airport. Time to say goodbye to Langkawi!',
+        meta: ['8:15 - 8:45 AM', 'June 19', '~30 mins'],
+        link: 'bayview_airport.html',
+      }
+    ]
+  },
+  {
+    date: 'SG → JB (16 June Morning)',
+    subtitle: 'Sembawang → Woodlands → JB Sentral → Senai Airport',
+    timeline: [
+      { time: '7:00 AM', desc: '🚕 Start from Sembawang' },
+      { time: '8:00 AM', desc: '🚉 Reach Woodlands train checkpoint' },
+      { time: '8:30 AM', desc: '🚆 Board KTMB train' },
+      { time: '8:45 AM', desc: '🚕 Arrive Johor Bahru, taxi to Senai Airport' },
+      { time: '9:45 AM', desc: '🛬 Arrive at Senai Airport' },
+      { time: '9:45–10:45 AM', desc: '🍽️ Breakfast at Chutneys & Chai' },
+      { time: '11:00 AM', desc: '🛫 Flight check-in (JHB → Langkawi)' },
+      { time: '1:25 PM', desc: '🛫 Flight departs' },
+      { time: '2:30 PM', desc: '🛬 Arrive Langkawi' },
+    ],
+    cards: [
+      {
+        icon: '🚆',
+        title: 'SG → JB (16 June Morning)',
+        desc: 'Sembawang to Woodlands, KTMB train to JB, taxi to Senai Airport, and breakfast before flight.',
+        meta: ['7:00 AM - 11:00 AM', '16 June', 'Multi-modal'],
+        link: 'sg_jb_morning.html',
+      }
+    ]
+  },
+  {
+    date: 'JB → SG (19 June Evening)',
+    subtitle: 'Senai Airport → KOMTAR JBCC → Woodlands → Sembawang',
+    timeline: [
+      { time: '3:15 PM', desc: '🛬 Arrive JB from Langkawi' },
+      { time: '3:45 PM', desc: '🚕 Exit airport' },
+      { time: '4:00–5:00 PM', desc: '🚕 Taxi to KOMTAR JBCC' },
+      { time: '6:30–7:30 PM', desc: '🍽️ Dinner at POULET' },
+      { time: '7:45 PM', desc: '🚉 Arrive JB Sentral, wait for KTMB train' },
+      { time: '8:15 PM', desc: '🚆 Board KTMB train to Woodlands' },
+      { time: '8:30 PM', desc: '🚉 Arrive Woodlands train checkpoint' },
+      { time: '9:30 PM', desc: '🚕 Taxi to Sembawang, reach home' },
+    ],
+    cards: [
+      {
+        icon: '🚕',
+        title: 'JB → SG (19 June Evening)',
+        desc: 'Flight lands in JB, taxi to KOMTAR JBCC, dinner, then KTMB train and taxi home to Sembawang.',
+        meta: ['3:15 PM - 9:30 PM', '19 June', 'Multi-modal'],
+        link: 'jb_sg_evening.html',
+      }
+    ]
+  },
 ];
 
 // HTML5 Template for Timeline Item
@@ -218,10 +286,11 @@ cardTemplate.innerHTML = `
 const groupMap = {
   june16: 0,
   june17: 1,
-  june18: 2, // Placeholder for future data
-  june19: 3, // Placeholder for future data
-  travelprep: null, // Placeholder for future data
-  companion: null // Placeholder for future data
+  june18: 2,
+  june19: 3,
+  sg_jb_morning: 4,
+  jb_sg_evening: 5,
+  companion: null
 };
 
 function showGroupSection(groupKey) {
@@ -230,7 +299,7 @@ function showGroupSection(groupKey) {
   document.getElementById('back-to-groups').style.display = 'inline-block';
   // Hide all sections
   [
-    'section-june16', 'section-june17', 'section-june18', 'section-june19', 'section-travelprep', 'section-companion'
+    'section-june16', 'section-june17', 'section-june18', 'section-june19', 'section-sg-jb-morning', 'section-jb-sg-evening', 'section-companion'
   ].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
@@ -241,7 +310,8 @@ function showGroupSection(groupKey) {
     june17: 'section-june17',
     june18: 'section-june18',
     june19: 'section-june19',
-    travelprep: 'section-travelprep',
+    sg_jb_morning: 'section-sg-jb-morning',
+    jb_sg_evening: 'section-jb-sg-evening',
     companion: 'section-companion'
   }[groupKey];
   if (sectionId) {
@@ -262,7 +332,7 @@ function goToItinerarySection(sectionId) {
   document.getElementById('group-content').style.display = 'block';
   document.getElementById('back-to-groups').style.display = 'inline-block';
   [
-    'section-june16', 'section-june17', 'section-june18', 'section-june19', 'section-travelprep', 'section-companion'
+    'section-june16', 'section-june17', 'section-june18', 'section-june19', 'section-sg-jb-morning', 'section-jb-sg-evening', 'section-companion'
   ].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
@@ -304,7 +374,15 @@ function renderCards(cardsArr, container) {
     meta[0].textContent = card.meta[0];
     meta[1].textContent = card.meta[1];
     meta[2].textContent = card.meta[2];
-    node.querySelector('.card').onclick = () => window.location.href = card.link;
+    if (card.link && card.link.trim() !== '') {
+      node.querySelector('.card').onclick = () => window.location.href = card.link;
+      node.querySelector('.card').classList.remove('card-disabled');
+    } else {
+      node.querySelector('.card').onclick = null;
+      node.querySelector('.card').classList.add('card-disabled');
+      node.querySelector('.card').style.cursor = 'not-allowed';
+      node.querySelector('.card').title = 'Details coming soon';
+    }
     container.appendChild(node);
   });
 }
