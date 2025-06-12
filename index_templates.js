@@ -255,6 +255,20 @@ const timelineData = [
       }
     ]
   },
+  {
+    date: 'Travel Companion',
+    subtitle: 'Guides, references, and memories for your Langkawi adventure',
+    timeline: [],
+    cards: [
+      {
+        icon: '📖',
+        title: 'Langkawi Travel Guide & References',
+        desc: 'Essential guides, reference links, and a placeholder for your post-trip photos and videos.',
+        meta: ['All days', 'Langkawi', 'Guide'],
+        link: 'companion_guide.html',
+      }
+    ]
+  },
 ];
 
 // HTML5 Template for Timeline Item
