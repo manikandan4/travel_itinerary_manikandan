@@ -3,160 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Langkawi Itinerary and Routes</title>
-    <link rel="stylesheet" href="index_styles.css">
-    <script src="index_templates.js" defer></script>
+    <title>MADK's Travel Diary - Quality Moments & Hidden Gems</title>
+    <link rel="stylesheet" href="diary_styles.css">
+    <script src="diary_main.js" defer></script>
 </head>
 <body>
     <div class="container">
         <!-- Hero Section -->
         <div class="hero-section">
-            
-            <div class="author-intro">
-                <div class="author-avatar">
-                    <span class="avatar-emoji">🌴</span>
+            <div class="hero-content">
+                <div class="author-intro">
+                    <div class="author-avatar">
+                        <span class="avatar-emoji">🌍</span>
+                    </div>
+                    <div class="author-details">
+                        <h1 class="author-name">MADK's Travel Diary</h1>
+                        <p class="author-tagline">"Quality moments over quantity miles - exploring unique places with style"</p>
+                        <div class="travel-stats">
+                            <span class="stat-item">👨‍👩‍👧‍👧 Family of 4</span>
+                            <span class="stat-item">🌍 3 Countries</span>
+                            <span class="stat-item">💎 Hidden Gems</span>
+                            <span class="stat-item">🍽️ Local Vibes</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="author-details">
-                    <h3 class="author-name">MADK's Travel Diary</h3>
-                    <p class="author-tagline">"Collecting passport stamps and memories, one island at a time"</p>
-                    <div class="travel-stats">
-                        <span class="stat-item">📍 23 Routes</span>
-                        <span class="stat-item">🏝️ 4 Days</span>
-                        <span class="stat-item">✈️ 2 Flights</span>
+                <div class="hero-description">
+                    <p>Welcome to our family travel diary! We're Manikandan, Kowsalya, Akshya, and Divya - a family of four who believes in exploring destinations thoughtfully. Rather than rushing through countless places, we choose carefully, spend quality time discovering both unique hidden gems and iconic spots, all while savoring authentic local flavors and creating unforgettable memories together.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="nav-links">
+                <a href="#destinations" class="nav-link">🗺️ Destinations</a>
+                <a href="#about" class="nav-link">👋 About</a>
+                <a href="#contact" class="nav-link">📧 Contact</a>
+            </div>
+        </nav>
+
+        <!-- Destinations Section -->
+        <section id="destinations" class="destinations-section">
+            <div class="section-header">
+                <h2>🌟 Our Travel Adventures</h2>
+                <p>Discover our thoughtfully crafted journeys to unique destinations where we explore with style and savor authentic experiences</p>
+            </div>
+
+            <div class="destinations-grid">
+                <!-- Australia Card (Past Trip) -->
+                <div class="destination-card completed">
+                    <div class="card-image">
+                        <span class="destination-emoji">🦘</span>
+                        <div class="card-overlay">
+                            <span class="duration">12 Days</span>
+                            <span class="status completed-badge">Completed</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Australia Discovery</h3>
+                        <p>Our debut international adventure - exploring vibrant cities, unique landscapes, and diverse food culture Down Under</p>
+                        <div class="card-meta">
+                            <span class="date">Completed 2024</span>
+                            <span class="highlights">Sydney Opera House • Melbourne Laneways • Local Cafés • Wildlife Encounters</span>
+                        </div>
+                        <div class="card-stats">
+                            <span>🏙️ Urban Vibes</span>
+                            <span>🦘 Wildlife</span>
+                            <span>☕ Coffee Culture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Langkawi Card (Current) -->
+                <div class="destination-card featured" onclick="window.location.href='langkawi.html'">
+                    <div class="card-image">
+                        <span class="destination-emoji">🏝️</span>
+                        <div class="card-overlay">
+                            <span class="duration">4 Days</span>
+                            <span class="status">Live</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Langkawi, Malaysia</h3>
+                        <p>Tropical island escape with stunning sky bridges, pristine beaches, and authentic Malay experiences</p>
+                        <div class="card-meta">
+                            <span class="date">June 16-19, 2025</span>
+                            <span class="highlights">SkyBridge Adventure • Mangrove Tours • Beach Bliss • Local Delicacies</span>
+                        </div>
+                        <div class="card-stats">
+                            <span>🏝️ Island Life</span>
+                            <span>🌉 Sky High</span>
+                            <span>🌶️ Spicy Local</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dubai Card (Next Trip) -->
+                <div class="destination-card coming-soon">
+                    <div class="card-image">
+                        <span class="destination-emoji">🏙️</span>
+                        <div class="card-overlay">
+                            <span class="duration">6 Days</span>
+                            <span class="status coming-soon-badge">Next Adventure</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Dubai, UAE</h3>
+                        <p>Modern marvels meets traditional culture - luxury experiences and architectural wonders await</p>
+                        <div class="card-meta">
+                            <span class="date">Planning for Late 2025</span>
+                            <span class="highlights">Burj Khalifa • Desert Safari • Gold Souk • Modern Marina</span>
+                        </div>
+                        <div class="card-stats">
+                            <span>🏗️ Modern Luxury</span>
+                            <span>🏜️ Desert Vibes</span>
+                            <span>🛍️ Shopping</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="header">            
-            <h1 class="journal-title">✈️ Our Langkawi Adventure</h1>
-            <p class="header-subtitle">A personal travel diary of tropical paradise, sky-high adventures, and unforgettable island moments</p>
-            
-            <div class="travel-badge">
-                <span class="badge-icon">🏝️</span>
-                <span class="badge-text">Island Escape</span>
-                <span class="badge-dates">June 16-19, 2025</span>
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="section-header">
+                <h2>👋 Meet the MADK Family</h2>
             </div>
-        
-        </div>
-        
-        <div id="group-selection" class="group-selection">
-            <div class="group-card" data-group="june16">
-                <span class="group-svg"> <!-- SVG: Airplane & Hotel -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><path d="M8 36l48-12M8 36l16 4 8 16 4-8 16 4-8-16M8 36l8-8" stroke="#00796b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="44" y="44" width="10" height="8" rx="2" fill="#ffe082" stroke="#00796b" stroke-width="2"/></svg>
-                </span>
-                <h2>📅 June 16th</h2>
-                <p>Arrival & First Impressions</p>
-            </div>
-            <div class="group-card" data-group="june17">
-                <span class="group-svg"> <!-- SVG: Bridge & Paddy -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><rect x="12" y="36" width="40" height="8" rx="4" fill="#ffe082" stroke="#00796b" stroke-width="2"/><path d="M16 36v-8a8 8 0 0 1 16 0v8" stroke="#43a047" stroke-width="2.5"/><path d="M48 36v-4a6 6 0 0 0-12 0v4" stroke="#43a047" stroke-width="2.5"/></svg>
-                </span>
-                <h2>📅 June 17th</h2>
-                <p>SkyBridge, Paddy Fields & Beach Bliss</p>
-            </div>
-            <div class="group-card" data-group="june18">
-                <span class="group-svg"> <!-- SVG: Mountain & Boat -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><path d="M16 44l8-16 8 12 8-20 8 24" stroke="#00796b" stroke-width="2.5" stroke-linecap="round"/><rect x="24" y="48" width="16" height="4" rx="2" fill="#ffe082" stroke="#00796b" stroke-width="2"/><path d="M40 52l8 2-8 2" stroke="#43a047" stroke-width="2"/></svg>
-                </span>
-                <h2>📅 June 18th</h2>
-                <p>Sky High Adventures & Island Hopping</p>
-            </div>
-            <div class="group-card" data-group="june19">
-                <span class="group-svg"> <!-- SVG: Palm & Sun -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><circle cx="48" cy="20" r="8" fill="#ffe082" stroke="#ffb300" stroke-width="2"/><path d="M32 44v-8m0 0l-6-6m6 6l6-6" stroke="#43a047" stroke-width="2.5" stroke-linecap="round"/></svg>
-                </span>
-                <h2>📅 June 19th</h2>
-                <p>Farewell to Paradise</p>
-            </div>
-            <div class="group-card" data-group="sg_jb_morning">
-                <span class="group-svg"> <!-- SVG: Train & Taxi -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><rect x="16" y="36" width="32" height="10" rx="5" fill="#ffe082" stroke="#00796b" stroke-width="2"/><rect x="24" y="20" width="16" height="16" rx="4" fill="#b2d8d8" stroke="#00796b" stroke-width="2"/><circle cx="24" cy="50" r="3" fill="#43a047"/><circle cx="40" cy="50" r="3" fill="#43a047"/></svg>
-                </span>
-                <h2>🚆 SG → JB (16 June Morning)</h2>
-                <p>Sembawang → Woodlands → JB Sentral → Senai Airport</p>
-            </div>
-            <div class="group-card" data-group="jb_sg_evening">
-                <span class="group-svg"> <!-- SVG: Taxi & Train -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><rect x="16" y="36" width="32" height="10" rx="5" fill="#ffe082" stroke="#00796b" stroke-width="2"/><rect x="24" y="20" width="16" height="16" rx="4" fill="#b2d8d8" stroke="#00796b" stroke-width="2"/><circle cx="24" cy="50" r="3" fill="#43a047"/><circle cx="40" cy="50" r="3" fill="#43a047"/></svg>
-                </span>
-                <h2>🚕 JB → SG (19 June Evening)</h2>
-                <p>Senai Airport → KOMTAR JBCC → Woodlands → Sembawang</p>
-            </div>
-            <div class="group-card" data-group="companion">
-                <span class="group-svg"> <!-- SVG: Book & Heart -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><rect x="18" y="24" width="28" height="18" rx="4" fill="#ffe082" stroke="#00796b" stroke-width="2"/><path d="M32 32c2-2 6-2 6 2s-4 6-6 8c-2-2-6-4-6-8s4-4 6-2z" fill="#ffb3b3" stroke="#e57373" stroke-width="1.5"/></svg>
-                </span>
-                <h2>📖 Companion</h2>
-                <p>Guides & Memories</p>
-            </div>
-        </div>
-        
-        <!-- Group content containers below, hidden by default and shown on group selection -->
-        <div id="group-content">
-            <button id="back-to-groups" class="back-btn" style="display:none;">← Back to All Days</button>
-            <div class="date-section" id="section-june16" style="display:none;">
-                <div class="date-header">
-                    <h2>📅 Monday, June 16th, 2025</h2>
-                    <p>Day One: Arrival & First Impressions</p>
-                </div>
-                <div class="trip-timeline" id="timeline-june16"></div>
-                <div class="card-grid" id="cards-june16"></div>
-            </div>
-            <div class="date-section" id="section-june17" style="display:none;">
-                <div class="date-header">
-                    <h2>📅 Tuesday, June 17th, 2025</h2>
-                    <p>Day Two: SkyBridge, Paddy Fields & Beach Bliss</p>
-                </div>
-                <div class="trip-timeline" id="timeline-june17"></div>
-                <div class="card-grid" id="cards-june17"></div>
-            </div>
-            <div class="date-section" id="section-june18" style="display:none;">
-                <div class="date-header">
-                    <h2>📅 Wednesday, June 18th, 2025</h2>
-                    <p>Day Three: Mongrovee Forest Tours & Splasing waterfalls</p>
-                </div>
-                <div class="trip-timeline" id="timeline-june18"></div>
-                <div class="card-grid" id="cards-june18"></div>
-            </div>
-            <div class="date-section" id="section-june19" style="display:none;">
-                <div class="date-header">
-                    <h2>📅 Thursday, June 19th, 2025</h2>
-                    <p>Day Four: Farewell to Paradise</p>
-                </div>
-                <div class="trip-timeline" id="timeline-june19"></div>
-                <div class="card-grid" id="cards-june19"></div>
-            </div>
-            <div class="date-section" id="section-sg-jb-morning" style="display:none;">
-                <div class="date-header">
-                    <h2>🚆 SG → JB (16 June Morning)</h2>
-                    <p>Sembawang → Woodlands → JB Sentral → Senai Airport</p>
-                </div>
-                <div class="trip-timeline" id="timeline-sg-jb-morning"></div>
-                <div class="card-grid" id="cards-sg-jb-morning"></div>
-            </div>
-            <div class="date-section" id="section-jb-sg-evening" style="display:none;">
-                <div class="date-header">
-                    <h2>🚕 JB → SG (19 June Evening)</h2>
-                    <p>Senai Airport → KOMTAR JBCC → Woodlands → Sembawang</p>
-                </div>
-                <div class="trip-timeline" id="timeline-jb-sg-evening"></div>
-                <div class="card-grid" id="cards-jb-sg-evening"></div>
-            </div>
-            <div class="date-section" id="section-companion" style="display:none;">
-                <div class="date-header">
-                    <h2>📖 Travel Companion</h2>
-                    <p>Essential guides and cherished memories for the journey</p>
-                </div>
-                <div class="card-grid" id="cards-companion"></div>
-            </div>
-        </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>We're the MADK family - <strong>Manikandan</strong>, <strong>Kowsalya</strong>, and our two wonderful daughters <strong>Akshya</strong> and <strong>Divya</strong>. As a family of four with two teenage daughters transitioning into adulthood, we've discovered the art of mindful travel that balances adventure with comfort, exploration with relaxation.</p>
+                    
+                    <div class="travel-philosophy">
+                        <h3>Our Family Travel Philosophy</h3>
+                        <ul>
+                            <li>💎 <strong>Quality over Quantity:</strong> We choose fewer destinations but explore them deeply and meaningfully</li>
+                            <li>🗺️ <strong>Hidden Gems & Icons:</strong> We seek less explored places alongside must-see landmarks, all experienced with style</li>
+                            <li>🍽️ <strong>Authentic Vibes:</strong> Good food in great vibes - we prioritize local experiences and unique dining spots</li>
+                            <li>⏰ <strong>No Rush Policy:</strong> We spend quality time on fewer things, creating lasting memories rather than ticking boxes</li>
+                            <li>👨‍👩‍👧‍👧 <strong>Family First:</strong> Every destination is carefully chosen to create bonding moments for all four of us</li>
+                        </ul>
+                    </div>
 
-        <!-- Simple Footer -->
+                    <div class="stats-showcase">
+                        <div class="stat-box">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Family Members</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Countries Explored</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Memories Created</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-header">
+                <h2>📧 Connect with the MADK Family</h2>
+                <p>Have questions about our travels or looking for family-friendly destination advice?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-options">
+                    <div class="contact-card">
+                        <span class="contact-icon">✉️</span>
+                        <h3>Travel Inquiries</h3>
+                        <p>Get in touch for destination advice or travel collaboration</p>
+                        <a href="mailto:hello@madkfamily.com" class="contact-link">hello@madkfamily.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <span class="contact-icon">🗺️</span>
+                        <h3>Destination Questions</h3>
+                        <p>Need specific advice about family-friendly spots or hidden gems?</p>
+                        <a href="mailto:travel@madkfamily.com" class="contact-link">travel@madkfamily.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <span class="contact-icon">🌟</span>
+                        <h3>Follow Our Journey</h3>
+                        <p>Stay updated with our latest family adventures and discoveries</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">📷 Instagram</a>
+                            <a href="#" class="social-link">📝 Travel Blog</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <h4>Thanks for joining our Langkawi adventure! 🌴</h4>
-                <p>More travel stories coming soon... ✈️</p>
+                <div class="footer-brand">
+                    <h4>MADK's Travel Diary</h4>
+                    <p>Creating quality family memories, one destination at a time</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#destinations">Destinations</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 MADK's Travel Diary. Made with ❤️ by a family for fellow travelers.</p>
+                </div>
             </div>
         </footer>
     </div>

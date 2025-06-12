@@ -151,6 +151,92 @@ body {
     color: #00796b;
 }
 
+/* Back to Home Navigation */
+.back-to-home {
+    margin-bottom: 20px;
+}
+
+.home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #74b9ff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 25px;
+    background: rgba(116, 185, 255, 0.1);
+    border: 1px solid rgba(116, 185, 255, 0.2);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.home-link:hover {
+    background: rgba(116, 185, 255, 0.15);
+    transform: translateX(-3px);
+    box-shadow: 0 4px 12px rgba(116, 185, 255, 0.15);
+}
+
+/* Langkawi-specific intro */
+.langkawi-intro {
+    text-align: left;
+}
+
+.destination-badge {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.destination-emoji {
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, #74b9ff, #00cec9);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(116, 185, 255, 0.2);
+}
+
+.destination-details {
+    flex: 1;
+}
+
+.destination-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #2d3436;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.02em;
+}
+
+.destination-tagline {
+    font-style: italic;
+    color: #636e72;
+    margin: 0 0 15px 0;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.5;
+}
+
+.trip-info {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.trip-dates, .trip-duration, .trip-type {
+    background: rgba(116, 185, 255, 0.1);
+    color: #2d3436;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(116, 185, 255, 0.15);
+}
+
 /* Group Selection Cards */
 .group-selection {
     display: flex;
@@ -573,6 +659,31 @@ body {
     .footer {
         margin: 40px -15px 0 -15px;
         padding: 25px 20px;
+    }
+
+    .langkawi-intro {
+        text-align: center;
+    }
+    
+    .destination-badge {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .destination-emoji {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5rem;
+    }
+    
+    .trip-info {
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .trip-dates, .trip-duration, .trip-type {
+        font-size: 0.8rem;
+        padding: 4px 8px;
     }
 }
 
