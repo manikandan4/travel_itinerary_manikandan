@@ -3,111 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eagle Square to Langkawi Fair Shopping Mall Route</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .trip-info {
-            background-color: #e8f4fd;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            border-left: 4px solid #2196F3;
-        }
-        .trip-info h3 {
-            margin: 0 0 10px 0;
-            color: #1976D2;
-        }
-        .trip-info p {
-            margin: 5px 0;
-            color: #555;
-        }
-        .shopping-info {
-            background-color: #f3e5f5;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            border-left: 4px solid #9c27b0;
-        }
-        .shopping-info h3 {
-            margin: 0 0 10px 0;
-            color: #7b1fa2;
-        }
-        .shopping-info p {
-            margin: 5px 0;
-            color: #555;
-        }
-        .map-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        iframe {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-        .back-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #2196F3;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            transition: background-color 0.3s;
-        }
-        .back-button:hover {
-            background-color: #1976D2;
-        }
-        @media (max-width: 768px) {
-            iframe {
-                width: 100%;
-                height: 350px;
-            }
-        }
-    </style>
+    <title>Eagle Square to Shopping Mall - Langkawi Travel Journal</title>
+    <link rel="stylesheet" href="route_styles.css">
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-button">← Back to Itinerary</a>
-        
-        <h1>Route: Eagle Square to Shopping Mall</h1>
-        
-        <div class="trip-info">
-            <h3>Travel Details - June 16th, 2025</h3>
-            <p><strong>Departure:</strong> 6:45 PM</p>
-            <p><strong>Arrival:</strong> 7:00 PM</p>
-            <p><strong>Duration:</strong> ~15 minutes</p>
-            <p><strong>From:</strong> Eagle Square (Dataran Lang)</p>
-            <p><strong>To:</strong> Langkawi Fair Shopping Mall</p>
+        <div class="page-header">
+            <a href="index.html" class="back-button">
+                ← Back to Itinerary
+            </a>
+            
+            <h1 class="route-title">Eagle Square → Shopping</h1>
+            <p class="route-subtitle">Quick Shopping Break • June 16th, 2025</p>
         </div>
         
-        <div class="shopping-info">
-            <h3>🛍️ Shopping Time</h3>
-            <p><strong>Duration:</strong> 30 minutes (7:00 - 7:30 PM)</p>
-            <p><strong>Activity:</strong> Quick shopping and browsing</p>
-            <p><strong>Purpose:</strong> Brief visit before dinner</p>
-            <p><strong>Next:</strong> Head to AROOS DAMASCUS restaurant at 7:45 PM</p>
-        </div>
-        
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7931.188469134735!2d99.84662947373423!3d6.313945174699614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x304b8086bf17964f%3A0xd70d3b6bc2095c89!2sDataran%20Lang%2C%20Kuah%2C%20Langkawi%2C%20Kedah%2C%20Malaysia!3m2!1d6.307328699999999!2d99.85291749999999!4m5!1s0x304b8080be781cd9%3A0xea0fd725a017480d!2sLangkawi%20Fair%20Shopping%20Mall%2C%20Kuah%2C%20Langkawi%2C%20Kedah%2C%20Malaysia!3m2!1d6.3097561!2d99.8559572!5e0!3m2!1sen!2ssg!4v1749708123456!5m2!1sen!2ssg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="content-card">
+            <div class="trip-info">
+                <h3>🛒 Journey Details</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Departure Time</strong>
+                        <span>6:45 PM</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Arrival Time</strong>
+                        <span>7:00 PM</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Travel Duration</strong>
+                        <span>~15 minutes</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Distance</strong>
+                        <span>~3 km</span>
+                    </div>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Starting Point</strong>
+                        <span>Eagle Square (Dataran Lang)</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Destination</strong>
+                        <span>Langkawi Fair Shopping Mall</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="shopping-info">
+                <h3>🛍️ Shopping Session</h3>
+                <div class="shopping-details">
+                    <div class="shopping-detail-item">
+                        <strong>Duration</strong>
+                        <span>30 minutes (7:00 - 7:30 PM)</span>
+                    </div>
+                    <div class="shopping-detail-item">
+                        <strong>Activity</strong>
+                        <span>Quick shopping and browsing</span>
+                    </div>
+                    <div class="shopping-detail-item">
+                        <strong>Purpose</strong>
+                        <span>Brief visit before dinner</span>
+                    </div>
+                    <div class="shopping-detail-item">
+                        <strong>Next Stop</strong>
+                        <span>AROOS DAMASCUS at 7:45 PM</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <h3>🗺️ Route Map</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7931.188469134735!2d99.84662947373423!3d6.313945174699614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x304b8086bf17964f%3A0xd70d3b6bc2095c89!2sDataran%20Lang%2C%20Kuah%2C%20Langkawi%2C%20Kedah%2C%20Malaysia!3m2!1d6.307328699999999!2d99.85291749999999!4m5!1s0x304b8080be781cd9%3A0xea0fd725a017480d!2sLangkawi%20Fair%20Shopping%20Mall%2C%20Kuah%2C%20Langkawi%2C%20Kedah%2C%20Malaysia!3m2!1d6.3097561!2d99.8559572!5e0!3m2!1sen!2ssg!4v1749708123456!5m2!1sen!2ssg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            
+            <div class="journey-note">
+                <h4>🛒 Shopping Note</h4>
+                <p>Perfect timing for a quick shopping break at Langkawi Fair Shopping Mall! This modern mall offers duty-free shopping, local souvenirs, and international brands. A great place to grab any essentials or pick up some early vacation mementos before our delicious dinner at the Syrian restaurant.</p>
+            </div>
         </div>
     </div>
 </body>
