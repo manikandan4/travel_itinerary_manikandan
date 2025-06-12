@@ -256,6 +256,21 @@ function backToGroups() {
   document.getElementById('back-to-groups').style.display = 'none';
 }
 
+function goToItinerarySection(sectionId) {
+  // Show group content and the correct section
+  document.getElementById('group-selection').style.display = 'none';
+  document.getElementById('group-content').style.display = 'block';
+  document.getElementById('back-to-groups').style.display = 'inline-block';
+  [
+    'section-june16', 'section-june17', 'section-june18', 'section-june19', 'section-travelprep', 'section-companion'
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const el = document.getElementById(sectionId);
+  if (el) el.style.display = 'block';
+}
+
 function renderTimeline(timelineArr, container) {
   timelineArr.forEach(item => {
     const node = timelineTemplate.content.cloneNode(true);
@@ -324,4 +339,15 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('back-to-groups').onclick = backToGroups;
   // Show group selection by default
   document.getElementById('group-selection').style.display = 'flex';
+
+  // Listen for hash navigation to a section (for back-to-itinerary)
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#section-')) {
+    goToItinerarySection(hash.replace('#', ''));
+    // Optionally scroll into view for accessibility
+    setTimeout(() => {
+      const el = document.getElementById(hash.replace('#', ''));
+      if (el) el.scrollIntoView({behavior: 'smooth'});
+    }, 100);
+  }
 });
