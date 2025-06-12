@@ -381,7 +381,7 @@
             .container {
                 max-width: 1400px;
             }
-            
+            a
             .card-grid {
                 grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             }
@@ -519,30 +519,97 @@
         <div class="date-section">
             <div class="date-header">
                 <h2>📅 Tuesday, June 17th, 2025</h2>
-                <p>Day Two: Beach Bliss & Ocean Dreams</p>
+                <p>Day Two: SkyBridge, Paddy Fields & Beach Bliss</p>
             </div>
-            
+            <div class="trip-timeline">
+                <div class="timeline-item">
+                    <span class="timeline-time">7:45 AM</span>
+                    <span class="timeline-desc">🍳 Breakfast at Bayview Hotel</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">10:00 AM – 1:45 PM</span>
+                    <span class="timeline-desc">🏞️ SkyBridge, Oriental Village, Cable Car, SkyCab, Eagle Nest Skywalk, 3D Art, Sky Dome, snacks at Skybridge Bistro</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">2:30 PM</span>
+                    <span class="timeline-desc">🍽️ Lunch at Pia’s the Padi</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">4:00 – 5:30 PM</span>
+                    <span class="timeline-desc">😴 Rest at Bayview Hotel</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">6:15 – 8:00 PM</span>
+                    <span class="timeline-desc">🌅 Pantai Cenang & Tengah Beach, shopping</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">8:00 PM</span>
+                    <span class="timeline-desc">🍽️ Dinner at Hidden Langkawi</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">9:15 PM</span>
+                    <span class="timeline-desc">🌙 Hidden Langkawi → Bayview Hotel</span>
+                </div>
+            </div>
             <div class="card-grid">
-                <!-- June 17th Route Cards -->
-                <div class="card route-card coming-soon">
-                    <div class="card-icon">🏖️</div>
-                    <h3>Hotel to Pantai Cenang Beach</h3>
-                    <p>Morning journey to the famous white sand beach with crystal clear waters and beach activities.</p>
+                <div class="card route-card" onclick="location.href='bayview_skybridge.html'">
+                    <div class="card-icon">🚗</div>
+                    <h3>Bayview Hotel → Skybridge Parking</h3>
+                    <p>Scenic drive to the SkyBridge adventure base.</p>
                     <div class="card-meta">
-                        <span class="time-badge">Coming Soon</span>
+                        <span class="time-badge">9:00 - 10:00 AM</span>
                         <span class="date-badge">June 17</span>
-                        <span class="duration">TBD</span>
+                        <span class="duration">~50 mins</span>
                     </div>
                 </div>
-                
-                <div class="card route-card coming-soon">
-                    <div class="card-icon">🍹</div>
-                    <h3>Beach to Lunch</h3>
-                    <p>Beachside lunch at one of the popular restaurants along Pantai Cenang.</p>
+                <div class="card route-card" onclick="location.href='skybridge_padi.html'">
+                    <div class="card-icon">🍛</div>
+                    <h3>Skybridge Parking → Pia’s the Padi</h3>
+                    <p>Drive to a scenic paddy field restaurant for lunch.</p>
                     <div class="card-meta">
-                        <span class="time-badge">Coming Soon</span>
+                        <span class="time-badge">1:50 - 2:30 PM</span>
                         <span class="date-badge">June 17</span>
-                        <span class="duration">TBD</span>
+                        <span class="duration">~35 mins</span>
+                    </div>
+                </div>
+                <div class="card route-card" onclick="location.href='padi_bayview.html'">
+                    <div class="card-icon">🛏️</div>
+                    <h3>Pia’s the Padi → Bayview Hotel</h3>
+                    <p>Return to hotel for a restful break.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">3:30 - 4:00 PM</span>
+                        <span class="date-badge">June 17</span>
+                        <span class="duration">~25 mins</span>
+                    </div>
+                </div>
+                <div class="card route-card" onclick="location.href='bayview_cenangmall.html'">
+                    <div class="card-icon">🏖️</div>
+                    <h3>Bayview Hotel → Cenang Mall</h3>
+                    <p>Head to Pantai Cenang for beach and shopping.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">5:30 - 6:15 PM</span>
+                        <span class="date-badge">June 17</span>
+                        <span class="duration">~45 mins</span>
+                    </div>
+                </div>
+                <div class="card route-card" onclick="location.href='cenangmall_hidden.html'">
+                    <div class="card-icon">🍹</div>
+                    <h3>Cenang Mall → Hidden Langkawi</h3>
+                    <p>Short drive to a unique beach bar for dinner.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">7:50 - 8:00 PM</span>
+                        <span class="date-badge">June 17</span>
+                        <span class="duration">~10 mins</span>
+                    </div>
+                </div>
+                <div class="card route-card" onclick="location.href='hidden_bayview.html'">
+                    <div class="card-icon">🌙</div>
+                    <h3>Hidden Langkawi → Bayview Hotel</h3>
+                    <p>Return to hotel and end of Day 2.</p>
+                    <div class="card-meta">
+                        <span class="time-badge">9:15 - 10:00 PM</span>
+                        <span class="date-badge">June 17</span>
+                        <span class="duration">~40 mins</span>
                     </div>
                 </div>
             </div>
