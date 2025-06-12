@@ -120,6 +120,7 @@ const timelineData = [
 const timelineTemplate = document.createElement('template');
 timelineTemplate.innerHTML = `
   <div class="timeline-item">
+    <span class="timeline-svg"></span>
     <span class="timeline-time"></span>
     <span class="timeline-desc"></span>
   </div>
@@ -185,6 +186,20 @@ function backToGroups() {
 function renderTimeline(timelineArr, container) {
   timelineArr.forEach(item => {
     const node = timelineTemplate.content.cloneNode(true);
+    // Add SVG based on desc or time (simple icon logic)
+    const svgSpan = node.querySelector('.timeline-svg');
+    let svg = '';
+    if (item.desc.includes('Flight')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><path d='M2 16l28-6-6 8 6 8-28-6v-4z' fill='#74b9ff'/></svg>`;
+    else if (item.desc.includes('Car') || item.desc.includes('drive')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><rect x='4' y='14' width='24' height='10' rx='4' fill='#00cec9'/><circle cx='9' cy='26' r='2' fill='#636e72'/><circle cx='23' cy='26' r='2' fill='#636e72'/></svg>`;
+    else if (item.desc.includes('Hotel')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><rect x='6' y='12' width='20' height='12' rx='3' fill='#ffe082'/><rect x='12' y='18' width='4' height='6' fill='#b2d8d8'/></svg>`;
+    else if (item.desc.includes('Eagle')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><ellipse cx='16' cy='24' rx='12' ry='4' fill='#b2d8d8'/><path d='M8 20l8-8 8 8' stroke='#fd79a8' stroke-width='2' fill='none'/></svg>`;
+    else if (item.desc.includes('Shopping')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><rect x='8' y='12' width='16' height='12' rx='3' fill='#fdcb6e'/><rect x='12' y='8' width='8' height='6' rx='2' fill='#fd79a8'/></svg>`;
+    else if (item.desc.includes('Dinner') || item.desc.includes('Lunch') || item.desc.includes('Breakfast')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><ellipse cx='16' cy='24' rx='10' ry='4' fill='#ffe082'/><rect x='12' y='8' width='8' height='10' rx='3' fill='#00cec9'/></svg>`;
+    else if (item.desc.includes('Beach')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><ellipse cx='16' cy='28' rx='12' ry='3' fill='#b2d8d8'/><circle cx='24' cy='10' r='5' fill='#ffe082'/></svg>`;
+    else if (item.desc.includes('Rest') || item.desc.includes('break')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><rect x='8' y='16' width='16' height='8' rx='3' fill='#b2d8d8'/><rect x='12' y='8' width='8' height='8' rx='2' fill='#636e72'/></svg>`;
+    else if (item.desc.includes('SkyBridge') || item.desc.includes('Cable Car')) svg = `<svg viewBox='0 0 32 32' width='32' height='32'><rect x='6' y='20' width='20' height='6' rx='2' fill='#74b9ff'/><rect x='12' y='8' width='8' height='12' rx='3' fill='#00cec9'/></svg>`;
+    else svg = `<svg viewBox='0 0 32 32' width='32' height='32'><circle cx='16' cy='16' r='12' fill='#b2d8d8'/></svg>`;
+    svgSpan.innerHTML = svg;
     node.querySelector('.timeline-time').textContent = item.time;
     node.querySelector('.timeline-desc').textContent = item.desc;
     container.appendChild(node);
