@@ -338,6 +338,14 @@ function backToGroups() {
   document.getElementById('group-selection').style.display = 'flex';
   document.getElementById('group-content').style.display = 'none';
   document.getElementById('back-to-groups').style.display = 'none';
+  // Clear the URL hash so refresh returns to group selection view
+  if (window.location.hash && window.location.hash.startsWith('#section-')) {
+    if (history.replaceState) {
+      history.replaceState(null, null, window.location.pathname);
+    } else {
+      window.location.hash = '';
+    }
+  }
 }
 
 function goToItinerarySection(sectionId) {
