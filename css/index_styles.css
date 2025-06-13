@@ -392,34 +392,17 @@ html {
     background-color: var(--card-background);
     border-radius: var(--border-radius-main);
     box-shadow: var(--box-shadow-main);
-    padding: 20px;
-    position: relative; /* For ::before pseudo-element and hover effects */
-    border: 2px solid transparent; /* For hover effect consistency */
-    transition: all 0.3s ease;
-    cursor: pointer; /* Default cursor for clickable cards */
-}
-
-.card-grid[id^="cards-"] .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+    padding: 25px; /* MODIFIED: Increased padding */
+    position: relative;
+    /* REMOVED: border: 2px solid transparent; */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* MODIFIED: Standardized transition */
+    cursor: pointer;
 }
 
 .card-grid[id^="cards-"] .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: var(--primary-color); /* Show border on hover */
-}
-
-.card-grid[id^="cards-"] .card:hover::before {
-    transform: scaleX(1);
+    transform: translateY(-8px); /* MODIFIED: Matched index card hover */
+    box-shadow: var(--box-shadow-hover); /* MODIFIED: Matched index card hover */
+    /* REMOVED: border-color: var(--primary-color); */
 }
 
 /* Disabled state for cards without a link */
@@ -440,55 +423,54 @@ html {
 
 /* Icon within the card */
 .card-grid[id^="cards-"] .card .card-icon {
-    font-size: 2.2rem; /* Prominent icon */
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    line-height: 1; /* Ensure icon aligns well */
-    text-align: left; /* Icon on the left */
+    font-size: 2rem; /* MODIFIED: Adjusted size */
+    color: var(--accent-color); /* MODIFIED: Changed to accent color */
+    margin-bottom: 1rem; /* MODIFIED: Adjusted margin */
+    line-height: 1;
+    text-align: left;
 }
 
 /* Title (h3) within the card */
 .card-grid[id^="cards-"] .card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem); /* MODIFIED: Adjusted size */
     color: var(--primary-color);
-    margin-top: 0; /* Reset top margin */
-    margin-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 0.75rem; /* MODIFIED: Adjusted margin */
     line-height: 1.3;
 }
 
 /* Description (p) within the card */
 .card-grid[id^="cards-"] .card p {
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: clamp(0.9rem, 2vw, 1rem); /* Consistent with index */
     color: var(--text-color);
     opacity: 0.9;
-    margin-bottom: 15px;
+    margin-bottom: 1rem; /* MODIFIED: Adjusted margin */
     line-height: 1.6;
-    flex-grow: 1; /* Pushes meta/link to the bottom */
+    flex-grow: 1;
 }
 
 /* Meta information container */
 .card-grid[id^="cards-"] .card .card-meta {
     font-size: 0.8rem;
-    color: var(--text-color);
+    color: var(--text-color); /* Base color for meta text */
     opacity: 0.8;
-    margin-top: auto; /* Ensure it's at the bottom if p doesn't grow enough */
-    padding-top: 10px; /* Space above meta if p is short */
+    margin-top: auto;
+    padding-top: 10px;
 }
 
 /* Individual meta items (spans) */
 .card-grid[id^="cards-"] .card .card-meta span {
     display: inline-block;
     margin-right: 8px;
-    margin-bottom: 5px; /* Allow wrapping for multiple meta items */
-    padding: 4px 8px;
-    background-color: rgba(0, 0, 0, 0.05); /* Subtle background */
-    border-radius: 4px;
-    border: 1px solid rgba(0,0,0,0.08);
-}
-
-.card-grid[id^="cards-"] .card .card-meta span:last-child {
-    margin-right: 0;
+    margin-bottom: 5px;
+    padding: 5px 10px; /* MODIFIED: Adjusted padding */
+    background-color: rgba(var(--primary-color-rgb), 0.07); /* MODIFIED: Subtle primary background */
+    border-radius: var(--border-radius-soft); /* MODIFIED: Softer radius */
+    border: 1px solid transparent; /* MODIFIED: Cleaner border */
+    color: var(--primary-color); /* MODIFIED: Primary color for text */
+    font-size: 0.75rem; /* MODIFIED: Slightly smaller */
+    font-weight: 500; /* MODIFIED: Added font weight */
 }
 
 /* Responsive adjustments for daily itinerary cards */
