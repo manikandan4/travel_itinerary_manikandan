@@ -1,104 +1,75 @@
 @import url('./global_styles.css');
 
-/* Styles specific to diary_styles.css, to be merged or adapted with global_styles.css */
-
-/* Hero Section - Aligning with langkawi.html's hero style */
 .hero-section {
-    /* .card global styles apply */
-    text-align: center; /* Default alignment, can be overridden by children */
+    text-align: center;
     margin-bottom: 30px;
-    background: rgba(255, 255, 255, 0.9); /* Consistent with langkawi hero */
-    backdrop-filter: blur(10px); /* Consistent with langkawi hero */
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
     border-radius: var(--border-radius-main);
-    padding: 25px 20px; /* Consistent with langkawi hero */
+    padding: 25px 20px; 
     box-shadow: var(--box-shadow-main);
 }
 
 .author-intro {
-    display: flex; /* Enable flex for alignment */
-    align-items: center; /* Vertically align items */
-    gap: 20px; /* Consistent gap */
-    text-align: left; /* Align text to the left within this container */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left; 
 }
 
 .author-avatar {
-    width: 70px; /* Match langkawi.html .destination-emoji container */
-    height: 70px; /* Match langkawi.html .destination-emoji container */
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); /* Match langkawi.html */
+    width: 70px; 
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 20px rgba(0,0,0, 0.15); /* Match langkawi.html */
+    box-shadow: 0 6px 20px rgba(0,0,0, 0.15);
 }
 
 .avatar-emoji {
-    font-size: 3rem; /* Match langkawi.html .destination-emoji */
+    font-size: 3rem; 
 }
 
 .author-details {
-    flex: 1; /* Allow details to take remaining space */
+    flex: 1; 
 }
 
 .author-name {
-    /* font-family: 'Playfair Display', serif; */ /* Global h1/h2 */
-    /* font-size: clamp(2rem, 4vw, 2.8rem); */ /* Global h1/h2, adjust if needed */
     font-weight: 700;
-    color: var(--primary-color); /* Global h1/h2 */
-    margin: 0 0 5px 0; /* Consistent margin */
+    color: var(--primary-color);
+    margin: 0 0 5px 0;
 }
 
 .author-tagline {
     font-style: italic;
-    color: var(--text-color); /* Global p */
+    color: var(--text-color); 
     opacity: 0.9;
-    margin: 0 0 10px 0; /* Consistent margin */
-    /* font-size: clamp(1rem, 2.5vw, 1.2rem); */ /* Global p */
+    margin: 0 0 10px 0; 
 }
 
 .travel-stats {
     display: flex;
-    gap: 10px; /* Consistent gap */
-    flex-wrap: wrap; /* Allow wrapping */
+    gap: 10px; 
+    flex-wrap: wrap;
 }
 
 .travel-stats .stat-item {
-    /* These are .btn .btn-secondary, global styles apply */
-    /* background: rgba(0,206,201,0.08); */
-    /* color: var(--deep-blue); */
-    padding: 5px 12px; /* Consistent padding */
-    font-size: 0.9rem; /* Consistent font size */
-    /* border-radius: 12px; */ /* from .btn */
-    /* font-weight: 500; */ /* from .btn */
-    /* border: 1px solid rgba(0,206,201,0.15); */ /* from .btn */
+    padding: 5px 12px; 
+    font-size: 0.9rem;
 }
-
-/* Navigation - diary_styles.css specific adjustments if any */
-/* .main-nav is now styled globally. Remove or adapt specific diary_styles.css for .main-nav */
-
-/* Section Headers - diary_styles.css specific adjustments */
 .section-header h2 {
-    /* font-family: 'Playfair Display', serif; */ /* Global */
-    /* font-size: clamp(2rem, 4vw, 2.8rem); */ /* Global */
-    /* color: #2d3436; */ /* Global via h2 tag */
-    margin-bottom: 20px; /* Adjusted margin */
+    margin-bottom: 20px;
 }
 
 .section-header p {
-    /* font-size: clamp(1rem, 2.5vw, 1.2rem); */ /* Global */
-    /* color: #636e72; */ /* Global via p tag */
-    max-width: 700px; /* Slightly wider */
+    max-width: 700px;
 }
 
-/* Destinations Section - diary_styles.css specific card styling */
 .destinations-section {
-    margin: 40px 0; /* Adjusted margin */
+    margin: 40px 0;
 }
-
-/* .destinations-grid is now .card-grid, global styles apply */
-
-/* .destination-card is now .card, global styles apply. Add specific overrides if needed */
-/* Example: border: 2px solid var(--primary-color); for featured */
 
 .destination-card.featured {
     border: 2px solid var(--secondary-color);
@@ -124,14 +95,13 @@
 
 .destination-card.completed::before {
     content: '✅ Completed';
-    /* ... similar styling to featured::before using accent colors ... */
     background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-    color: white; /* Added for consistency */
-    padding: 4px 10px; /* Added for consistency */
-    border-radius: var(--border-radius-main); /* Added for consistency */
-    font-size: 0.8rem; /* Added for consistency */
-    font-weight: 600; /* Added for consistency */
-    z-index: 2; /* Added for consistency */
+    color: white; 
+    padding: 4px 10px; 
+    border-radius: var(--border-radius-main); 
+    font-size: 0.8rem; 
+    font-weight: 600; 
+    z-index: 2; 
 }
 
 .card-image {
@@ -168,15 +138,13 @@
 }
 
 .status.coming-soon-badge {
-    background: rgba(255, 193, 7, 0.9); /* Keep specific yellow for coming soon */
+    background: rgba(255, 193, 7, 0.9);
     color: #856404;
 }
 
-/* .completed-badge is now .btn .btn-secondary, global styles apply */
-
 .card-content h3 {
     font-family: 'Caveat', cursive;
-    font-size: 1.6rem; /* Slightly larger for card titles */
+    font-size: 1.6rem;
     color: var(--primary-color);
 }
 
@@ -197,11 +165,7 @@
 }
 
 .card-stats span {
-    /* These are now .btn .btn-secondary, global styles apply */
-    /* background: rgba(224, 247, 250, 0.8); */
-    /* color: #00796b; */
-    /* border: 1px solid rgba(0, 206, 201, 0.2); */
-    padding: 5px 10px; /* Adjusted padding */
+    padding: 5px 10px; 
     font-size: 0.85rem;
 }
 
@@ -209,15 +173,12 @@
     opacity: 0.7;
 }
 
-/* About Section - diary_styles.css specific adjustments */
 .about-section {
-    /* .card global styles apply */
-    padding: 35px; /* Adjusted padding */
+    padding: 35px; 
 }
 
 .about-text p {
-    font-size: 1.1rem; /* Global p */
-    /* color: #636e72; */ /* Global p */
+    font-size: 1.1rem;
     text-align: center;
     max-width: 800px;
     margin-left: auto;
@@ -231,26 +192,24 @@
 }
 
 .travel-philosophy ul {
-    list-style-position: inside; /* Indent bullets */
-    padding-left: 0; /* Remove default padding */
+    list-style-position: inside;
+    padding-left: 0;
 }
 
 .travel-philosophy li {
     padding: 10px 0;
-    border-bottom: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3)); /* Use accent color for border */
+    border-bottom: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3)); 
     font-size: 1rem;
 }
 
 .stats-showcase {
-    /* .card-grid global styles apply */
-    gap: 25px; /* Adjusted gap */
+    gap: 25px;
 }
 
 .stat-box {
-    /* .card global styles apply */
     text-align: center;
-    padding: 25px; /* Adjusted padding */
-    background: var(--background-color); /* Slightly different background for stat boxes */
+    padding: 25px; 
+    background: var(--background-color);
     border: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3));
 }
 
@@ -264,16 +223,11 @@
     opacity: 0.8;
 }
 
-/* Contact Section - diary_styles.css specific adjustments */
 .contact-section {
-    /* .card global styles apply */
     margin: 40px 0;
 }
 
-/* .contact-options is .card-grid, global styles apply */
-
 .contact-card {
-    /* .card global styles apply */
     text-align: center;
 }
 
@@ -291,18 +245,10 @@
 }
 
 .contact-link.btn {
-    /* .btn global styles apply */
     margin-top: 10px;
-    width: 100%; /* Make buttons full width in contact cards */
+    width: 100%;
 }
 
 .social-links .btn {
-    /* .btn .btn-secondary global styles apply */
     margin: 5px;
 }
-
-/* Footer - diary_styles.css specific adjustments */
-/* .footer is styled globally. Remove or adapt specific diary_styles.css for .footer */
-
-/* Ensure any !important flags from original diary_styles.css are reviewed and applied if necessary, */
-/* or ideally refactored for better specificity if global styles are intended to be overridden. */

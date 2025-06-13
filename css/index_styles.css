@@ -1,32 +1,19 @@
 @import url('./global_styles.css');
-
-/* Styles specific to index_styles.css, to be merged or adapted with global_styles.css */
-
-/* Hero Section: Minimalist, Compact, Stylish (Langkawi page specific) */
-/* This .hero-section is specific to langkawi.html and differs from the one in diary_styles.css */
 .hero-section {
-    /* .card global styles apply if this is also treated as a card */
-    text-align: center; /* Overriding global .card text-align if needed */
-    margin-bottom: 30px; /* Adjusted margin */
-    background: rgba(255, 255, 255, 0.9); /* Keeping specific background */
+    text-align: center; 
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    border-radius: var(--border-radius-main); /* Global */
-    padding: 25px 20px; /* Adjusted padding */
-    box-shadow: var(--box-shadow-main); /* Global */
+    border-radius: var(--border-radius-main);
+    padding: 25px 20px;
+    box-shadow: var(--box-shadow-main);
 }
-
-/* .author-intro, .author-avatar, etc. from index_styles.css are for a different hero structure */
-/* than the one on index.html. These might not be needed if langkawi.html hero is simpler */
-
-/* Header (specific to langkawi.html title section) */
 .header {
     text-align: center;
     margin-bottom: 30px;
 }
 
 .journal-title {
-    /* font-family: 'Playfair Display', serif; */ /* Global h1/h2 */
-    /* font-size: clamp(2.2rem, 5vw, 3.5rem); */ /* Global h1/h2 */
     font-weight: 700;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--secondary-color));
     background-clip: text;
@@ -37,27 +24,25 @@
 }
 
 .header-subtitle {
-    /* font-size: clamp(1rem, 2.5vw, 1.2rem); */ /* Global p */
-    color: var(--text-color); /* Global p */
+    color: var(--text-color); 
     opacity: 0.85;
     font-style: italic;
-    max-width: 650px; /* Adjusted width */
+    max-width: 650px; 
     margin-left: auto;
     margin-right: auto;
     line-height: 1.5;
 }
 
 .travel-badge {
-    /* .card global styles apply */
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 20px; /* Adjusted padding */
-    border: 2px solid var(--primary-color); /* Use primary color for border */
+    padding: 12px 20px;
+    border: 2px solid var(--primary-color);
     font-weight: 600;
     color: var(--text-color);
     font-size: 1rem;
-    margin-top: 15px; /* Added margin */
+    margin-top: 15px;
 }
 
 .badge-icon {
@@ -82,21 +67,9 @@
 }
 
 .home-link {
-    /* .btn global styles apply */
-    /* display: inline-flex; */ /* from .btn */
-    /* align-items: center; */ /* from .btn */
     gap: 8px;
-    /* color: var(--primary-color); */ /* from .btn */
-    /* text-decoration: none; */ /* from .btn */
-    /* font-weight: 500; */ /* from .btn */
-    /* padding: 8px 15px; */ /* from .btn */
-    /* border-radius: 25px; */ /* from .btn */
-    /* background: rgba(116, 185, 255, 0.1); */ /* from .btn */
-    /* border: 1px solid rgba(116, 185, 255, 0.2); */ /* from .btn */
     font-size: 0.9rem;
 }
-
-/* Langkawi-specific intro (within hero-section on langkawi.html) */
 .langkawi-intro {
     text-align: left;
 }
@@ -104,15 +77,15 @@
 .destination-badge {
     display: flex;
     align-items: center;
-    gap: 20px; /* Adjusted gap */
+    gap: 20px;
 }
 
 .destination-emoji {
-    font-size: 3rem; /* Adjusted size */
+    font-size: 3rem;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     border-radius: 50%;
-    width: 70px; /* Adjusted size */
-    height: 70px; /* Adjusted size */
+    width: 70px; 
+    height: 70px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,8 +97,6 @@
 }
 
 .destination-name {
-    /* font-family: 'Playfair Display', serif; */ /* Global h1/h2 */
-    /* font-size: clamp(2rem, 4vw, 2.8rem); */ /* Global h1/h2 */
     font-weight: 700;
     color: var(--primary-color); /* Global h1/h2 */
     margin: 0 0 5px 0; /* Adjusted margin */
@@ -135,19 +106,18 @@
     font-style: italic;
     color: var(--text-color); /* Global p */
     opacity: 0.9;
-    margin: 0 0 10px 0; /* Adjusted margin */
-    /* font-size: clamp(1rem, 2.5vw, 1.2rem); */ /* Global p */
+    margin: 0 0 10px 0; 
 }
 
 .trip-info {
     display: flex;
-    gap: 10px; /* Adjusted gap */
+    gap: 10px; 
     flex-wrap: wrap;
 }
 
 .trip-dates, .trip-duration, .trip-type {
     /* These are now .btn .btn-secondary, global styles apply */
-    padding: 5px 12px; /* Adjusted padding */
+    padding: 5px 12px;
     font-size: 0.9rem;
 }
 
@@ -157,15 +127,13 @@
     flex-wrap: wrap;
     gap: 24px; 
     justify-content: center;
-    margin: 32px 0 40px 0;
+    margin: 32px 0 32px 0;
 }
 
 .group-selection .card {
     flex: 1 1 200px;
-    min-width: 180px;
-    max-width: 260px;
-    /* Inherits background, padding, border-radius, box-shadow from global .card */
-    /* Adding internal flex alignment from old .group-card */
+    min-width: 240px;
+    max-width: 560px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,17 +156,16 @@
 }
 
 .group-selection .card:hover {
-    /* Global .card:hover handles transform: translateY and box-shadow */
-    border-color: var(--primary-color); /* From old styles */
+    border-color: var(--primary-color);
 }
 
 .group-selection .card:hover::before {
     transform: scaleX(1);
 }
 
-.group-svg { /* This existing rule styles the SVG element directly */
-    width: 50px; 
-    height: 50px; 
+.group-svg { 
+    width: 80px; 
+    height: 60px; 
     margin-bottom: 10px;
     display: block;
     margin-left: auto;
@@ -206,46 +173,23 @@
 }
 
 .group-selection .card h3 {
-    font-family: 'Playfair Display', serif; /* Consistent with global h3 */
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Slightly smaller for cards */
+    font-family: 'Playfair Display', serif; 
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem); 
     color: var(--primary-color);
-    margin-top: 5px; /* Added some top margin */
+    margin-top: 5px; 
     margin-bottom: 8px;
 }
 
 .group-selection .card p {
-    font-size: clamp(0.9rem, 2vw, 1rem); /* Slightly smaller for cards */
+    font-size: clamp(0.9rem, 2vw, 1rem); 
     color: var(--text-color);
     opacity: 0.85;
     margin-bottom: 0;
     line-height: 1.4; /* Adjust line height for card paragraphs */
 }
 
-/* Date Sections */
-/* ... existing styles for .date-section, .date-header etc. if any ... */
-/* For now, assuming these are not in index_styles.css or are handled by route_styles.css */
-
-
-/* Timeline - Simplified */
-/* ... existing styles for .trip-timeline, .timeline-item etc. if any ... */
-
-
-/* Cards - Enhanced and Well-Aligned (General card styling, if any, beyond global .card) */
-/* The .card-grid rule from global_styles.css will be overridden by .group-selection's display:flex */
-/* Any other specific .card or .route-card styles for langkawi.html would go here if needed */
-
-
-/* Back Button */
-/* ... existing styles for .back-btn if any ... */
-
-
-/* Footer - Minimal */
-/* ... existing styles for .footer if any ... */
-
-
 /* Mobile Responsive - iPhone 15/16 Optimized */
 @media (max-width: 768px) {
-    /* ... other mobile styles ... */
     
     .group-selection {
         flex-direction: column; /* Stack cards */
@@ -259,9 +203,9 @@
         max-width: 100%; /* Ensure it takes full width */
     }
     
-    .group-selection .card .group-svg { /* Adjusted selector */
-        width: 45px;
-        height: 45px;
+    .group-selection .card .group-svg { 
+        width: 60px;
+        height: 60px;
     }
     
     /* Adjust h3/p font sizes for mobile if needed, current ones might be okay */
@@ -272,8 +216,6 @@
     .group-selection .card p {
         font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     }
-
-    /* ... other mobile styles ... */
 }
 
 /* Smooth scrolling */
@@ -283,11 +225,7 @@ html {
 
 /* Touch-friendly sizing for mobile */
 @media (hover: none) and (pointer: coarse) {
-    .group-selection .card { /* Adjusted selector */
-        min-height: 120px; /* From old styles */
-        /* display: flex; flex-direction: column; justify-content: center; */ /* Already applied */
+    .group-selection .card { 
+        min-height: 120px; 
     }
 }
-
-/* Ensure no conflicting .group-card styles remain if they were targeting these cards previously */
-/* Removed old .group-card, .group-card::before as cards are now .card within .group-selection */

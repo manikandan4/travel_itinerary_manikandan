@@ -1,5 +1,5 @@
 body {
-    font-family: var(--font-body); /* Use global body font */
+    font-family: var(--font-body); 
     background: linear-gradient(135deg, var(--route-bg-gradient-start) 0%, var(--route-bg-gradient-end) 100%); /* Use new gradient variables */
     min-height: 100vh;
     padding: 15px;
@@ -13,23 +13,23 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--button-secondary-bg); /* Use variable */
-    color: var(--text-color); /* Use global text color */
+    background: var(--button-secondary-bg);
+    color: var(--text-color); 
     padding: 10px 18px;
     border-radius: 25px;
     text-decoration: none;
-    font-weight: 500; /* Consider if this should be a global button style or specific */
+    font-weight: 500; 
     font-size: 0.9rem;
-    box-shadow: 0 4px 15px var(--button-secondary-shadow); /* Use variable */
+    box-shadow: 0 4px 15px var(--button-secondary-shadow);
     transition: all 0.2s ease;
-    border: 1px solid var(--button-secondary-border); /* Use variable */
+    border: 1px solid var(--button-secondary-border); 
     margin-bottom: 20px;
 }
 
 .back-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--button-secondary-hover-shadow); /* Use variable */
-    background: var(--button-secondary-hover-bg); /* Use variable */
+    box-shadow: 0 6px 20px var(--button-secondary-hover-shadow); 
+    background: var(--button-secondary-hover-bg); 
 }
 
 .back-button svg {
@@ -38,10 +38,10 @@ body {
 }
 
 .route-title {
-    font-family: var(--font-heading); /* Use global heading font */
+    font-family: var(--font-heading);
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 600;
-    /* The gradient text is a unique style, keep as is but ensure colors are accessible */
+
     background: linear-gradient(135deg, var(--text-color), var(--secondary-color), var(--primary-color)); /* Adjusted to use theme colors */
     background-clip: text;
     -webkit-background-clip: text;
@@ -51,28 +51,28 @@ body {
 }
 
 .route-subtitle {
-    font-family: var(--font-body); /* Use global body font */
+    font-family: var(--font-body);
     font-size: clamp(0.9rem, 2vw, 1.1rem);
-    color: var(--text-muted-color); /* Use global muted text color */
+    color: var(--text-muted-color); 
     text-align: center;
     margin-bottom: 30px;
     font-style: italic;
 }
 
 .content-card {
-    background: var(--card-backdrop-filter-bg); /* Use variable for glassmorphism */
+    background: var(--card-backdrop-filter-bg); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: var(--card-border-radius); /* Use global card border radius */
+    border-radius: var(--card-border-radius);
     padding: 25px;
-    box-shadow: 0 8px 32px var(--card-shadow-color); /* Use global card shadow */
-    border: 1px solid var(--button-secondary-border); /* Using a light border, similar to back-button */
+    box-shadow: 0 8px 32px var(--card-shadow-color); 
+    border: 1px solid var(--button-secondary-border); 
     margin-bottom: 25px;
     position: relative;
 }
 
 .content-card::before {
-    display: none !important; /* This was overriding a global style, keep if necessary for this specific card type */
+    display: none !important; 
 }
 
 .trip-info, .activity-info, .restaurant-info, .end-day-info {
@@ -80,21 +80,21 @@ body {
 }
 
 .trip-info h3, .activity-info h3, .restaurant-info h3, .end-day-info h3 {
-    font-family: var(--font-heading); /* Use global heading font */
+    font-family: var(--font-heading); 
     font-size: 1.3rem;
-    color: var(--text-color); /* Use global text color */
+    color: var(--text-color);
     margin-bottom: 15px;
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid var(--info-item-border); /* Use variable */
+    border-bottom: 1px solid var(--info-item-border); 
     padding-bottom: 8px;
 }
 
 .trip-info h3 svg, .activity-info h3 svg, .restaurant-info h3 svg, .end-day-info h3 svg {
     width: 20px;
     height: 20px;
-    color: var(--primary-color); /* Use global primary color for icons */
+    color: var(--primary-color); 
 }
 
 .info-grid {
@@ -105,22 +105,22 @@ body {
 }
 
 .info-item {
-    background: var(--info-item-bg); /* Use variable */
+    background: var(--info-item-bg); 
     padding: 12px;
-    border-radius: 10px; /* Consider var(--card-border-radius) or a new variable */
+    border-radius: 10px;
     font-size: 0.9rem;
-    border: 1px solid var(--info-item-border); /* Use variable */
+    border: 1px solid var(--info-item-border); 
 }
 
 .info-item strong {
     font-weight: 600;
-    color: var(--text-color); /* Use global text color */
+    color: var(--text-color); 
     display: block;
     margin-bottom: 4px;
 }
 
 .info-item span {
-    color: var(--text-muted-color); /* Use global muted text color */
+    color: var(--text-muted-color); 
 }
 
 .map-container {
@@ -129,7 +129,7 @@ body {
 }
 
 .map-container h3 {
-    font-family: var(--font-heading); /* Use global heading font */
+    font-family: var(--font-heading); 
     font-size: 1.3rem;
     color: var(--text-color);
     margin-bottom: 15px;
@@ -144,20 +144,20 @@ body {
     max-width: 700px;
     height: 350px;
     border: none;
-    border-radius: 15px; /* Consider var(--card-border-radius) */
-    box-shadow: 0 4px 15px var(--card-shadow-color); /* Use global card shadow */
+    border-radius: 15px; 
+    box-shadow: 0 4px 15px var(--card-shadow-color);
 }
 
 .journey-note {
-    background: var(--journey-note-bg); /* Use variable */
-    border-left: 4px solid var(--journey-note-border); /* Use variable */
+    background: var(--journey-note-bg); 
+    border-left: 4px solid var(--journey-note-border); 
     padding: 15px 20px;
-    border-radius: 0 10px 10px 0; /* Consider var(--card-border-radius) or new var */
+    border-radius: 0 10px 10px 0;
     margin-top: 20px;
 }
 
 .journey-note h4 {
-    font-family: var(--font-heading); /* Use global heading font */
+    font-family: var(--font-heading);
     font-size: 1.1rem;
     color: var(--text-color);
     margin-bottom: 8px;
@@ -169,20 +169,20 @@ body {
 .journey-note p {
     font-size: 0.9rem;
     line-height: 1.6;
-    color: var(--text-muted-color); /* Use global muted text color */
+    color: var(--text-muted-color);
     margin-bottom: 0;
 }
 
 /* Styles for Shopping Info Section */
 .shopping-info {
-    background: var(--shopping-info-bg); /* Use variable */
+    background: var(--shopping-info-bg); 
     padding: 20px;
-    border-radius: var(--card-border-radius); /* Use global card border radius */
-    border-left: 4px solid var(--journey-note-border); /* Teal accent - same as journey note */
+    border-radius: var(--card-border-radius);
+    border-left: 4px solid var(--journey-note-border);
     margin-bottom: 25px;
 }
 
-.shopping-info h3 { /* Assuming h3 similar to other sections */
+.shopping-info h3 { 
     font-family: var(--font-heading);
     font-size: 1.3rem;
     color: var(--text-color);
@@ -190,15 +190,13 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* border-bottom: 1px solid var(--info-item-border); */ /* Optional: if needed */
-    /* padding-bottom: 8px; */
 }
 
-.shopping-info p { /* Assuming p similar to journey note */
+.shopping-info p {
     font-size: 0.9rem;
     line-height: 1.6;
     color: var(--text-muted-color);
-    margin-bottom: 10px; /* Add some margin if multiple paragraphs */
+    margin-bottom: 10px;
 }
 
 .shopping-info p:last-child {
@@ -222,26 +220,26 @@ body {
     }
 
     .route-title {
-        font-size: clamp(1.6rem, 5vw, 2.4rem); /* Slightly smaller on mobile */
+        font-size: clamp(1.6rem, 5vw, 2.4rem);
     }
 
     .route-subtitle {
-        font-size: clamp(0.85rem, 2.5vw, 1rem); /* Slightly smaller on mobile */
+        font-size: clamp(0.85rem, 2.5vw, 1rem);
         margin-bottom: 20px;
     }
 
     .content-card {
-        padding: 20px; /* Adjust padding for smaller screens */
+        padding: 20px; 
     }
 
     .trip-info h3, .activity-info h3, .restaurant-info h3, .end-day-info h3,
     .map-container h3, .journey-note h4, .shopping-info h3 {
-        font-size: 1.15rem; /* Adjust heading sizes for mobile */
+        font-size: 1.15rem; 
         margin-bottom: 10px;
     }
     
     .info-grid {
-        grid-template-columns: 1fr; /* Stack items on smaller screens */
+        grid-template-columns: 1fr; 
         gap: 10px;
     }
 
@@ -250,7 +248,7 @@ body {
     }
 
     .map-container iframe {
-        height: 300px; /* Adjust map height for mobile */
+        height: 300px;
     }
 
     .journey-note {
@@ -270,36 +268,6 @@ body {
     }
      .trip-info h3, .activity-info h3, .restaurant-info h3, .end-day-info h3,
     .map-container h3, .journey-note h4, .shopping-info h3 {
-        font-size: 1.05rem; /* Further adjust heading sizes */
+        font-size: 1.05rem;
     }
 }
-
-/* Ensure that if .container and .page-header are used from global_styles.css,
-   any specific overrides needed for route pages are minimal or handled by context.
-   For example, if route pages need a different max-width for .container,
-   it might be better to introduce a modifier class or ensure the global .container
-   is flexible enough.
-*/
-
-/* Example of how you might ensure .container from global_styles.css is used,
-   but with a specific max-width for route pages if necessary.
-   This assumes global_styles.css is linked before route_styles.css.
-   If global_styles.css already has a suitable .container, these can be removed.
-*/
-/*
-.container {
-    max-width: 900px; // Or whatever is appropriate for route pages
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px; // Ensure this matches or adapts from global
-}
-
-.page-header {
-    text-align: center;
-    margin-bottom: 30px; // Ensure this matches or adapts from global
-}
-*/
-
-/* Final check for any remaining hardcoded values that could be variables */
-/* Ensure font weights, line heights, specific margins/paddings are consistent
-   or intentionally different. */
