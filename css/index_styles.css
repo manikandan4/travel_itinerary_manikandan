@@ -16,6 +16,16 @@ body {
     margin: 0 auto;
 }
 
+/* --- HERO SECTION: Minimalist, Compact, Stylish (Langkawi) --- */
+:root {
+  --primary-accent: #00cec9;
+  --secondary-accent: #f9d423;
+  --deep-blue: #3a6073;
+  --soft-bg: #f5f7fa;
+  --text-main: #222;
+  --text-muted: #5c6e7a;
+}
+
 /* Hero Section */
 .hero-section {
     text-align: center;
@@ -153,7 +163,8 @@ body {
 
 /* Back to Home Navigation */
 .back-to-home {
-    margin-bottom: 20px;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 .home-link {
@@ -170,7 +181,6 @@ body {
     transition: all 0.3s ease;
     font-size: 0.9rem;
 }
-
 .home-link:hover {
     background: rgba(116, 185, 255, 0.15);
     transform: translateX(-3px);
@@ -446,7 +456,6 @@ body {
     background: linear-gradient(90deg, #74b9ff, #00cec9);
     transform: scaleX(0);
     transition: transform 0.3s ease;
-    border-radius: 15px 15px 0 0;
 }
 
 .card:hover::before, .route-card:hover::before {
@@ -592,14 +601,15 @@ body {
     
     .group-selection {
         flex-direction: column;
-        gap: 15px;
+        gap: 1.2rem;
         margin: 2rem 0;
     }
     
     .group-card {
         max-width: 100%;
         min-width: 0;
-        padding: 20px 15px;
+        flex: none;
+        padding: 1.5rem 0.7rem 1.2rem 0.7rem;
     }
     
     .group-svg {
@@ -700,4 +710,41 @@ html {
         flex-direction: column;
         justify-content: center;
     }
+}
+
+/* Group Selection Grid - Restore Card Layout */
+.group-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    margin: 32px 0 40px 0;
+}
+
+.group-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 22px 18px;
+    min-width: 180px;
+    max-width: 260px;
+    flex: 1 1 200px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(116,185,255,0.15);
+    border-color: rgba(116,185,255,0.2);
+}
+
+.group-svg {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
 }
