@@ -1,273 +1,275 @@
+@import url('./global_styles.css'); /* Ensure global styles are imported */
+
 body {
-    font-family: var(--font-body); 
-    background: linear-gradient(135deg, var(--route-bg-gradient-start) 0%, var(--route-bg-gradient-end) 100%); /* Use new gradient variables */
+    font-family: var(--font-primary); /* Changed from --font-body for consistency */
+    background-color: var(--bg-color); /* Use a consistent background color */
+    /* Removed linear-gradient for now, can be added back if a subtle gradient is preferred */
     min-height: 100vh;
-    padding: 15px;
-    position: relative;
+    padding: 20px; /* Consistent padding */
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--text-color); /* Default text color */
+}
+
+.container { /* Added a container class for better structure, similar to other pages */
+    width: 100%;
+    max-width: 900px; /* Adjust as needed */
+    margin: 0 auto;
+}
+
+.page-header { /* Style for the header containing back button and titles */
+    width: 100%;
+    text-align: center; /* Center header content */
+    margin-bottom: 40px; /* Space below header */
 }
 
 .back-button {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--button-secondary-bg);
-    color: var(--text-color); 
-    padding: 10px 18px;
-    border-radius: 25px;
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+    padding: 10px 20px; /* Slightly more padding */
+    border-radius: var(--border-radius-btn); /* Use global button radius */
     text-decoration: none;
-    font-weight: 500; 
+    font-weight: 500;
     font-size: 0.9rem;
-    box-shadow: 0 4px 15px var(--button-secondary-shadow);
-    transition: all 0.2s ease;
-    border: 1px solid var(--button-secondary-border); 
-    margin-bottom: 20px;
+    box-shadow: var(--box-shadow-soft); /* Softer shadow */
+    transition: all 0.3s ease;
+    border: 1px solid var(--button-secondary-border);
+    margin-bottom: 25px; /* Space below button if it's standalone */
+    /* Position to top left if preferred */
+    /* position: absolute; top: 20px; left: 20px; */
 }
 
 .back-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--button-secondary-hover-shadow); 
-    background: var(--button-secondary-hover-bg); 
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-hover-soft);
+    background-color: var(--button-secondary-hover-bg);
+    color: var(--button-secondary-hover-text);
 }
 
-.back-button svg {
+.back-button svg { /* Ensure SVG inherits color or is styled */
     width: 16px;
     height: 16px;
+    fill: currentColor; /* Make SVG color match text */
 }
 
 .route-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 600;
-
-    background: linear-gradient(135deg, var(--text-color), var(--secondary-color), var(--primary-color)); /* Adjusted to use theme colors */
+    font-family: var(--font-secondary); /* Consistent with page titles */
+    font-size: clamp(2.2rem, 5vw, 3rem); /* Match other H1 styles */
+    font-weight: 700;
+    color: var(--primary-color); /* Use primary color */
+    /* background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
     margin-bottom: 10px;
     text-align: center;
 }
 
 .route-subtitle {
-    font-family: var(--font-body);
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    color: var(--text-muted-color); 
+    font-family: var(--font-primary);
+    font-size: clamp(1rem, 2.5vw, 1.2rem); /* Slightly larger */
+    color: var(--text-color-muted); /* Use muted text color */
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px; /* More space below subtitle */
     font-style: italic;
+    opacity: 0.9;
 }
 
 .content-card {
-    background: var(--card-backdrop-filter-bg); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: var(--card-border-radius);
-    padding: 25px;
-    box-shadow: 0 8px 32px var(--card-shadow-color); 
-    border: 1px solid var(--button-secondary-border); 
-    margin-bottom: 25px;
-    position: relative;
+    background-color: var(--card-background); /* Consistent card background */
+    backdrop-filter: none; /* Remove backdrop-filter if using opaque background */
+    border-radius: var(--border-radius-main); /* Consistent card radius */
+    padding: 30px; /* Increased padding */
+    box-shadow: var(--box-shadow-main); /* Consistent card shadow */
+    border: 1px solid var(--border-color); /* Consistent border */
+    margin-bottom: 30px;
 }
 
+/* Remove ::before if not used, or style it consistently if needed */
 .content-card::before {
-    display: none !important; 
+    display: none !important;
 }
 
-.trip-info, .activity-info, .restaurant-info, .end-day-info {
-    margin-bottom: 25px;
+.trip-info, .activity-info, .restaurant-info, .end-day-info, .map-container, .journey-note, .shopping-info {
+    margin-bottom: 30px; /* Consistent bottom margin for sections */
+}
+.trip-info:last-child, .activity-info:last-child, .restaurant-info:last-child, .end-day-info:last-child, .map-container:last-child, .journey-note:last-child, .shopping-info:last-child {
+    margin-bottom: 0; /* Remove margin for the last element in the card */
 }
 
-.trip-info h3, .activity-info h3, .restaurant-info h3, .end-day-info h3 {
-    font-family: var(--font-heading); 
-    font-size: 1.3rem;
-    color: var(--text-color);
-    margin-bottom: 15px;
+
+.trip-info h3, .activity-info h3, .restaurant-info h3, .end-day-info h3,
+.map-container h3 { /* Grouped for shared styling */
+    font-family: var(--font-secondary); /* Heading font */
+    font-size: clamp(1.3rem, 3vw, 1.6rem); /* Consistent heading size */
+    color: var(--primary-color); /* Primary color for headings */
+    margin-bottom: 18px; /* Space below heading */
     display: flex;
     align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid var(--info-item-border); 
-    padding-bottom: 8px;
+    gap: 12px; /* Space between icon and text */
+    padding-bottom: 12px; /* Space for border */
+    border-bottom: 1px solid var(--border-color); /* Consistent border */
 }
 
-.trip-info h3 svg, .activity-info h3 svg, .restaurant-info h3 svg, .end-day-info h3 svg {
-    width: 20px;
-    height: 20px;
-    color: var(--primary-color); 
+.trip-info h3 svg, .activity-info h3 svg, .restaurant-info h3 svg, .end-day-info h3 svg,
+.map-container h3 svg { /* Assuming SVG is used, if not, use FontAwesome or similar */
+    width: 24px; /* Slightly larger icons */
+    height: 24px;
+    fill: var(--accent-color); /* Accent color for icons */
 }
 
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust minmax */
+    gap: 20px; /* Increased gap */
     margin-bottom: 20px;
 }
 
 .info-item {
-    background: var(--info-item-bg); 
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    border: 1px solid var(--info-item-border); 
+    background-color: rgba(var(--primary-color-rgb), 0.05); /* Subtle background tint */
+    padding: 15px; /* Increased padding */
+    border-radius: var(--border-radius-soft); /* Softer radius */
+    font-size: 0.95rem;
+    border: 1px solid transparent; /* Remove border or use var(--border-color-light) */
+    box-shadow: var(--box-shadow-inset); /* Subtle inset shadow */
 }
 
 .info-item strong {
     font-weight: 600;
-    color: var(--text-color); 
+    color: var(--primary-color); /* Primary color for strong text */
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    font-size: 1rem;
 }
 
 .info-item span {
-    color: var(--text-muted-color); 
-}
-
-.map-container {
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-.map-container h3 {
-    font-family: var(--font-heading); 
-    font-size: 1.3rem;
-    color: var(--text-color);
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    color: var(--text-color); /* Standard text color */
+    opacity: 0.9;
 }
 
 .map-container iframe {
     width: 100%;
-    max-width: 700px;
-    height: 350px;
+    /* max-width: 700px; */ /* Let container control max-width */
+    height: 400px; /* Increased height */
     border: none;
-    border-radius: 15px; 
-    box-shadow: 0 4px 15px var(--card-shadow-color);
+    border-radius: var(--border-radius-main); /* Consistent radius */
+    box-shadow: var(--box-shadow-main); /* Consistent shadow */
 }
 
-.journey-note {
-    background: var(--journey-note-bg); 
-    border-left: 4px solid var(--journey-note-border); 
-    padding: 15px 20px;
-    border-radius: 0 10px 10px 0;
-    margin-top: 20px;
-}
-
-.journey-note h4 {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    color: var(--text-color);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.journey-note p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--text-muted-color);
-    margin-bottom: 0;
-}
-
-/* Styles for Shopping Info Section */
-.shopping-info {
-    background: var(--shopping-info-bg); 
+.journey-note, .shopping-info { /* Combined for similar callout styling */
+    background-color: var(--accent-bg-soft); /* Soft accent background */
+    border-left: 5px solid var(--accent-color); /* Accent color border */
     padding: 20px;
-    border-radius: var(--card-border-radius);
-    border-left: 4px solid var(--journey-note-border);
-    margin-bottom: 25px;
+    border-radius: 0 var(--border-radius-soft) var(--border-radius-soft) 0;
+    margin-top: 20px;
+    margin-bottom: 30px; /* Consistent margin */
 }
 
-.shopping-info h3 { 
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    color: var(--text-color);
-    margin-bottom: 15px;
+.journey-note h4, .shopping-info h3 { /* Note: shopping-info uses h3, journey-note h4 */
+    font-family: var(--font-secondary);
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    color: var(--accent-color-dark); /* Darker accent for text on light accent bg */
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
+    border-bottom: none; /* Remove border from h3 inside these notes */
+    padding-bottom: 0;
+}
+.shopping-info h3 { /* Specific override if needed for shopping h3 if it's different */
+    color: var(--accent-color-dark);
 }
 
-.shopping-info p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--text-muted-color);
+
+.journey-note p, .shopping-info p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-color);
+    opacity: 0.9;
     margin-bottom: 10px;
 }
-
-.shopping-info p:last-child {
+.journey-note p:last-child, .shopping-info p:last-child {
     margin-bottom: 0;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     body {
-        padding: 10px;
-    }
-
-    .container {
         padding: 15px;
     }
 
+    .container {
+        padding: 0; /* Container handles its own max-width, body has padding */
+    }
+
     .back-button {
-        padding: 8px 15px;
+        padding: 9px 18px;
         font-size: 0.85rem;
-        margin-bottom: 15px;
-    }
-
-    .route-title {
-        font-size: clamp(1.6rem, 5vw, 2.4rem);
-    }
-
-    .route-subtitle {
-        font-size: clamp(0.85rem, 2.5vw, 1rem);
         margin-bottom: 20px;
     }
 
+    .route-title {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+
+    .route-subtitle {
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        margin-bottom: 30px;
+    }
+
     .content-card {
-        padding: 20px; 
+        padding: 20px;
     }
 
     .trip-info h3, .activity-info h3, .restaurant-info h3, .end-day-info h3,
     .map-container h3, .journey-note h4, .shopping-info h3 {
-        font-size: 1.15rem; 
-        margin-bottom: 10px;
+        font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+        margin-bottom: 15px;
+        padding-bottom: 10px;
     }
-    
+    .trip-info h3 svg, .activity-info h3 svg, .restaurant_info h3 svg, .end-day_info h3 svg,
+    .map-container h3 svg {
+        width: 20px;
+        height: 20px;
+    }
+
     .info-grid {
-        grid-template-columns: 1fr; 
-        gap: 10px;
+        grid-template-columns: 1fr; /* Stack on mobile */
+        gap: 15px;
     }
 
     .info-item {
-        padding: 10px;
+        padding: 12px;
     }
 
     .map-container iframe {
         height: 300px;
     }
 
-    .journey-note {
-        padding: 12px 15px;
+    .journey-note, .shopping-info {
+        padding: 15px;
+    }
+    .journey-note h4, .shopping-info h3 {
+        font-size: clamp(1rem, 2.2vw, 1.2rem);
     }
 }
 
 @media (max-width: 480px) {
     .route-title {
-        font-size: clamp(1.4rem, 6vw, 2rem);
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
     }
     .route-subtitle {
-        font-size: clamp(0.8rem, 3vw, 0.9rem);
+        font-size: clamp(0.85rem, 3vw, 1rem);
     }
     .content-card {
         padding: 15px;
     }
      .trip-info h3, .activity-info h3, .restaurant-info h3, .end-day-info h3,
     .map-container h3, .journey-note h4, .shopping-info h3 {
-        font-size: 1.05rem;
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
     }
 }
