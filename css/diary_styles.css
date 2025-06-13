@@ -352,51 +352,173 @@
 }
 
 /* Responsive adjustments */
-@media (min-width: 768px) {
-    .about-content {
-        flex-direction: row; /* Side-by-side for larger screens */
-        align-items: flex-start; /* Align items to the top */
-        text-align: left; /* Align text to the left */
-    }
-    .about-text {
-        flex: 2; /* Give more space to text */
-    }
-    .stats-showcase-wrapper { /* If you wrap stats showcase for layout */
-        flex: 1;
-    }
-    .travel-philosophy {
-        margin-left: 0; /* Align with left text */
-        margin-right: 0;
-    }
-     .travel-philosophy h3 {
-        text-align: left;
+@media (min-width: 992px) { /* Adjusted breakpoint for 3 cards per row */
+    .destinations-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) and (max-width: 991px) { /* For 2 cards per row on tablets */
+    .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .about-content-wrapper {
+        flex-direction: column; /* Stack on tablets for better readability */
+        align-items: center;
+    }
+    .about-image-container {
+        max-width: 400px; /* Control image size on tablet */
+        margin-bottom: 20px;
+    }
+    .about-text-content {
+        text-align: center;
+    }
+    .travel-philosophy {
+        margin-left: auto;
+        margin-right: auto;
+    }
+     .travel-philosophy h3 {
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .about-content-wrapper { /* Renamed from .about-content for clarity */
+        display: flex;
+        /* flex-direction: row; Already set for larger screens, but explicit here */
+        align-items: flex-start; 
+        gap: 30px;
+    }
+    .about-image-container {
+        flex: 0 0 300px; /* Fixed width for image container */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: var(--border-radius-main);
+        overflow: hidden;
+    }
+    .about-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .about-text-content {
+        flex: 1; /* Text content takes remaining space */
+        text-align: left;
+    }
+    /* .stats-showcase-wrapper { Already handled by card-grid } */
+}
+
+@media (max-width: 767px) { /* Mobile specific styles */
     .hero-section-wrapper {
-        padding: 60px 0;
+        padding: 50px 20px; /* Adjusted padding for mobile */
     }
     .author-avatar {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
     }
     .avatar-emoji {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
     .author-name {
-        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-size: clamp(1.8rem, 7vw, 2.5rem); /* Adjusted for mobile */
     }
     .author-tagline {
-        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        font-size: clamp(0.9rem, 4vw, 1.1rem); /* Adjusted for mobile */
+        padding: 0 10px;
     }
+    .travel-stats {
+        gap: 10px; /* Smaller gap for mobile */
+        flex-direction: column; /* Stack stats on mobile */
+        align-items: center;
+    }
+    .travel-stats .stat-item {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
     .destinations-section, .about-section, .contact-section {
-        padding: 40px 0;
+        padding: 30px 0; /* Reduced padding for mobile sections */
     }
     .section-header h2 {
-        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        font-size: clamp(1.6rem, 6vw, 2.2rem); /* Adjusted for mobile */
+    }
+    .section-header p {
+        font-size: clamp(0.9rem, 3.5vw, 1rem);
+        padding: 0 15px;
+    }
+
+    .destinations-grid {
+        grid-template-columns: 1fr; /* Single column for cards on mobile */
+        gap: 20px; /* Reduced gap for mobile */
     }
     .card-content h3 {
-        font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+        font-size: clamp(1.2rem, 5vw, 1.5rem); /* Adjusted for mobile */
+    }
+    .card-content p {
+        font-size: 0.9rem;
+    }
+    .card-image {
+        height: 200px; /* Slightly smaller image height on mobile */
+    }
+
+    .about-content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px; /* Add padding to the card wrapper on mobile */
+    }
+    .about-image-container {
+        width: 100%;
+        max-width: 280px; /* Control image size */
+        margin-bottom: 20px;
+    }
+    .about-text-content {
+        text-align: center;
+    }
+    .about-text p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+    .travel-philosophy ul li {
+        font-size: 0.95rem;
+        padding-left: 20px;
+    }
+    .stats-showcase {
+        grid-template-columns: 1fr; /* Stack stat boxes on mobile */
+        gap: 15px;
+    }
+    .stat-box {
+        padding: 20px;
+    }
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .contact-options {
+        grid-template-columns: 1fr; /* Single column for contact cards */
+        gap: 20px;
+    }
+    .contact-card p {
+        min-height: auto; /* Allow height to adjust on mobile */
+    }
+
+    .main-nav .nav-links {
+        flex-direction: column; /* Stack nav links on mobile */
+        align-items: center;
+    }
+    .main-nav .nav-links li {
+        margin-bottom: 10px;
+    }
+    .main-nav .nav-links li:last-child {
+        margin-bottom: 0;
+    }
+
+    .footer-content {
+        text-align: center;
+    }
+    .footer-links a {
+        display: block;
+        margin: 5px 0;
+    }
+    .social-links .btn {
+        margin: 5px;
     }
 }
