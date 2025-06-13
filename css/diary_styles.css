@@ -28,8 +28,8 @@
 }
 
 .author-avatar {
-    width: 120px; /* Larger avatar */
-    height: 120px;
+    width: 160px; /* Larger avatar */
+    height: 160px;
     border-radius: 50%;
     background-color: rgba(255,255,255,0.1); /* Subtle background for avatar */
     display: flex;
@@ -37,6 +37,13 @@
     justify-content: center;
     margin-bottom: 10px;
     border: 3px solid var(--light-text-color);
+    overflow: hidden; /* Ensure image respects border-radius */
+}
+
+.avatar-image { /* New style for the image */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the circle */
 }
 
 .avatar-emoji {
@@ -427,21 +434,8 @@
 }
 
 .contact-link.btn { /* If you keep a button, it needs to be small or integrated */
-    display: none; /* Hide the original button, make circle clickable or use icon */
-    /* Or, if you want a small text link inside: */
-    /* font-size: 0.75rem; */
-    /* padding: 5px 8px; */
-    /* margin-top: 5px; */
-    /* width: auto; */
-    /* background: transparent; */
-    /* color: var(--secondary-color); */
-    /* border: 1px solid var(--secondary-color); */
+    display: none;
 }
-
-/* Make the entire contact card clickable if it has a primary link */
-/* This requires JS or careful HTML structure if using <a> tag as the card */
-/* For simplicity, we assume the text/icon itself will be wrapped in <a> in HTML */
-
 /* Responsive adjustments */
 @media (min-width: 992px) { /* Adjusted breakpoint for 3 cards per row */
     .destinations-grid {
@@ -468,10 +462,6 @@
 @media (min-width: 768px) {
     /* .about-content-wrapper is now column by default, so no need to override flex-direction here */
     /* Remove specific flex settings for .about-image-container if they were for row layout */
-    .about-image-container {
-        /* flex: 0 0 300px; /* REMOVE THIS if it exists from previous row layout */
-        /* height: auto; /* REMOVE THIS if it exists */
-    }
 }
 
 @media (max-width: 767px) { /* Mobile specific styles */
@@ -479,8 +469,8 @@
         padding: 50px 20px; /* Adjusted padding for mobile */
     }
     .author-avatar {
-        width: 80px;
-        height: 80px;
+        width: 160px;
+        height: 160px;
     }
     .avatar-emoji {
         font-size: 3rem;
