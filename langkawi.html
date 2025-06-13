@@ -4,38 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Langkawi Itinerary and Routes</title>
-    <link rel="stylesheet" href="css/index_styles.css">
+    <link rel="stylesheet" href="css/global_styles.css"> <!-- Added global styles -->
+    <link rel="stylesheet" href="css/index_styles.css"> <!-- Will be reviewed/merged later -->
     <script src="js/index_templates.js" defer></script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
 <body>
     <div class="container">
         <!-- Hero Section -->
-        <div class="hero-section">
+        <header class="hero-section card"> <!-- Added card class -->
             <div class="back-to-home">
-                <a href="index.html" class="home-link">← Back to Travel Diary</a>
+                <a href="index.html" class="home-link btn">← Back to Travel Diary</a> <!-- Styled as button -->
             </div>
             <div class="langkawi-intro">
                 <div class="destination-badge">
                     <span class="destination-emoji">🏝️</span>
                     <div class="destination-details">
-                        <h2 class="destination-name">Langkawi, Malaysia</h2>
+                        <h1 class="destination-name">Langkawi, Malaysia</h1> <!-- Changed to h1 for semantic correctness -->
                         <p class="destination-tagline">Tropical paradise of sky-high adventures and pristine beaches</p>
                         <div class="trip-info">
-                            <span class="trip-dates">📅 June 16-19, 2025</span>
-                            <span class="trip-duration">🕐 4 Days</span>
-                            <span class="trip-type">🏝️ Island Escape</span>
+                            <span class="trip-dates btn btn-secondary">📅 June 16-19, 2025</span> <!-- Styled as buttons -->
+                            <span class="trip-duration btn btn-secondary">🕐 4 Days</span>
+                            <span class="trip-type btn btn-secondary">🏝️ Island Escape</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <div class="header">            
-            <h1 class="journal-title">✈️ Our Langkawi Adventure</h1>
+        <div class="header text-center"> <!-- Added text-center utility -->
+            <h2 class="journal-title">✈️ Our Langkawi Adventure</h2> <!-- Changed to h2 -->
             <p class="header-subtitle">A complete travel guide to tropical paradise, sky-high adventures, and unforgettable island moments</p>
             
-            <div class="travel-badge">
+            <div class="travel-badge card"> <!-- Added card class -->
                 <span class="badge-icon">🏝️</span>
                 <span class="badge-text">4-Day Island Escape</span>
                 <span class="badge-dates">June 16-19, 2025</span>
@@ -43,62 +44,62 @@
         
         </div>
         
-        <div id="group-selection" class="group-selection card-grid">
+        <section id="group-selection" class="group-selection card-grid"> <!-- Added card-grid class and section tag-->
             <div class="card" data-group="june16">
-                <span class="group-svg"> <!-- SVG: Airplane & Hotel -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><path d="M8 36l48-12M8 36l16 4 8 16 4-8 16 4-8-16M8 36l8-8" stroke="#00796b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="44" y="44" width="10" height="8" rx="2" fill="#ffe082" stroke="#00796b" stroke-width="2"/></svg>
+                <span class="group-svg"> 
+                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="var(--accent-color)"/><path d="M8 36l48-12M8 36l16 4 8 16 4-8 16 4-8-16M8 36l8-8" stroke="var(--primary-color)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="44" y="44" width="10" height="8" rx="2" fill="var(--secondary-color)" stroke="var(--primary-color)" stroke-width="2"/></svg>
                 </span>
-                <h2>📅 June 16th</h2>
+                <h3>📅 June 16th</h3> <!-- Changed to h3 -->
                 <p>Arrival & First Impressions</p>
             </div>
             <div class="card" data-group="june17">
-                <span class="group-svg"> <!-- SVG: Bridge & Paddy -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><rect x="12" y="36" width="40" height="8" rx="4" fill="#ffe082" stroke="#00796b" stroke-width="2"/><path d="M16 36v-8a8 8 0 0 1 16 0v8" stroke="#43a047" stroke-width="2.5"/><path d="M48 36v-4a6 6 0 0 0-12 0v4" stroke="#43a047" stroke-width="2.5"/></svg>
+                <span class="group-svg"> 
+                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="var(--accent-color)"/><rect x="12" y="36" width="40" height="8" rx="4" fill="var(--secondary-color)" stroke="var(--primary-color)" stroke-width="2"/><path d="M16 36v-8a8 8 0 0 1 16 0v8" stroke="var(--primary-color)" stroke-width="2.5"/><path d="M48 36v-4a6 6 0 0 0-12 0v4" stroke="var(--primary-color)" stroke-width="2.5"/></svg>
                 </span>
-                <h2>📅 June 17th</h2>
+                <h3>📅 June 17th</h3> <!-- Changed to h3 -->
                 <p>SkyBridge, Paddy Fields & Beach Bliss</p>
             </div>
             <div class="card" data-group="june18">
-                <span class="group-svg"> <!-- SVG: Mountain & Boat -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><path d="M16 44l8-16 8 12 8-20 8 24" stroke="#00796b" stroke-width="2.5" stroke-linecap="round"/><rect x="24" y="48" width="16" height="4" rx="2" fill="#ffe082" stroke="#00796b" stroke-width="2"/><path d="M40 52l8 2-8 2" stroke="#43a047" stroke-width="2"/></svg>
+                <span class="group-svg"> 
+                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="var(--accent-color)"/><path d="M16 44l8-16 8 12 8-20 8 24" stroke="var(--primary-color)" stroke-width="2.5" stroke-linecap="round"/><rect x="24" y="48" width="16" height="4" rx="2" fill="var(--secondary-color)" stroke="var(--primary-color)" stroke-width="2"/><path d="M40 52l8 2-8 2" stroke="var(--primary-color)" stroke-width="2"/></svg>
                 </span>
-                <h2>📅 June 18th</h2>
+                <h3>📅 June 18th</h3> <!-- Changed to h3 -->
                 <p>Sky High Adventures & Island Hopping</p>
             </div>
             <div class="card" data-group="june19">
-                <span class="group-svg"> <!-- SVG: Palm & Sun -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><circle cx="48" cy="20" r="8" fill="#ffe082" stroke="#ffb300" stroke-width="2"/><path d="M32 44v-8m0 0l-6-6m6 6l6-6" stroke="#43a047" stroke-width="2.5" stroke-linecap="round"/></svg>
+                <span class="group-svg"> 
+                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="var(--accent-color)"/><circle cx="48" cy="20" r="8" fill="var(--secondary-color)" stroke="var(--primary-color)" stroke-width="2"/><path d="M32 44v-8m0 0l-6-6m6 6l6-6" stroke="var(--primary-color)" stroke-width="2.5" stroke-linecap="round"/></svg>
                 </span>
-                <h2>📅 June 19th</h2>
+                <h3>📅 June 19th</h3> <!-- Changed to h3 -->
                 <p>Farewell to Paradise</p>
             </div>
             <div class="card" data-group="sg_jb_morning">
-                <span class="group-svg"> <!-- SVG: Train & Taxi -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><rect x="16" y="36" width="32" height="10" rx="5" fill="#ffe082" stroke="#00796b" stroke-width="2"/><rect x="24" y="20" width="16" height="16" rx="4" fill="#b2d8d8" stroke="#00796b" stroke-width="2"/><circle cx="24" cy="50" r="3" fill="#43a047"/><circle cx="40" cy="50" r="3" fill="#43a047"/></svg>
+                <span class="group-svg"> 
+                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="var(--accent-color)"/><rect x="16" y="36" width="32" height="10" rx="5" fill="var(--secondary-color)" stroke="var(--primary-color)" stroke-width="2"/><rect x="24" y="20" width="16" height="16" rx="4" fill="var(--accent-color)" stroke="var(--primary-color)" stroke-width="2"/><circle cx="24" cy="50" r="3" fill="var(--primary-color)"/><circle cx="40" cy="50" r="3" fill="var(--primary-color)"/></svg>
                 </span>
-                <h2>🚆 SG → JB (16 June Morning)</h2>
+                <h3>🚆 SG → JB (16 June Morning)</h3> <!-- Changed to h3 -->
                 <p>Sembawang → Woodlands → JB Sentral → Senai Airport</p>
             </div>
             <div class="card" data-group="jb_sg_evening">
-                <span class="group-svg"> <!-- SVG: Taxi & Train -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><rect x="16" y="36" width="32" height="10" rx="5" fill="#ffe082" stroke="#00796b" stroke-width="2"/><rect x="24" y="20" width="16" height="16" rx="4" fill="#b2d8d8" stroke="#00796b" stroke-width="2"/><circle cx="24" cy="50" r="3" fill="#43a047"/><circle cx="40" cy="50" r="3" fill="#43a047"/></svg>
+                <span class="group-svg"> 
+                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="var(--accent-color)"/><rect x="16" y="36" width="32" height="10" rx="5" fill="var(--secondary-color)" stroke="var(--primary-color)" stroke-width="2"/><rect x="24" y="20" width="16" height="16" rx="4" fill="var(--accent-color)" stroke="var(--primary-color)" stroke-width="2"/><circle cx="24" cy="50" r="3" fill="var(--primary-color)"/><circle cx="40" cy="50" r="3" fill="var(--primary-color)"/></svg>
                 </span>
-                <h2>🚕 JB → SG (19 June Evening)</h2>
+                <h3>🚕 JB → SG (19 June Evening)</h3> <!-- Changed to h3 -->
                 <p>Senai Airport → KOMTAR JBCC → Woodlands → Sembawang</p>
             </div>
             <div class="card" data-group="companion">
-                <span class="group-svg"> <!-- SVG: Book & Heart -->
-                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="#b2d8d8"/><rect x="18" y="24" width="28" height="18" rx="4" fill="#ffe082" stroke="#00796b" stroke-width="2"/><path d="M32 32c2-2 6-2 6 2s-4 6-6 8c-2-2-6-4-6-8s4-4 6-2z" fill="#ffb3b3" stroke="#e57373" stroke-width="1.5"/></svg>
+                <span class="group-svg"> 
+                    <svg viewBox="0 0 64 64" fill="none" class="group-svg"><ellipse cx="32" cy="54" rx="24" ry="6" fill="var(--accent-color)"/><rect x="18" y="24" width="28" height="18" rx="4" fill="var(--secondary-color)" stroke="var(--primary-color)" stroke-width="2"/><path d="M32 32c2-2 6-2 6 2s-4 6-6 8c-2-2-6-4-6-8s4-4 6-2z" fill="#FFB74D" stroke="var(--primary-color)" stroke-width="1.5"/></svg>
                 </span>
-                <h2>📖 Companion</h2>
+                <h3>📖 Companion</h3> <!-- Changed to h3 -->
                 <p>Guides & Memories</p>
             </div>
-        </div>
+        </section>
         
         <!-- Group content containers below, hidden by default and shown on group selection -->
-        <div id="group-content">
-            <button id="back-to-groups" class="back-btn" style="display:none;">← Back to All Days</button>
-            <div class="date-section" id="section-june16" style="display:none;">
+        <section id="group-content"> <!-- Added section tag --> 
+            <button id="back-to-groups" class="back-btn btn" style="display:none;">← Back to All Days</button> <!-- Styled as button -->
+            <div class="date-section card" id="section-june16" style="display:none;"> <!-- Added card class -->
                 <div class="date-header">
                     <h2>📅 Monday, June 16th, 2025</h2>
                     <p>Day One: Arrival & First Impressions</p>
@@ -106,7 +107,7 @@
                 <div class="trip-timeline" id="timeline-june16"></div>
                 <div class="card-grid" id="cards-june16"></div>
             </div>
-            <div class="date-section" id="section-june17" style="display:none;">
+            <div class="date-section card" id="section-june17" style="display:none;"> <!-- Added card class -->
                 <div class="date-header">
                     <h2>📅 Tuesday, June 17th, 2025</h2>
                     <p>Day Two: SkyBridge, Paddy Fields & Beach Bliss</p>
@@ -114,7 +115,7 @@
                 <div class="trip-timeline" id="timeline-june17"></div>
                 <div class="card-grid" id="cards-june17"></div>
             </div>
-            <div class="date-section" id="section-june18" style="display:none;">
+            <div class="date-section card" id="section-june18" style="display:none;"> <!-- Added card class -->
                 <div class="date-header">
                     <h2>📅 Wednesday, June 18th, 2025</h2>
                     <p>Day Three: Mongrovee Forest Tours & Splasing waterfalls</p>
@@ -122,7 +123,7 @@
                 <div class="trip-timeline" id="timeline-june18"></div>
                 <div class="card-grid" id="cards-june18"></div>
             </div>
-            <div class="date-section" id="section-june19" style="display:none;">
+            <div class="date-section card" id="section-june19" style="display:none;"> <!-- Added card class -->
                 <div class="date-header">
                     <h2>📅 Thursday, June 19th, 2025</h2>
                     <p>Day Four: Farewell to Paradise</p>
@@ -130,7 +131,7 @@
                 <div class="trip-timeline" id="timeline-june19"></div>
                 <div class="card-grid" id="cards-june19"></div>
             </div>
-            <div class="date-section" id="section-sg-jb-morning" style="display:none;">
+            <div class="date-section card" id="section-sg-jb-morning" style="display:none;"> <!-- Added card class -->
                 <div class="date-header">
                     <h2>🚆 SG → JB (16 June Morning)</h2>
                     <p>Sembawang → Woodlands → JB Sentral → Senai Airport</p>
@@ -138,7 +139,7 @@
                 <div class="trip-timeline" id="timeline-sg-jb-morning"></div>
                 <div class="card-grid" id="cards-sg-jb-morning"></div>
             </div>
-            <div class="date-section" id="section-jb-sg-evening" style="display:none;">
+            <div class="date-section card" id="section-jb-sg-evening" style="display:none;"> <!-- Added card class -->
                 <div class="date-header">
                     <h2>🚕 JB → SG (19 June Evening)</h2>
                     <p>Senai Airport → KOMTAR JBCC → Woodlands → Sembawang</p>
@@ -146,14 +147,14 @@
                 <div class="trip-timeline" id="timeline-jb-sg-evening"></div>
                 <div class="card-grid" id="cards-jb-sg-evening"></div>
             </div>
-            <div class="date-section" id="section-companion" style="display:none;">
+            <div class="date-section card" id="section-companion" style="display:none;"> <!-- Added card class -->
                 <div class="date-header">
                     <h2>📖 Travel Companion</h2>
                     <p>Essential guides and cherished memories for the journey</p>
                 </div>
                 <div class="card-grid" id="cards-companion"></div>
             </div>
-        </div>
+        </section>
 
         <!-- Simple Footer -->
         <footer class="footer">

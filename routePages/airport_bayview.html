@@ -4,61 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airport to Bayview Hotel - Langkawi Travel Journal</title>
+    <link rel="stylesheet" href="/css/global_styles.css"> <!-- Added global styles -->
     <link rel="stylesheet" href="/css/route_styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="page-header">
+        <header class="page-header"> <!-- Changed div to header and kept class -->
             <a href="/langkawi.html#section-june16" class="back-button">← Back to Itinerary</a>
             
             <h1 class="route-title">Airport → Bayview Hotel</h1>
             <p class="route-subtitle">Welcome to Langkawi • June 16th, 2025</p>
-        </div>
+        </header>
         
-        <div class="content-card">
-            <div class="trip-info">
-                <h3>🛬 Journey Details</h3>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <strong>Departure Time</strong>
-                        <span>3:30 PM</span>
+        <main> <!-- Added main wrapper for content -->
+            <section class="content-card"> <!-- Changed div to section and kept class -->
+                <div class="trip-info">
+                    <h3>🛬 Journey Details</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Departure Time</strong>
+                            <span>3:30 PM</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Arrival Time</strong>
+                            <span>4:00 PM</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Travel Duration</strong>
+                            <span>~30 minutes</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Distance</strong>
+                            <span>~15 km</span>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <strong>Arrival Time</strong>
-                        <span>4:00 PM</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>Travel Duration</strong>
-                        <span>~30 minutes</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>Distance</strong>
-                        <span>~15 km</span>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Starting Point</strong>
+                            <span>Langkawi International Airport</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Destination</strong>
+                            <span>Bayview Hotel Langkawi</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="info-grid">
-                    <div class="info-item">
-                        <strong>Starting Point</strong>
-                        <span>Langkawi International Airport</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>Destination</strong>
-                        <span>Bayview Hotel Langkawi</span>
-                    </div>
+
+                <div class="map-container">
+                    <h3>📍 Route Map</h3>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31736.00383089662!2d99.72700607801205!3d6.330899901980016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x304c68effffffffbf%3A0x1c1c97c5ca53cba8!2sLangkawi%20International%20Airport%20(LGK)%2C%20Padang%20Mat%20Sirat%2C%20Kedah!3m2!1d6.3415972!2d99.7301888!4m5!1s0x304c77e0103ff60d%3A0x7887a65f978b75c0!2sBayview%20Hotel%20Langkawi%2C%20Jalan%20Pandak%20Mayah%201%2C%20Kuah%2C%20Langkawi%2C%20Kedah!3m2!1d6.3199883!2d99.8490344!5e0!3m2!1sen!2smy!4v1678886400000!5m2!1sen!2smy" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
-            </div>
-            
-            <div class="map-container">
-                <h3>🗺️ Route Map</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d63446.616802644305!2d99.74832840928595!3d6.3404495741465245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x304c782382594b61%3A0xe5f9b47ac03679b6!2sLangkawi%20International%20Airport!3m2!1d6.3423662!2d99.7311151!4m5!1s0x304c7f7a590b64db%3A0x300a1e296cc0d337!2sBayview%20Hotel%20Langkawi%2C%20Jalan%20Pandak%20Mayah%201%2C%20Pusat%20Bandar%20Kuah%2C%2007000%20Langkawi%2C%20Kedah%2C%20Malaysia!3m2!1d6.3230423!2d99.8491447!5e0!3m2!1sen!2ssg!4v1749700159097!5m2!1sen!2ssg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            
-            <div class="journey-note">
-                <h4>✈️ Travel Note</h4>
-                <p>First steps in Langkawi! After landing at the airport, we'll take a comfortable ride to our base for the next few days - the beautiful Bayview Hotel. This scenic drive will give us our first glimpse of the island's tropical beauty. Perfect time to settle in and prepare for our adventures ahead!</p>
-            </div>
-        </div>
+
+                <div class="journey-note">
+                    <h4>📝 Note</h4>
+                    <p>First leg of our Langkawi adventure! Excited to check into Bayview Hotel and start exploring Kuah town.</p>
+                </div>
+            </section>
+        </main>
     </div>
 </body>
 </html>

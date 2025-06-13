@@ -1,280 +1,88 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;600&family=Dancing+Script:wght@600;700&display=swap');
+@import url('./global_styles.css');
 
-/* Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Styles specific to diary_styles.css, to be merged or adapted with global_styles.css */
 
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
-    line-height: 1.6;
-    color: #2d3436;
-}
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Hero Section */
+/* Hero Section - Retaining some specific diary styles if they differ significantly */
 .hero-section {
-    background: linear-gradient(120deg, var(--soft-bg) 80%, #e0f7fa 100%);
-    backdrop-filter: blur(8px);
-    border-radius: 18px;
+    /* Original diary_styles.css hero styles if needed, or remove if global_styles are sufficient */
+    /* Example: background: linear-gradient(120deg, var(--soft-bg) 80%, #e0f7fa 100%); */
+    /* Retaining unique padding/margin if necessary */
     margin: 18px 0 10px 0;
     padding: 18px 0 10px 0;
-    box-shadow: 0 2px 16px rgba(116,185,255,0.08);
-    border: none;
-    text-align: left;
-    width: 100%;
-    min-height: unset;
-}
-
-.hero-content {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 2vw;
 }
 
 .author-intro {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    /* Specific alignment or gap if different from global */
     gap: 18px;
-    margin-bottom: 0;
 }
 
 .author-avatar {
     width: 54px;
     height: 54px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #74b9ff 60%, #00cec9 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: none;
-    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--primary-color) 60%, var(--accent-color) 100%); /* Updated colors */
 }
 
 .avatar-emoji {
     font-size: 1.7rem;
 }
 
-.author-details {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
 .author-name {
     font-family: 'Playfair Display', 'Inter', serif;
-    font-size: 2.1rem;
+    font-size: 2.1rem; /* Or use clamp from global */
     font-weight: 700;
-    background: linear-gradient(90deg, #3a6073 0%, #00cec9 60%, #f9d423 100%);
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 60%, var(--secondary-color) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 2px;
-    letter-spacing: -0.01em;
     text-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    transition: background 0.3s;
 }
 
 .author-tagline {
     font-style: italic;
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    margin-bottom: 4px;
-    font-weight: 400;
+    color: var(--text-color); /* Use global text color */
     opacity: 0.85;
+    font-size: 1.05rem;
 }
 
-.travel-stats {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 2px;
+.travel-stats .stat-item {
+    /* These are now .btn .btn-secondary, global styles apply */
+    /* Remove specific styles here if global .btn is sufficient */
+    /* Example: background: rgba(0,206,201,0.08); */
+    /* color: var(--deep-blue); */
+    padding: 5px 12px; /* Adjusted padding for a more compact look */
+    font-size: 0.9rem;
 }
 
-.stat-item {
-    background: rgba(0,206,201,0.08);
-    color: var(--deep-blue);
-    padding: 3px 10px;
-    border-radius: 9px;
-    font-size: 0.88rem;
-    font-weight: 500;
-    border: none;
-}
+/* Navigation - diary_styles.css specific adjustments if any */
+/* .main-nav is now styled globally. Remove or adapt specific diary_styles.css for .main-nav */
 
-.hero-description {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero-description p {
-    font-size: clamp(1rem, 2.2vw, 1.15rem);
-    color: #636e72;
-    line-height: 1.5;
-    opacity: 0.9;
-}
-
-/* Navigation (restored classic, robust, responsive) */
-.main-nav {
-    text-align: center;
-    margin: 25px 0;
-    background: none;
-    box-shadow: none;
-    border: none;
-    position: static;
-    width: auto;
-    left: auto;
-    right: auto;
-    padding: 0;
-}
-
-.navbar-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    height: 64px;
-}
-
-.nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #00cec9;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.nav-links {
-    display: inline-flex;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: 50px;
-    padding: 8px;
-    gap: 8px;
-    box-shadow: 0 6px 20px rgba(116, 185, 255, 0.12);
-    border: 1px solid rgba(116, 185, 255, 0.1);
-}
-
-.nav-link {
-    padding: 12px 25px;
-    border-radius: 50px;
-    text-decoration: none;
-    color: #2d3436;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-    background: linear-gradient(135deg, #74b9ff, #00cec9);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(116, 185, 255, 0.2);
-}
-
-@media (max-width: 900px) {
-    .navbar-inner {
-        padding: 0 10px;
-        height: 54px;
-    }
-    .nav-logo {
-        font-size: 1.1rem;
-    }
-    .nav-link {
-        font-size: 0.98rem;
-        padding: 8px 14px;
-    }
-}
-
-@media (max-width: 700px) {
-    .nav-links {
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-        border-radius: 18px;
-        padding: 4px 0;
-    }
-    .nav-link {
-        padding: 14px 0;
-        font-size: 1.08rem;
-        border-radius: 0;
-        width: 100%;
-        text-align: center;
-    }
-}
-
-/* Section Headers */
-.section-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
+/* Section Headers - diary_styles.css specific adjustments */
 .section-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 600;
-    color: #2d3436;
-    margin-bottom: 15px;
+    /* font-family: 'Playfair Display', serif; */ /* Global */
+    /* font-size: clamp(2rem, 4vw, 2.8rem); */ /* Global */
+    /* color: #2d3436; */ /* Global via h2 tag */
+    margin-bottom: 20px; /* Adjusted margin */
 }
 
 .section-header p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: #636e72;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0.9;
+    /* font-size: clamp(1rem, 2.5vw, 1.2rem); */ /* Global */
+    /* color: #636e72; */ /* Global via p tag */
+    max-width: 700px; /* Slightly wider */
 }
 
-/* Destinations Section */
+/* Destinations Section - diary_styles.css specific card styling */
 .destinations-section {
-    margin: 60px 0;
+    margin: 40px 0; /* Adjusted margin */
 }
 
-.destinations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
+/* .destinations-grid is now .card-grid, global styles apply */
 
-.destination-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative;
-}
-
-.destination-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(116, 185, 255, 0.15);
-}
+/* .destination-card is now .card, global styles apply. Add specific overrides if needed */
+/* Example: border: 2px solid var(--primary-color); for featured */
 
 .destination-card.featured {
-    border: 2px solid #74b9ff;
-    box-shadow: 0 8px 25px rgba(116, 185, 255, 0.15);
+    border: 2px solid var(--secondary-color);
 }
 
 .destination-card.featured::before {
@@ -282,37 +90,34 @@ body {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: linear-gradient(135deg, #74b9ff, #00cec9);
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
     color: white;
     padding: 4px 10px;
-    border-radius: 12px;
+    border-radius: var(--border-radius-main);
     font-size: 0.8rem;
     font-weight: 600;
     z-index: 2;
 }
 
 .destination-card.completed {
-    border: 2px solid #00b894;
-    box-shadow: 0 8px 25px rgba(0, 184, 148, 0.15);
+    border: 2px solid var(--accent-color);
 }
 
 .destination-card.completed::before {
     content: '✅ Completed';
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: linear-gradient(135deg, #00b894, #00cec9);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    z-index: 2;
+    /* ... similar styling to featured::before using accent colors ... */
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    color: white; /* Added for consistency */
+    padding: 4px 10px; /* Added for consistency */
+    border-radius: var(--border-radius-main); /* Added for consistency */
+    font-size: 0.8rem; /* Added for consistency */
+    font-weight: 600; /* Added for consistency */
+    z-index: 2; /* Added for consistency */
 }
 
 .card-image {
     height: 180px;
-    background: linear-gradient(135deg, #74b9ff, #00cec9);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -336,474 +141,149 @@ body {
 
 .duration, .status {
     background: rgba(255, 255, 255, 0.95);
-    color: #2d3436;
+    color: var(--text-color);
     padding: 4px 10px;
-    border-radius: 12px;
+    border-radius: var(--border-radius-main);
     font-size: 0.8rem;
     font-weight: 600;
 }
 
 .status.coming-soon-badge {
-    background: rgba(255, 193, 7, 0.9);
+    background: rgba(255, 193, 7, 0.9); /* Keep specific yellow for coming soon */
     color: #856404;
 }
 
-.completed-badge {
-    background: rgba(0, 184, 148, 0.9);
-    color: white;
-}
-
-.card-content {
-    padding: 25px;
-}
+/* .completed-badge is now .btn .btn-secondary, global styles apply */
 
 .card-content h3 {
     font-family: 'Caveat', cursive;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2d3436;
-    margin-bottom: 10px;
+    font-size: 1.6rem; /* Slightly larger for card titles */
+    color: var(--primary-color);
 }
 
 .card-content p {
-    color: #636e72;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    color: var(--text-color);
+    opacity: 0.9;
 }
 
-.card-meta {
-    margin-bottom: 15px;
-}
-
-.date {
-    color: #74b9ff;
+.card-meta .date {
+    color: var(--secondary-color);
     font-weight: 600;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 5px;
 }
 
-.highlights {
-    color: #636e72;
-    font-size: 0.9rem;
+.card-meta .highlights {
+    color: var(--text-color);
+    opacity: 0.8;
     font-style: italic;
 }
 
-.card-stats {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
 .card-stats span {
-    background: rgba(224, 247, 250, 0.8);
-    color: #00796b;
-    padding: 3px 8px;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid rgba(0, 206, 201, 0.2);
+    /* These are now .btn .btn-secondary, global styles apply */
+    /* background: rgba(224, 247, 250, 0.8); */
+    /* color: #00796b; */
+    /* border: 1px solid rgba(0, 206, 201, 0.2); */
+    padding: 5px 10px; /* Adjusted padding */
+    font-size: 0.85rem;
 }
 
 .coming-soon {
     opacity: 0.7;
-    cursor: default;
 }
 
-.coming-soon:hover {
-    transform: none;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-}
-
-/* About Section */
+/* About Section - diary_styles.css specific adjustments */
 .about-section {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    padding: 45px 35px;
-    margin: 50px 0;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    /* .card global styles apply */
+    padding: 35px; /* Adjusted padding */
 }
 
 .about-text p {
-    font-size: 1.1rem;
-    color: #636e72;
-    line-height: 1.6;
-    margin-bottom: 25px;
+    font-size: 1.1rem; /* Global p */
+    /* color: #636e72; */ /* Global p */
     text-align: center;
-    max-width: 900px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.travel-philosophy {
-    margin: 30px 0;
-}
-
 .travel-philosophy h3 {
     font-family: 'Caveat', cursive;
-    font-size: 1.7rem;
-    color: #2d3436;
-    margin-bottom: 18px;
-    text-align: center;
+    font-size: 1.8rem;
+    color: var(--primary-color);
 }
 
 .travel-philosophy ul {
-    list-style: none;
-    max-width: 850px;
-    margin: 0 auto;
+    list-style-position: inside; /* Indent bullets */
+    padding-left: 0; /* Remove default padding */
 }
 
 .travel-philosophy li {
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(116, 185, 255, 0.1);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3)); /* Use accent color for border */
     font-size: 1rem;
-    line-height: 1.5;
-}
-
-.travel-philosophy li:last-child {
-    border-bottom: none;
 }
 
 .stats-showcase {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-    flex-wrap: wrap;
+    /* .card-grid global styles apply */
+    gap: 25px; /* Adjusted gap */
 }
 
 .stat-box {
+    /* .card global styles apply */
     text-align: center;
-    padding: 20px;
-    background: rgba(116, 185, 255, 0.05);
-    border-radius: 15px;
-    border: 1px solid rgba(116, 185, 255, 0.1);
+    padding: 25px; /* Adjusted padding */
+    background: var(--background-color); /* Slightly different background for stat boxes */
+    border: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3));
 }
 
 .stat-number {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #74b9ff;
-    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--secondary-color);
 }
 
 .stat-label {
-    color: #636e72;
-    font-size: 0.9rem;
-    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.8;
 }
 
-/* Contact Section */
+/* Contact Section - diary_styles.css specific adjustments */
 .contact-section {
-    margin: 60px 0;
+    /* .card global styles apply */
+    margin: 40px 0;
 }
 
-.contact-content {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.contact-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
+/* .contact-options is .card-grid, global styles apply */
 
 .contact-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 18px;
-    padding: 30px 25px;
+    /* .card global styles apply */
     text-align: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-}
-
-.contact-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(116, 185, 255, 0.15);
 }
 
 .contact-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    color: var(--accent-color);
 }
 
 .contact-card h3 {
     font-family: 'Caveat', cursive;
-    font-size: 1.4rem;
-    color: #2d3436;
-    margin-bottom: 10px;
-}
-
-.contact-card p {
-    color: #636e72;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.contact-link {
-    color: #74b9ff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.contact-link:hover {
-    color: #00cec9;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.social-link {
-    color: #636e72;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.social-link:hover {
-    color: #74b9ff;
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(135deg, #2d3436, #636e72);
-    color: white;
-    border-radius: 20px;
-    padding: 40px 30px 20px;
-    margin: 40px 0 20px;
-    text-align: center;
-}
-
-.footer-brand h4 {
-    font-family: 'Dancing Script', cursive;
     font-size: 1.5rem;
-    margin-bottom: 8px;
-    color: #74b9ff;
+    color: var(--primary-color);
 }
 
-.footer-brand p {
-    margin-bottom: 25px;
-    opacity: 0.8;
+.contact-link.btn {
+    /* .btn global styles apply */
+    margin-top: 10px;
+    width: 100%; /* Make buttons full width in contact cards */
 }
 
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 25px;
-    flex-wrap: wrap;
+.social-links .btn {
+    /* .btn .btn-secondary global styles apply */
+    margin: 5px;
 }
 
-.footer-links a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
+/* Footer - diary_styles.css specific adjustments */
+/* .footer is styled globally. Remove or adapt specific diary_styles.css for .footer */
 
-.footer-links a:hover {
-    color: #74b9ff;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
-}
-
-.footer-bottom p {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-    }
-
-    .hero-section {
-        margin: 20px 0;
-        padding: 40px 25px;
-        border-radius: 20px;
-    }
-
-    .author-intro {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .author-details {
-        text-align: center;
-    }
-
-    .author-avatar {
-        width: 60px;
-        height: 60px;
-    }
-
-    .avatar-emoji {
-        font-size: 2rem;
-    }
-
-    .travel-stats {
-        justify-content: center;
-        gap: 8px;
-    }
-
-    .stat-item {
-        font-size: 0.8rem;
-        padding: 4px 8px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        padding: 12px;
-        gap: 8px;
-    }
-
-    .nav-link {
-        padding: 10px 20px;
-    }
-
-    .destinations-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-
-    .about-section {
-        padding: 40px 25px;
-        margin: 60px 0;
-    }
-
-    .stats-showcase {
-        gap: 25px;
-    }
-
-    .stat-box {
-        padding: 15px;
-    }
-
-    .stat-number {
-        font-size: 2rem;
-    }
-
-    .contact-options {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-
-    .footer {
-        padding: 30px 20px 15px;
-    }
-
-    .footer-links {
-        gap: 20px;
-    }
-}
-
-/* Desktop Optimizations */
-@media (min-width: 1024px) {
-    .container {
-        padding: 0 30px;
-    }
-    
-    .hero-section {
-        padding: 30px 35px;
-        margin: 20px 0;
-    }
-    
-    .hero-description {
-        max-width: 600px;
-    }
-    
-    .author-intro {
-        gap: 25px;
-        margin-bottom: 18px;
-    }
-    
-    .destinations-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        max-width: 1300px;
-    }
-    
-    .destination-card {
-        max-width: none;
-    }
-    
-    .card-image {
-        height: 190px;
-    }
-    
-    .destination-emoji {
-        font-size: 3.8rem;
-    }
-    
-    .about-section {
-        padding: 40px 45px;
-    }
-    
-    .about-text p {
-        max-width: 800px;
-        font-size: 1.08rem;
-    }
-    
-    .stats-showcase {
-        gap: 45px;
-    }
-    
-    .contact-options {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 35px;
-    }
-    
-    .travel-philosophy ul {
-        max-width: 750px;
-    }
-    
-    .travel-philosophy li {
-        padding: 14px 0;
-        font-size: 0.98rem;
-    }
-}
-
-/* Large Desktop Optimizations */
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1500px;
-        padding: 0 40px;
-    }
-    
-    .hero-content {
-        max-width: 1100px;
-    }
-    
-    .destinations-grid {
-        max-width: 1400px;
-        gap: 35px;
-    }
-    
-    .about-text p {
-        max-width: 1000px;
-        font-size: 1.15rem;
-    }
-    
-    .travel-philosophy ul {
-        max-width: 1000px;
-    }
-    
-    .contact-content {
-        max-width: 1200px;
-    }
-}
-
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
+/* Ensure any !important flags from original diary_styles.css are reviewed and applied if necessary, */
+/* or ideally refactored for better specificity if global styles are intended to be overridden. */

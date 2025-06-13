@@ -1,154 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&family=Dancing+Script:wght@600;700&display=swap');
+@import url('./global_styles.css');
 
-/* Base Styles */
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 15px;
-    margin: 0;
-    line-height: 1.6;
-}
+/* Styles specific to index_styles.css, to be merged or adapted with global_styles.css */
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* --- HERO SECTION: Minimalist, Compact, Stylish (Langkawi) --- */
-:root {
-  --primary-accent: #00cec9;
-  --secondary-accent: #f9d423;
-  --deep-blue: #3a6073;
-  --soft-bg: #f5f7fa;
-  --text-main: #222;
-  --text-muted: #5c6e7a;
-}
-
-/* Hero Section */
+/* Hero Section: Minimalist, Compact, Stylish (Langkawi page specific) */
+/* This .hero-section is specific to langkawi.html and differs from the one in diary_styles.css */
 .hero-section {
-    text-align: center;
-    margin-bottom: 40px;
-    background: rgba(255, 255, 255, 0.9);
+    /* .card global styles apply if this is also treated as a card */
+    text-align: center; /* Overriding global .card text-align if needed */
+    margin-bottom: 30px; /* Adjusted margin */
+    background: rgba(255, 255, 255, 0.9); /* Keeping specific background */
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px 20px;
-    box-shadow: 0 8px 25px rgba(116, 185, 255, 0.12);
-    border: 1px solid rgba(116, 185, 255, 0.1);
+    border-radius: var(--border-radius-main); /* Global */
+    padding: 25px 20px; /* Adjusted padding */
+    box-shadow: var(--box-shadow-main); /* Global */
 }
 
-.author-intro {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
+/* .author-intro, .author-avatar, etc. from index_styles.css are for a different hero structure */
+/* than the one on index.html. These might not be needed if langkawi.html hero is simpler */
 
-.author-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #74b9ff, #00cec9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(116, 185, 255, 0.2);
-}
-
-.avatar-emoji {
-    font-size: 2rem;
-}
-
-.author-details {
-    text-align: left;
-}
-
-.author-name {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.6rem;
-    color: #2d3436;
-    margin: 0 0 5px 0;
-    font-weight: 600;
-}
-
-.author-tagline {
-    font-style: italic;
-    color: #636e72;
-    margin: 0 0 10px 0;
-    font-size: 0.95rem;
-}
-
-.travel-stats {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.stat-item {
-    background: rgba(116, 185, 255, 0.1);
-    color: #2d3436;
-    padding: 3px 8px;
-    border-radius: 10px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid rgba(116, 185, 255, 0.15);
-}
-
-/* Header */
+/* Header (specific to langkawi.html title section) */
 .header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .journal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    /* font-family: 'Playfair Display', serif; */ /* Global h1/h2 */
+    /* font-size: clamp(2.2rem, 5vw, 3.5rem); */ /* Global h1/h2 */
     font-weight: 700;
-    background: linear-gradient(135deg, #2d3436, #74b9ff, #00cec9);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--secondary-color));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     letter-spacing: -0.02em;
 }
 
 .header-subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: #636e72;
-    font-weight: 400;
-    margin-bottom: 25px;
-    opacity: 0.9;
+    /* font-size: clamp(1rem, 2.5vw, 1.2rem); */ /* Global p */
+    color: var(--text-color); /* Global p */
+    opacity: 0.85;
     font-style: italic;
-    max-width: 600px;
+    max-width: 650px; /* Adjusted width */
     margin-left: auto;
     margin-right: auto;
     line-height: 1.5;
 }
 
 .travel-badge {
+    /* .card global styles apply */
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(15px);
-    padding: 15px 25px;
-    border-radius: 30px;
-    border: 2px solid #74b9ff;
-    box-shadow: 0 8px 20px rgba(116, 185, 255, 0.15);
+    padding: 12px 20px; /* Adjusted padding */
+    border: 2px solid var(--primary-color); /* Use primary color for border */
     font-weight: 600;
-    color: #2d3436;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-.travel-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(116, 185, 255, 0.2);
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-top: 15px; /* Added margin */
 }
 
 .badge-icon {
     font-size: 1.3em;
+    color: var(--accent-color);
 }
 
 .badge-text {
@@ -158,36 +72,31 @@ body {
 .badge-dates {
     opacity: 0.8;
     font-weight: 500;
-    color: #00796b;
+    color: var(--secondary-color);
 }
 
 /* Back to Home Navigation */
 .back-to-home {
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .home-link {
-    display: inline-flex;
-    align-items: center;
+    /* .btn global styles apply */
+    /* display: inline-flex; */ /* from .btn */
+    /* align-items: center; */ /* from .btn */
     gap: 8px;
-    color: #74b9ff;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 8px 15px;
-    border-radius: 25px;
-    background: rgba(116, 185, 255, 0.1);
-    border: 1px solid rgba(116, 185, 255, 0.2);
-    transition: all 0.3s ease;
+    /* color: var(--primary-color); */ /* from .btn */
+    /* text-decoration: none; */ /* from .btn */
+    /* font-weight: 500; */ /* from .btn */
+    /* padding: 8px 15px; */ /* from .btn */
+    /* border-radius: 25px; */ /* from .btn */
+    /* background: rgba(116, 185, 255, 0.1); */ /* from .btn */
+    /* border: 1px solid rgba(116, 185, 255, 0.2); */ /* from .btn */
     font-size: 0.9rem;
 }
-.home-link:hover {
-    background: rgba(116, 185, 255, 0.15);
-    transform: translateX(-3px);
-    box-shadow: 0 4px 12px rgba(116, 185, 255, 0.15);
-}
 
-/* Langkawi-specific intro */
+/* Langkawi-specific intro (within hero-section on langkawi.html) */
 .langkawi-intro {
     text-align: left;
 }
@@ -195,19 +104,19 @@ body {
 .destination-badge {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 20px; /* Adjusted gap */
 }
 
 .destination-emoji {
-    font-size: 3.5rem;
-    background: linear-gradient(135deg, #74b9ff, #00cec9);
+    font-size: 3rem; /* Adjusted size */
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 70px; /* Adjusted size */
+    height: 70px; /* Adjusted size */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 20px rgba(116, 185, 255, 0.2);
+    box-shadow: 0 6px 20px rgba(0,0,0, 0.15);
 }
 
 .destination-details {
@@ -215,59 +124,52 @@ body {
 }
 
 .destination-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    /* font-family: 'Playfair Display', serif; */ /* Global h1/h2 */
+    /* font-size: clamp(2rem, 4vw, 2.8rem); */ /* Global h1/h2 */
     font-weight: 700;
-    color: #2d3436;
-    margin: 0 0 8px 0;
-    letter-spacing: -0.02em;
+    color: var(--primary-color); /* Global h1/h2 */
+    margin: 0 0 5px 0; /* Adjusted margin */
 }
 
 .destination-tagline {
     font-style: italic;
-    color: #636e72;
-    margin: 0 0 15px 0;
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    line-height: 1.5;
+    color: var(--text-color); /* Global p */
+    opacity: 0.9;
+    margin: 0 0 10px 0; /* Adjusted margin */
+    /* font-size: clamp(1rem, 2.5vw, 1.2rem); */ /* Global p */
 }
 
 .trip-info {
     display: flex;
-    gap: 15px;
+    gap: 10px; /* Adjusted gap */
     flex-wrap: wrap;
 }
 
 .trip-dates, .trip-duration, .trip-type {
-    background: rgba(116, 185, 255, 0.1);
-    color: #2d3436;
-    padding: 5px 12px;
-    border-radius: 12px;
+    /* These are now .btn .btn-secondary, global styles apply */
+    /* background: rgba(116, 185, 255, 0.1); */
+    /* color: #2d3436; */
+    padding: 5px 12px; /* Adjusted padding */
+    /* border-radius: 12px; */
     font-size: 0.9rem;
-    font-weight: 500;
-    border: 1px solid rgba(116, 185, 255, 0.15);
+    /* font-weight: 500; */
+    /* border: 1px solid rgba(116, 185, 255, 0.15); */
 }
 
 /* Group Selection Cards */
 .group-selection {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    /* .card-grid global styles apply */
     justify-content: center;
-    margin: 40px 0;
+    margin: 30px 0;
 }
 
 .group-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 18px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    padding: 25px 20px;
-    min-width: 200px;
-    max-width: 300px;
-    flex: 1 1 220px;
+    /* .card global styles apply */
+    min-width: 180px; /* Adjusted min-width */
+    max-width: 280px; /* Adjusted max-width */
+    flex: 1 1 200px; /* Adjusted flex basis */
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
     position: relative;
     overflow: hidden;
 }
@@ -278,8 +180,8 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #74b9ff, #00cec9);
+    height: 4px; /* Thicker accent line */
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -288,94 +190,80 @@ body {
     transform: scaleX(1);
 }
 
-.group-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(116, 185, 255, 0.15);
-    border-color: rgba(116, 185, 255, 0.2);
-}
-
 .group-svg {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
+    width: 50px; /* Adjusted size */
+    height: 50px; /* Adjusted size */
+    margin-bottom: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.group-card h2 {
-    font-size: 1.3rem;
-    margin: 0 0 10px 0;
+.group-card h3 { /* Was h2, changed in HTML to h3 */
+    /* font-size: 1.3rem; */ /* Global h3 */
+    margin: 0 0 8px 0;
     font-family: 'Caveat', cursive;
-    color: #2d3436;
+    color: var(--primary-color); /* Global h3 */
     font-weight: 600;
 }
 
 .group-card p {
-    font-size: 1rem;
-    color: #636e72;
-    margin: 0;
-    opacity: 0.9;
+    /* font-size: 1rem; */ /* Global p */
+    color: var(--text-color); /* Global p */
+    opacity: 0.85;
 }
 
 /* Date Sections */
 .date-section {
-    margin-bottom: 50px;
+    /* .card global styles apply */
+    margin-bottom: 40px;
 }
 
 .date-header {
-    background: rgba(255, 255, 255, 0.9);
+    /* This is part of .date-section which is a .card */
+    /* Consider if this needs separate card styling or just padding */
     padding: 20px;
-    border-radius: 12px;
     margin-bottom: 20px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    position: relative;
+    border-bottom: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3)); /* Accent border */
 }
 
 .date-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #74b9ff, #00cec9);
-    border-radius: 12px 12px 0 0;
+    /* Removed as .date-header is not a separate card now */
 }
 
 .date-header h2 {
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Playfair Display', serif; */ /* Global h2 */
     margin: 0 0 8px 0;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    color: #2d3436;
-    font-weight: 600;
+    /* font-size: clamp(1.4rem, 3vw, 2rem); */ /* Global h2 */
+    color: var(--primary-color); /* Global h2 */
 }
 
 .date-header p {
     margin: 0;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    color: #636e72;
+    /* font-size: clamp(0.9rem, 2vw, 1.1rem); */ /* Global p */
+    color: var(--text-color); /* Global p */
     font-weight: 400;
 }
 
 /* Timeline - Simplified */
 .trip-timeline {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    padding: 20px;
+    /* This is inside .date-section which is a .card */
+    /* background: rgba(255, 255, 255, 0.9); */ /* Handled by parent card */
+    /* border-radius: 15px; */ /* Handled by parent card */
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); */ /* Handled by parent card */
+    padding: 15px; /* Adjusted padding */
     margin: 20px 0;
-    border-left: 4px solid #74b9ff;
+    border-left: 3px solid var(--accent-color); /* Accent color for timeline */
 }
 
 .timeline-item {
     display: flex;
     align-items: flex-start;
     gap: 15px;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(116, 185, 255, 0.1);
-    transition: all 0.2s ease;
+    padding: 10px 0; /* Adjusted padding */
+    border-bottom: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.2));
+    transition: background-color 0.2s ease;
 }
 
 .timeline-item:last-child {
@@ -383,18 +271,18 @@ body {
 }
 
 .timeline-item:hover {
-    background: rgba(116, 185, 255, 0.05);
-    border-radius: 8px;
-    padding: 12px 8px;
-    margin: 0 -8px;
+    background-color: var(--accent-color-translucent, rgba(129, 199, 132, 0.1));
+    border-radius: var(--border-radius-main);
+    padding: 10px 8px; /* Adjust padding on hover */
+    margin: 0 -8px; /* Adjust margin for hover effect */
 }
 
 .timeline-svg {
-    width: 24px;
-    height: 24px;
+    width: 22px; /* Adjusted size */
+    height: 22px; /* Adjusted size */
     flex-shrink: 0;
-    margin-top: 2px;
-    background: linear-gradient(135deg, #e0f7fa, #ffe082);
+    margin-top: 3px;
+    background: linear-gradient(135deg, var(--background-color), var(--secondary-color)); /* Updated colors */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -403,90 +291,60 @@ body {
 
 .timeline-time {
     font-family: 'Caveat', cursive;
-    font-size: 1rem;
-    color: #00796b;
-    min-width: 55px;
+    font-size: 1.1rem; /* Adjusted size */
+    color: var(--primary-color);
+    min-width: 60px; /* Adjusted width */
     text-align: right;
     font-weight: 600;
-    background: rgba(224, 247, 250, 0.8);
+    background: var(--accent-color-translucent, rgba(129, 199, 132, 0.15));
     border-radius: 8px;
     padding: 2px 6px;
 }
 
 .timeline-desc {
-    color: #2d3436;
+    color: var(--text-color);
     font-size: 1rem;
     flex: 1;
 }
 
-/* Cards - Enhanced and Well-Aligned */
-.card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin: 25px 0;
+/* Cards - Enhanced and Well-Aligned (Route Cards on langkawi.html) */
+/* .card-grid is global */
+
+/* .card, .route-card: These are styled by global .card now. */
+/* Specific overrides for .route-card if needed, but many properties are covered. */
+.route-card {
+    /* .card global styles apply */
+    /* text-align: center; */ /* Global .card */
+    /* cursor: pointer; */ /* Global .card */
+    /* display: flex; */ /* Add if needed for specific layout */
+    /* flex-direction: column; */ /* Add if needed */
+    /* align-items: center; */ /* Add if needed */
 }
 
-.card, .route-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    padding: 25px 20px;
-    min-width: 200px;
-    max-width: 320px;
-    flex: 1 1 240px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card::before, .route-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #74b9ff, #00cec9);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.card:hover::before, .route-card:hover::before {
-    transform: scaleX(1);
-}
-
-.card:hover, .route-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(116, 185, 255, 0.15);
-    border-color: rgba(116, 185, 255, 0.2);
+.route-card::before {
+    /* This was for a top border effect, similar to .group-card */
+    /* Re-evaluate if this specific effect is desired on these cards too */
+    /* If so, copy from .group-card::before or create a utility class */
 }
 
 .card-icon, .route-card .card-icon {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-    display: block;
+    font-size: 2rem; /* Adjusted size */
+    margin-bottom: 12px;
+    color: var(--accent-color);
 }
 
-.card h3, .route-card h3 {
-    font-size: 1.2rem;
-    margin: 0 0 10px 0;
+.route-card h3 {
+    /* font-size: 1.2rem; */ /* Global h3 */
+    margin: 0 0 8px 0;
     font-family: 'Caveat', cursive;
-    color: #2d3436;
-    font-weight: 600;
+    color: var(--primary-color); /* Global h3 */
 }
 
-.card p, .route-card p {
-    font-size: 1rem;
-    color: #636e72;
-    margin-bottom: 15px;
-    line-height: 1.5;
+.route-card p {
+    /* font-size: 1rem; */ /* Global p */
+    color: var(--text-color); /* Global p */
+    opacity: 0.9;
+    margin-bottom: 12px;
 }
 
 .card-meta {
@@ -494,256 +352,64 @@ body {
     gap: 8px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: auto;
+    margin-top: auto; /* Pushes to bottom if card is flex column */
 }
 
 .card-meta span {
-    background: rgba(224, 247, 250, 0.8);
-    border-radius: 8px;
-    padding: 2px 6px;
-    font-size: 0.8rem;
-    color: #00796b;
-    font-weight: 500;
-    border: 1px solid rgba(0, 206, 201, 0.2);
+    /* These are now .btn .btn-secondary, global styles apply */
+    /* background: rgba(224, 247, 250, 0.8); */
+    /* color: #00796b; */
+    padding: 4px 10px; /* Adjusted padding */
+    /* border-radius: 10px; */
+    font-size: 0.85rem;
+    /* font-weight: 500; */
+    /* border: 1px solid rgba(0, 206, 201, 0.15); */
 }
 
-/* Back Button */
-.back-btn {
-    display: inline-block;
-    margin: 15px 0;
-    padding: 8px 15px;
-    background: rgba(224, 247, 250, 0.8);
-    border: 1px solid rgba(0, 206, 201, 0.3);
-    border-radius: 8px;
-    font-size: 0.9rem;
-    color: #00796b;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-}
-
-.back-btn:hover {
-    background: rgba(224, 247, 250, 1);
-    transform: translateX(-2px);
-}
-
-/* Footer - Minimal */
+/* Footer (specific to langkawi.html) */
 .footer {
-    background: linear-gradient(135deg, #2d3436, #636e72);
-    color: white;
-    border-radius: 15px;
-    margin: 40px 0 0 0;
-    padding: 25px 20px;
-    text-align: center;
+    /* Global .footer styles apply */
+    /* Add specific overrides if langkawi.html footer is different */
+    padding: 25px 0; /* Slightly more padding */
 }
 
-.footer-content h4 {
-    font-family: 'Caveat', cursive;
-    font-size: 1.2rem;
+.footer h4 {
+    /* Global h4 */
     margin-bottom: 8px;
-    color: #74b9ff;
-    font-weight: 600;
+    color: var(--light-text-color); /* Ensure text is light on dark background */
 }
 
-.footer-content p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    margin: 0;
+.footer p {
+    /* Global p, but color needs override for dark background */
+    color: var(--light-text-color);
+    opacity: 0.9;
 }
 
-/* Mobile Responsive - iPhone 15/16 Optimized */
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-    
-    .hero-section {
-        padding: 25px 20px;
-        margin-bottom: 25px;
-    }
-    
-    .author-intro {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
+/* Responsive adjustments from index_styles.css */
+@media (max-width: 900px) {
+    /* Styles for .navbar-inner, .nav-logo, .nav-link from original index_styles.css */
+    /* These are not present in langkawi.html, so they can be removed or adapted */
+    /* if a similar nav structure is added to langkawi.html */
+}
 
-    .author-avatar {
-        width: 50px;
-        height: 50px;
-    }
+@media (max-width: 700px) {
+    /* Styles for .nav-links, .nav-link from original index_styles.css */
+    /* Similar to above, adapt or remove based on langkawi.html structure */
 
-    .avatar-emoji {
-        font-size: 1.8rem;
-    }
-
-    .author-name {
-        font-size: 1.4rem;
-    }
-
-    .travel-stats {
-        justify-content: center;
-        gap: 6px;
-    }
-
-    .stat-item {
-        font-size: 0.75rem;
-        padding: 2px 6px;
-    }
-    
-    .travel-badge {
-        flex-direction: column;
-        text-align: center;
-        gap: 5px;
-        padding: 12px 20px;
-        font-size: 1rem;
-    }
-    
     .group-selection {
-        flex-direction: column;
-        gap: 1.2rem;
-        margin: 2rem 0;
+        /* .card-grid global responsive styles apply (stacks to 1 column) */
     }
-    
     .group-card {
-        min-width: 0;
-        flex: none;
-        padding: 1.5rem 1rem 1.2rem 1rem; /* Add horizontal padding to card itself */
-    }
-    
-    .group-svg {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .group-card h2 {
-        font-size: 1.1rem;
-    }
-    
-    .group-card p {
-        font-size: 0.9rem;
-    }
-    
-    .trip-timeline {
-        padding: 20px;
-        margin: 20px 10px;
-    }
-    
-    .timeline-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        padding: 10px 0;
-    }
-    
-    .timeline-time {
-        min-width: auto;
-        width: fit-content;
-        margin-bottom: 5px;
-    }
-    
-    .timeline-desc {
-        font-size: 0.9rem;
-    }
-    
-    .card-grid {
-        flex-direction: column;
-        gap: 1.2rem;
-        margin: 2rem 0;
-    }
-    
-    .card, .route-card {
+        min-width: unset; /* Allow full width on small screens */
         max-width: 100%;
-        min-width: 0;
-        flex: none;
-        padding: 1.5rem 0.7rem 1.2rem 0.7rem;
     }
-    
-    .card-meta {
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
+    .date-header h2 {
+        font-size: clamp(1.3rem, 4vw, 1.8rem); /* Adjust for smaller screens */
     }
-
-    .footer {
-        margin: 40px -15px 0 -15px;
-        padding: 25px 20px;
-    }
-
-    .langkawi-intro {
-        text-align: center;
-    }
-    
-    .destination-badge {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .destination-emoji {
-        width: 60px;
-        height: 60px;
-        font-size: 2.5rem;
-    }
-    
-    .trip-info {
-        justify-content: center;
-        gap: 10px;
-    }
-    
-    .trip-dates, .trip-duration, .trip-type {
-        font-size: 0.8rem;
-        padding: 4px 8px;
+    .timeline-time {
+        font-size: 1rem;
+        min-width: 50px;
     }
 }
 
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Touch-friendly sizing for mobile */
-@media (hover: none) and (pointer: coarse) {
-    .card, .group-card {
-        min-height: 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-}
-
-/* Group Selection Grid - Restore Card Layout */
-.group-selection {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    justify-content: center;
-    margin: 32px 0 40px 0;
-}
-
-.group-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    padding: 22px 18px;
-    min-width: 180px;
-    max-width: 260px;
-    flex: 1 1 200px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 2px solid transparent;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.group-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(116,185,255,0.15);
-    border-color: rgba(116,185,255,0.2);
-}
-
-.group-svg {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-}
+/* Ensure any !important flags from original index_styles.css are reviewed. */
