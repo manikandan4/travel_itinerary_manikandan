@@ -114,10 +114,39 @@ body {
     opacity: 0.9;
 }
 
-/* Navigation */
+/* Navigation (restored classic, robust, responsive) */
 .main-nav {
     text-align: center;
     margin: 25px 0;
+    background: none;
+    box-shadow: none;
+    border: none;
+    position: static;
+    width: auto;
+    left: auto;
+    right: auto;
+    padding: 0;
+}
+
+.navbar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 64px;
+}
+
+.nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #00cec9;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .nav-links {
@@ -146,6 +175,37 @@ body {
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(116, 185, 255, 0.2);
+}
+
+@media (max-width: 900px) {
+    .navbar-inner {
+        padding: 0 10px;
+        height: 54px;
+    }
+    .nav-logo {
+        font-size: 1.1rem;
+    }
+    .nav-link {
+        font-size: 0.98rem;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 700px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        border-radius: 18px;
+        padding: 4px 0;
+    }
+    .nav-link {
+        padding: 14px 0;
+        font-size: 1.08rem;
+        border-radius: 0;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* Section Headers */
