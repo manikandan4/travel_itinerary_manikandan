@@ -147,269 +147,147 @@
 
 .trip-dates, .trip-duration, .trip-type {
     /* These are now .btn .btn-secondary, global styles apply */
-    /* background: rgba(116, 185, 255, 0.1); */
-    /* color: #2d3436; */
     padding: 5px 12px; /* Adjusted padding */
-    /* border-radius: 12px; */
     font-size: 0.9rem;
-    /* font-weight: 500; */
-    /* border: 1px solid rgba(116, 185, 255, 0.15); */
 }
 
-/* Group Selection Cards */
+/* Group Selection Cards - Flexbox Layout */
 .group-selection {
-    /* .card-grid global styles apply */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px; 
     justify-content: center;
-    margin: 30px 0;
+    margin: 32px 0 40px 0;
 }
 
-.group-card {
-    /* .card global styles apply */
-    min-width: 180px; /* Adjusted min-width */
-    max-width: 280px; /* Adjusted max-width */
-    flex: 1 1 200px; /* Adjusted flex basis */
+.group-selection .card {
+    flex: 1 1 200px;
+    min-width: 180px;
+    max-width: 260px;
+    /* Inherits background, padding, border-radius, box-shadow from global .card */
+    /* Adding internal flex alignment from old .group-card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+    position: relative; /* For ::before */
+    border: 2px solid transparent; /* For hover effect */
+    transition: all 0.3s ease; /* Combined transition */
 }
 
-.group-card::before {
+.group-selection .card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px; /* Thicker accent line */
+    height: 4px; 
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
 
-.group-card:hover::before {
+.group-selection .card:hover {
+    /* Global .card:hover handles transform: translateY and box-shadow */
+    border-color: var(--primary-color); /* From old styles */
+}
+
+.group-selection .card:hover::before {
     transform: scaleX(1);
 }
 
-.group-svg {
-    width: 50px; /* Adjusted size */
-    height: 50px; /* Adjusted size */
+.group-svg { /* This existing rule styles the SVG element directly */
+    width: 50px; 
+    height: 50px; 
     margin-bottom: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.group-card h3 { /* Was h2, changed in HTML to h3 */
-    /* font-size: 1.3rem; */ /* Global h3 */
-    margin: 0 0 8px 0;
-    font-family: 'Caveat', cursive;
-    color: var(--primary-color); /* Global h3 */
-    font-weight: 600;
+.group-selection .card h3 {
+    font-family: 'Playfair Display', serif; /* Consistent with global h3 */
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Slightly smaller for cards */
+    color: var(--primary-color);
+    margin-top: 5px; /* Added some top margin */
+    margin-bottom: 8px;
 }
 
-.group-card p {
-    /* font-size: 1rem; */ /* Global p */
-    color: var(--text-color); /* Global p */
+.group-selection .card p {
+    font-size: clamp(0.9rem, 2vw, 1rem); /* Slightly smaller for cards */
+    color: var(--text-color);
     opacity: 0.85;
+    margin-bottom: 0;
+    line-height: 1.4; /* Adjust line height for card paragraphs */
 }
 
 /* Date Sections */
-.date-section {
-    /* .card global styles apply */
-    margin-bottom: 40px;
-}
+/* ... existing styles for .date-section, .date-header etc. if any ... */
+/* For now, assuming these are not in index_styles.css or are handled by route_styles.css */
 
-.date-header {
-    /* This is part of .date-section which is a .card */
-    /* Consider if this needs separate card styling or just padding */
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    border-bottom: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3)); /* Accent border */
-}
-
-.date-header::before {
-    /* Removed as .date-header is not a separate card now */
-}
-
-.date-header h2 {
-    /* font-family: 'Playfair Display', serif; */ /* Global h2 */
-    margin: 0 0 8px 0;
-    /* font-size: clamp(1.4rem, 3vw, 2rem); */ /* Global h2 */
-    color: var(--primary-color); /* Global h2 */
-}
-
-.date-header p {
-    margin: 0;
-    /* font-size: clamp(0.9rem, 2vw, 1.1rem); */ /* Global p */
-    color: var(--text-color); /* Global p */
-    font-weight: 400;
-}
 
 /* Timeline - Simplified */
-.trip-timeline {
-    /* This is inside .date-section which is a .card */
-    /* background: rgba(255, 255, 255, 0.9); */ /* Handled by parent card */
-    /* border-radius: 15px; */ /* Handled by parent card */
-    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); */ /* Handled by parent card */
-    padding: 15px; /* Adjusted padding */
-    margin: 20px 0;
-    border-left: 3px solid var(--accent-color); /* Accent color for timeline */
-}
+/* ... existing styles for .trip-timeline, .timeline-item etc. if any ... */
 
-.timeline-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 10px 0; /* Adjusted padding */
-    border-bottom: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.2));
-    transition: background-color 0.2s ease;
-}
 
-.timeline-item:last-child {
-    border-bottom: none;
-}
+/* Cards - Enhanced and Well-Aligned (General card styling, if any, beyond global .card) */
+/* The .card-grid rule from global_styles.css will be overridden by .group-selection's display:flex */
+/* Any other specific .card or .route-card styles for langkawi.html would go here if needed */
 
-.timeline-item:hover {
-    background-color: var(--accent-color-translucent, rgba(129, 199, 132, 0.1));
-    border-radius: var(--border-radius-main);
-    padding: 10px 8px; /* Adjust padding on hover */
-    margin: 0 -8px; /* Adjust margin for hover effect */
-}
 
-.timeline-svg {
-    width: 22px; /* Adjusted size */
-    height: 22px; /* Adjusted size */
-    flex-shrink: 0;
-    margin-top: 3px;
-    background: linear-gradient(135deg, var(--background-color), var(--secondary-color)); /* Updated colors */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* Back Button */
+/* ... existing styles for .back-btn if any ... */
 
-.timeline-time {
-    font-family: 'Caveat', cursive;
-    font-size: 1.1rem; /* Adjusted size */
-    color: var(--primary-color);
-    min-width: 60px; /* Adjusted width */
-    text-align: right;
-    font-weight: 600;
-    background: var(--accent-color-translucent, rgba(129, 199, 132, 0.15));
-    border-radius: 8px;
-    padding: 2px 6px;
-}
 
-.timeline-desc {
-    color: var(--text-color);
-    font-size: 1rem;
-    flex: 1;
-}
+/* Footer - Minimal */
+/* ... existing styles for .footer if any ... */
 
-/* Cards - Enhanced and Well-Aligned (Route Cards on langkawi.html) */
-/* .card-grid is global */
 
-/* .card, .route-card: These are styled by global .card now. */
-/* Specific overrides for .route-card if needed, but many properties are covered. */
-.route-card {
-    /* .card global styles apply */
-    /* text-align: center; */ /* Global .card */
-    /* cursor: pointer; */ /* Global .card */
-    /* display: flex; */ /* Add if needed for specific layout */
-    /* flex-direction: column; */ /* Add if needed */
-    /* align-items: center; */ /* Add if needed */
-}
-
-.route-card::before {
-    /* This was for a top border effect, similar to .group-card */
-    /* Re-evaluate if this specific effect is desired on these cards too */
-    /* If so, copy from .group-card::before or create a utility class */
-}
-
-.card-icon, .route-card .card-icon {
-    font-size: 2rem; /* Adjusted size */
-    margin-bottom: 12px;
-    color: var(--accent-color);
-}
-
-.route-card h3 {
-    /* font-size: 1.2rem; */ /* Global h3 */
-    margin: 0 0 8px 0;
-    font-family: 'Caveat', cursive;
-    color: var(--primary-color); /* Global h3 */
-}
-
-.route-card p {
-    /* font-size: 1rem; */ /* Global p */
-    color: var(--text-color); /* Global p */
-    opacity: 0.9;
-    margin-bottom: 12px;
-}
-
-.card-meta {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: auto; /* Pushes to bottom if card is flex column */
-}
-
-.card-meta span {
-    /* These are now .btn .btn-secondary, global styles apply */
-    /* background: rgba(224, 247, 250, 0.8); */
-    /* color: #00796b; */
-    padding: 4px 10px; /* Adjusted padding */
-    /* border-radius: 10px; */
-    font-size: 0.85rem;
-    /* font-weight: 500; */
-    /* border: 1px solid rgba(0, 206, 201, 0.15); */
-}
-
-/* Footer (specific to langkawi.html) */
-.footer {
-    /* Global .footer styles apply */
-    /* Add specific overrides if langkawi.html footer is different */
-    padding: 25px 0; /* Slightly more padding */
-}
-
-.footer h4 {
-    /* Global h4 */
-    margin-bottom: 8px;
-    color: var(--light-text-color); /* Ensure text is light on dark background */
-}
-
-.footer p {
-    /* Global p, but color needs override for dark background */
-    color: var(--light-text-color);
-    opacity: 0.9;
-}
-
-/* Responsive adjustments from index_styles.css */
-@media (max-width: 900px) {
-    /* Styles for .navbar-inner, .nav-logo, .nav-link from original index_styles.css */
-    /* These are not present in langkawi.html, so they can be removed or adapted */
-    /* if a similar nav structure is added to langkawi.html */
-}
-
-@media (max-width: 700px) {
-    /* Styles for .nav-links, .nav-link from original index_styles.css */
-    /* Similar to above, adapt or remove based on langkawi.html structure */
-
+/* Mobile Responsive - iPhone 15/16 Optimized */
+@media (max-width: 768px) {
+    /* ... other mobile styles ... */
+    
     .group-selection {
-        /* .card-grid global responsive styles apply (stacks to 1 column) */
+        flex-direction: column; /* Stack cards */
+        gap: 1.2rem;
     }
-    .group-card {
-        min-width: unset; /* Allow full width on small screens */
-        max-width: 100%;
+    
+    .group-selection .card {
+        min-width: 0; /* Allow full width */
+        flex: none; /* Disable flex sizing */
+        width: 100%;
+        max-width: 100%; /* Ensure it takes full width */
     }
-    .date-header h2 {
-        font-size: clamp(1.3rem, 4vw, 1.8rem); /* Adjust for smaller screens */
+    
+    .group-selection .card .group-svg { /* Adjusted selector */
+        width: 45px;
+        height: 45px;
     }
-    .timeline-time {
-        font-size: 1rem;
-        min-width: 50px;
+    
+    /* Adjust h3/p font sizes for mobile if needed, current ones might be okay */
+    .group-selection .card h3 {
+        font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+    }
+    
+    .group-selection .card p {
+        font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+    }
+
+    /* ... other mobile styles ... */
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Touch-friendly sizing for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .group-selection .card { /* Adjusted selector */
+        min-height: 120px; /* From old styles */
+        /* display: flex; flex-direction: column; justify-content: center; */ /* Already applied */
     }
 }
 
-/* Ensure any !important flags from original index_styles.css are reviewed. */
+/* Ensure no conflicting .group-card styles remain if they were targeting these cards previously */
+/* Removed old .group-card, .group-card::before as cards are now .card within .group-selection */

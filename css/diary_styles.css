@@ -2,56 +2,75 @@
 
 /* Styles specific to diary_styles.css, to be merged or adapted with global_styles.css */
 
-/* Hero Section - Retaining some specific diary styles if they differ significantly */
+/* Hero Section - Aligning with langkawi.html's hero style */
 .hero-section {
-    /* Original diary_styles.css hero styles if needed, or remove if global_styles are sufficient */
-    /* Example: background: linear-gradient(120deg, var(--soft-bg) 80%, #e0f7fa 100%); */
-    /* Retaining unique padding/margin if necessary */
-    margin: 18px 0 10px 0;
-    padding: 18px 0 10px 0;
+    /* .card global styles apply */
+    text-align: center; /* Default alignment, can be overridden by children */
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.9); /* Consistent with langkawi hero */
+    backdrop-filter: blur(10px); /* Consistent with langkawi hero */
+    border-radius: var(--border-radius-main);
+    padding: 25px 20px; /* Consistent with langkawi hero */
+    box-shadow: var(--box-shadow-main);
 }
 
 .author-intro {
-    /* Specific alignment or gap if different from global */
-    gap: 18px;
+    display: flex; /* Enable flex for alignment */
+    align-items: center; /* Vertically align items */
+    gap: 20px; /* Consistent gap */
+    text-align: left; /* Align text to the left within this container */
 }
 
 .author-avatar {
-    width: 54px;
-    height: 54px;
-    background: linear-gradient(135deg, var(--primary-color) 60%, var(--accent-color) 100%); /* Updated colors */
+    width: 70px; /* Match langkawi.html .destination-emoji container */
+    height: 70px; /* Match langkawi.html .destination-emoji container */
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); /* Match langkawi.html */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(0,0,0, 0.15); /* Match langkawi.html */
 }
 
 .avatar-emoji {
-    font-size: 1.7rem;
+    font-size: 3rem; /* Match langkawi.html .destination-emoji */
+}
+
+.author-details {
+    flex: 1; /* Allow details to take remaining space */
 }
 
 .author-name {
-    font-family: 'Playfair Display', 'Inter', serif;
-    font-size: 2.1rem; /* Or use clamp from global */
+    /* font-family: 'Playfair Display', serif; */ /* Global h1/h2 */
+    /* font-size: clamp(2rem, 4vw, 2.8rem); */ /* Global h1/h2, adjust if needed */
     font-weight: 700;
-    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 60%, var(--secondary-color) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    color: var(--primary-color); /* Global h1/h2 */
+    margin: 0 0 5px 0; /* Consistent margin */
 }
 
 .author-tagline {
     font-style: italic;
-    color: var(--text-color); /* Use global text color */
-    opacity: 0.85;
-    font-size: 1.05rem;
+    color: var(--text-color); /* Global p */
+    opacity: 0.9;
+    margin: 0 0 10px 0; /* Consistent margin */
+    /* font-size: clamp(1rem, 2.5vw, 1.2rem); */ /* Global p */
+}
+
+.travel-stats {
+    display: flex;
+    gap: 10px; /* Consistent gap */
+    flex-wrap: wrap; /* Allow wrapping */
 }
 
 .travel-stats .stat-item {
-    /* These are now .btn .btn-secondary, global styles apply */
-    /* Remove specific styles here if global .btn is sufficient */
-    /* Example: background: rgba(0,206,201,0.08); */
+    /* These are .btn .btn-secondary, global styles apply */
+    /* background: rgba(0,206,201,0.08); */
     /* color: var(--deep-blue); */
-    padding: 5px 12px; /* Adjusted padding for a more compact look */
-    font-size: 0.9rem;
+    padding: 5px 12px; /* Consistent padding */
+    font-size: 0.9rem; /* Consistent font size */
+    /* border-radius: 12px; */ /* from .btn */
+    /* font-weight: 500; */ /* from .btn */
+    /* border: 1px solid rgba(0,206,201,0.15); */ /* from .btn */
 }
 
 /* Navigation - diary_styles.css specific adjustments if any */
