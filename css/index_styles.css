@@ -606,10 +606,9 @@ body {
     }
     
     .group-card {
-        max-width: 100%;
         min-width: 0;
         flex: none;
-        padding: 1.5rem 0.7rem 1.2rem 0.7rem;
+        padding: 1.5rem 1rem 1.2rem 1rem; /* Add horizontal padding to card itself */
     }
     
     .group-svg {

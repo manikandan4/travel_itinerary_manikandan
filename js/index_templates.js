@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Hide all group content by default
   document.getElementById('group-content').style.display = 'none';
   // Group card click
-  document.querySelectorAll('.group-card').forEach(card => {
+  document.querySelectorAll('#group-selection .card').forEach(card => {
     card.onclick = function() {
       showGroupSection(this.dataset.group);
     };
