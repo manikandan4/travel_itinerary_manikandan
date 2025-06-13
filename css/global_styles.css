@@ -131,47 +131,65 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    h1 { font-size: clamp(2rem, 5vw, 2.5rem); }
-    h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
-    h3 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
-}
-
-@media (max-width: 576px) {
-    .card-grid {
-        grid-template-columns: 1fr; /* Stack cards */
-    }
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.95rem;
-    }
-}
-
 /* Navigation - Basic Structure */
 .main-nav {
     background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
     backdrop-filter: blur(10px);
     padding: 15px 0;
-    border-radius: var(--border-radius-main);
-    margin-bottom: 40px;
+    /* Removed border-radius and margin-bottom */
     box-shadow: var(--box-shadow-main);
     position: sticky; /* Sticky nav */
-    top: 10px; /* Offset from top */
+    top: 0; /* Stick to the very top */
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
+    width: 100%; /* Make nav full width */
+}
+
+.main-nav .nav-container { /* New class to control content width */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Match container padding */
+    display: flex;
+    justify-content: space-between; /* Space out logo/links and toggle */
+    align-items: center;
+    position: relative; /* For absolute positioning of mobile menu */
+}
+
+.nav-logo .logo-link {
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-logo .logo-link:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.mobile-nav-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.main-nav .nav-links-wrapper {
+    display: flex; /* Default for desktop */
 }
 
 .main-nav .nav-links {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */ /* Handled by nav-container or flex end */
     align-items: center;
     gap: 25px;
     list-style: none;
     padding: 0;
+    margin: 0; /* Ensure no default margin */
 }
 
 .main-nav .nav-link {
@@ -192,6 +210,63 @@ a:hover {
 
 .main-nav .nav-link i {
     margin-right: 8px; /* Space between icon and text */
+}
+
+/* Responsive Navigation (Hamburger Menu) */
+@media (max-width: 768px) {
+    .main-nav .nav-container {
+        justify-content: space-between; /* Logo left, toggle right */
+    }
+
+    .mobile-nav-toggle {
+        display: block; /* Show hamburger icon */
+        order: 2; /* Ensure it's on the right */
+    }
+
+    .nav-logo {
+        order: 1;
+    }
+
+    .main-nav .nav-links-wrapper {
+        display: none; /* Hide links by default on mobile */
+        position: absolute;
+        top: 100%; /* Position below the nav bar */
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.98); /* Slightly more opaque for dropdown */
+        backdrop-filter: blur(10px);
+        width: 250px; /* Width of the dropdown menu */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+        padding: 15px;
+        z-index: 999; /* Below main nav but above content */
+        border-top: 1px solid var(--border-color);
+    }
+
+    .main-nav .nav-links-wrapper.active {
+        display: flex; /* Show when active */
+    }
+
+    .main-nav .nav-links {
+        flex-direction: column; /* Stack links vertically */
+        align-items: flex-start; /* Align links to the left */
+        width: 100%;
+    }
+
+    .main-nav .nav-link {
+        padding: 12px 15px; /* Adjust padding for vertical layout */
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color); /* Separator for links */
+    }
+    .main-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .main-nav .nav-link:hover,
+    .main-nav .nav-link.active {
+        background-color: var(--primary-color);
+        color: var(--light-text-color);
+    }
 }
 
 /* Utility classes */
