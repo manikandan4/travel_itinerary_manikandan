@@ -111,7 +111,7 @@
 
 /* Langkawi Hero Section Styles */
 .langkawi-hero-wrapper {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1561635235-b62a3c011b1e?q=80&w=3432&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1630921094887-dc80ea389698?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
     background-position: center;
     color: var(--light-text-color);
@@ -175,15 +175,19 @@
 }
 
 .langkawi-hero-details .trip-info-hero .btn.btn-outline {
-    background-color: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.5);
+    background-color: rgba(44, 62, 80, 0.5); /* Darker, semi-transparent background (from --primary-color with alpha) */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Slightly more opaque white border */
     color: var(--light-text-color);
     font-size: 0.85rem;
     padding: 8px 15px;
+    backdrop-filter: blur(5px); /* Keep the blur for glassmorphism */
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
+    text-shadow: 0 0 5px rgba(0,0,0,0.7); /* Add a subtle text shadow for better contrast */
 }
 
 .langkawi-hero-details .trip-info-hero .btn.btn-outline:hover {
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(44, 62, 80, 0.7); /* Darken further on hover */
+    border-color: rgba(255,255,255,0.8);
 }
 
 /* Styles for group-selection cards to make them like destination-card */
@@ -499,29 +503,28 @@ html {
 /* --- Minimal & Elegant Trip Timeline Styles --- */
 .trip-timeline {
     position: relative;
-    padding: 15px 0 15px 30px; /* Adjusted padding: top, right, bottom, left */
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 20px 0;
+    margin-top: 30px; /* Space above the timeline */
+    list-style: none;
 }
 
 /* The main vertical connecting line */
 .trip-timeline::before {
     content: '';
     position: absolute;
-    left: 10px; /* Line closer to the edge */
-    top: 10px;   /* Start line slightly lower */
-    bottom: 10px; /* End line slightly higher */
-    width: 2px; /* Thinner line */
-    background-color: var(--accent-color);
+    left: 10px; /* Position to the left of the dot */
+    top: 0;
+    bottom: 0;
+    width: 3px; /* Slightly thicker line */
+    background-color: var(--border-color); /* Use a subtle border color */
     border-radius: 2px;
-    opacity: 0.5; /* Softer line */
 }
 
 /* Individual timeline item */
 .timeline-item {
     position: relative;
-    margin-bottom: 20px; /* Space between items */
-    padding-left: 25px; /* Space for the dot and a bit of gap */
+    padding-left: 40px; /* Space for the dot and some breathing room */
+    margin-bottom: 25px; /* Space between items */
 }
 
 .timeline-item:last-child {
@@ -532,90 +535,85 @@ html {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: 6px;  /* (line_left_pos + line_width/2) - dot_width/2 = (10px + 1px) - 4px = 7px */
-    top: 5px; /* Align with the first line of text or slightly above */
-    width: 8px;
-    height: 8px;
-    background-color: var(--secondary-color); /* Use a contrasting color for the dot */
+    left: 0; /* Align with the main line's left edge */
+    top: 5px; /* Adjust vertical alignment with text */
+    width: 20px; /* Larger dot */
+    height: 20px;
     border-radius: 50%;
-    z-index: 5; /* Above the main line */
-    border: 2px solid var(--background-color); /* Creates a "cutout" effect from the line */
+    background-color: var(--card-background); /* Match card background */
+    border: 3px solid var(--accent-color); /* Accent color border for the dot */
+    z-index: 1;
+    box-shadow: 0 0 0 3px var(--card-background); /* Creates a "cutout" effect against the line */
 }
 
 /* SVG Icon - Hidden by default, can be re-enabled if desired with display: block; */
 .timeline-item .timeline-svg {
-    display: none; /* Hide the SVG container and its content */
-    /*
-    position: absolute;
-    left: -25px;
-    top: -2px;
-    z-index: 10;
-    background-color: var(--background-color);
-    border-radius: 50%;
-    padding: 4px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--background-color);
-    */
+    display: none; /* Keeping it hidden as per previous preference */
+    /* position: absolute; */
+    /* left: 0; */
+    /* top: 2px; */
+    /* width: 20px; */
+    /* height: 20px; */
+    /* fill: var(--accent-color); */
 }
 /*
 .timeline-item .timeline-svg svg {
-    width: 28px;
-    height: 28px;
-    display: block;
+    width: 100%;
+    height: 100%;
 }
 */
 
 /* Content wrapper for time and description */
 .timeline-item .timeline-details {
-    /* margin-left is not needed as padding-left on timeline-item handles the space */
-    padding-top: 0; /* Align text nicely */
+    background-color: var(--card-background);
+    padding: 15px;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--box-shadow-main);
+    border: 1px solid var(--border-color);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-details {
+    box-shadow: var(--box-shadow-hover);
+    transform: translateY(-3px);
 }
 
 /* Timeline Time */
 .timeline-item .timeline-time {
-    font-weight: 600; /* Slightly less bold */
-    font-size: 0.85em;
+    font-weight: 700;
     color: var(--primary-color);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
     display: block;
-    margin-bottom: 4px;
-    line-height: 1.3;
 }
 
 /* Timeline Description */
 .timeline-item .timeline-desc {
-    font-size: 0.95em;
+    font-size: 1rem;
     color: var(--text-color);
-    line-height: 1.5;
-    opacity: 0.85; /* Slightly softer text */
+    line-height: 1.6;
 }
 
 /* Responsive adjustments for the minimal timeline */
 @media (max-width: 768px) {
-    .trip-timeline {
-        padding-left: 25px; /* Slightly less padding on mobile */
-    }
     .trip-timeline::before {
-        left: 8px; /* Adjust line position */
+        left: 8px; /* Adjust line position for smaller screens */
     }
     .timeline-item {
-        padding-left: 20px; /* Adjust space for dot */
-        margin-bottom: 15px;
+        padding-left: 30px; /* Adjust padding for smaller screens */
     }
     .timeline-item::before {
-        left: 4px; /* Adjust dot position */
-        top: 4px;
-        width: 7px;
-        height: 7px;
+        width: 16px;
+        height: 16px;
+        top: 7px;
+    }
+    .timeline-item .timeline-details {
+        padding: 12px;
     }
     .timeline-item .timeline-time {
-        font-size: 0.8em;
+        font-size: 0.85rem;
     }
     .timeline-item .timeline-desc {
-        font-size: 0.9em;
+        font-size: 0.95rem;
     }
 }
