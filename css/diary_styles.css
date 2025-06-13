@@ -212,21 +212,20 @@
 /* Badges for card status */
 .card-status-badge {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    background: var(--accent-color);
+    top: 12px;
+    left: 12px;
     color: white;
-    padding: 7px 14px;
-    border-radius: var(--border-radius-main);
-    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: calc(var(--border-radius-main) - 3px);
+    font-size: 0.7rem; 
     font-weight: 600;
-    z-index: 2;
+    z-index: 10; 
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}
-
-.destination-card.featured .card-status-badge {
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    line-height: 1.3; 
+    opacity: 1;
+    visibility: visible; 
+    transition: none !important;
 }
 
 .destination-card.completed .card-status-badge {
@@ -234,50 +233,84 @@
 }
 
 .destination-card.coming-soon .card-status-badge {
-    background: #7f8c8d; /* Asbestos - a muted gray for coming soon */
+    background: #C0C0C0; /* Silver - for a cleaner, lighter grey for Planned */
+    color: #333; /* Darker text for better contrast on silver */
 }
 
 /* About Section Styling */
-.about-section .card {
-    border: none; /* Remove card border for a cleaner look if preferred */
-    box-shadow: none; /* Remove shadow if preferred */
-    background-color: transparent; /* Make it blend with section bg */
-    padding: 0; /* Remove padding if content handles it */
+.about-section .about-content-wrapper.card { /* Explicitly target the card wrapper */
+    background-color: var(--card-background);
+    box-shadow: var(--box-shadow-main);
+    border-radius: var(--border-radius-main);
+    padding: 30px; /* Add padding inside the card */
+    /* border: none; /* Already set, but ensure no conflicts */
+    /* box-shadow: none; /* Already set, but ensure no conflicts */
 }
 
-.about-content {
+.about-content-wrapper {
     display: flex;
-    flex-direction: column; /* Default to column for easier management */
-    align-items: center; /* Center content */
-    gap: 30px;
-    text-align: center; /* Center text */
+    flex-direction: column; /* Image on top, text below */
+    align-items: center; /* Center items horizontally */
+    gap: 25px; /* Space between image container and text content */
+    width: 100%;
 }
 
-.about-text {
-    max-width: 750px;
+.about-image-container {
+    width: 100%;
+    max-width: 100%; /* Image container takes full width of the card padding box */
+    aspect-ratio: 16/9; 
+    border-radius: var(--border-radius-main);
+    overflow: hidden; /* Crucial for object-fit: cover */
+    background-color: #f0f0f0; /* Fallback for image loading */
 }
 
-.about-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
+.about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the container */
+    display: block; /* Remove any extra space below image */
+}
+
+.about-text-content {
+    width: 100%;
+    max-width: 100%; /* Text content also takes full width of the card padding box */
+    text-align: center; 
+    padding: 0; /* Remove previous padding, parent card now has it */
+    background-color: transparent; /* Remove subtle background, parent card has it */
+    /* border-radius: var(--border-radius-main); /* Parent card has radius */
+}
+
+/* Style for the main introductory paragraph */
+.about-text-content > p:first-of-type {
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem); /* Responsive font size */
+    line-height: 1.75; /* Increased line height for better flow */
+    color: var(--text-color);
+    margin-bottom: 25px; /* More space after the intro paragraph */
+    font-weight: 300; /* Lighter font weight for a softer look */
+}
+
+.about-text-content > p:first-of-type strong {
+    font-weight: 600; /* Make names slightly bolder */
+    color: var(--primary-color); /* Use primary color for names */
 }
 
 .travel-philosophy {
-    margin-top: 30px;
-    text-align: left; /* Align list items to the left for readability */
-    max-width: 600px;
+    margin-top: 25px;
+    text-align: left; 
+    max-width: 550px; /* Constrain width for better readability */
     margin-left: auto;
     margin-right: auto;
+    padding: 0 15px; /* Add some padding for list items */
 }
 
 .travel-philosophy h3 {
-    text-align: center; /* Center philosophy heading */
+    text-align: center; 
     margin-bottom: 15px;
     color: var(--primary-color);
 }
 
 .travel-philosophy ul {
-    list-style: none; /* Remove default bullets */
+    list-style: none; 
     padding-left: 0;
 }
 
@@ -285,71 +318,129 @@
     padding-left: 25px;
     position: relative;
     margin-bottom: 10px;
-    font-size: 1.05rem;
+    font-size: 1rem; /* Adjusted font size */
 }
 
 .travel-philosophy ul li::before {
-    content: '\f00c'; /* Font Awesome check icon */
+    content: '\f00c'; 
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     color: var(--accent-color);
     position: absolute;
     left: 0;
-    top: 2px;
+    top: 3px; /* Fine-tune alignment */
 }
 
 .stats-showcase {
     margin-top: 30px;
-    width: 100%; /* Ensure it takes full width for grid */
+    width: 100%;
+    display: flex; /* Changed from grid to flex for easier centering/wrapping of circles */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow circles to wrap on smaller screens */
+    gap: 20px; /* Gap between circles */
 }
 
 .stat-box {
     background-color: var(--card-background);
-    padding: 25px;
+    width: 110px; /* Diameter of the circle */
+    height: 110px; /* Diameter of the circle */
+    border-radius: 50%; /* Make it a circle */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    border-radius: var(--border-radius-main);
-    box-shadow: var(--box-shadow-main);
-    border: 1px solid var(--border-color);
+    padding: 10px; /* Reduced padding */
+    box-shadow: var(--box-shadow-light); /* Lighter shadow */
+    border: 1px solid var(--border-color); /* Optional: keep or remove */
+    transition: transform 0.2s ease-out;
+}
+
+.stat-box:hover {
+    transform: scale(1.05); /* Subtle hover effect */
 }
 
 .stat-number {
     display: block;
-    font-size: 2.5rem;
+    font-size: 1.6rem; /* Reduced font size */
     font-weight: 700;
     color: var(--secondary-color);
-    margin-bottom: 5px;
+    margin-bottom: 3px; /* Reduced margin */
 }
 
 .stat-label {
-    font-size: 1rem;
+    font-size: 0.75rem; /* Reduced font size */
     color: var(--text-color);
     opacity: 0.8;
+    line-height: 1.2; /* Ensure text fits well */
 }
 
 /* Contact Section Styling */
-.contact-options .contact-card {
+.contact-options { /* Changed from card-grid to flex layout */
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Align items to have same height if they wrap differently */
+    flex-wrap: wrap;
+    gap: 25px; /* Gap between contact circles */
+    padding-top: 20px; /* Add some space above the circles */
+}
+
+.contact-card { /* Styling for each circular contact item */
+    background-color: var(--card-background);
+    width: 140px; 
+    height: 140px; 
+    border-radius: 50%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding: 15px; 
+    box-shadow: var(--box-shadow-light);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    text-decoration: none; /* Remove underline if the whole card is a link */
+    color: var(--text-color); /* Default text color */
 }
 
-.contact-icon {
-    font-size: 2.5rem;
+.contact-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.contact-icon { /* Icon within the circle */
+    font-size: 2.2rem; /* Adjusted size for circle */
     color: var(--accent-color);
-    margin-bottom: 15px;
-    display: block;
+    margin-bottom: 8px; /* Space between icon and text */
 }
 
-.contact-card h3 {
-    margin-bottom: 10px;
+.contact-card h3 { /* Text within the circle - e.g., "Email" */
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
 }
 
 .contact-card p {
-    margin-bottom: 15px;
-    min-height: 40px; /* Ensure consistent height for p tags */
+   display: none; /* Hide paragraph to keep circles compact, or make it very short */
 }
 
-.contact-link.btn {
-    width: 100%;
+.contact-link.btn { /* If you keep a button, it needs to be small or integrated */
+    display: none; /* Hide the original button, make circle clickable or use icon */
+    /* Or, if you want a small text link inside: */
+    /* font-size: 0.75rem; */
+    /* padding: 5px 8px; */
+    /* margin-top: 5px; */
+    /* width: auto; */
+    /* background: transparent; */
+    /* color: var(--secondary-color); */
+    /* border: 1px solid var(--secondary-color); */
 }
+
+/* Make the entire contact card clickable if it has a primary link */
+/* This requires JS or careful HTML structure if using <a> tag as the card */
+/* For simplicity, we assume the text/icon itself will be wrapped in <a> in HTML */
 
 /* Responsive adjustments */
 @media (min-width: 992px) { /* Adjusted breakpoint for 3 cards per row */
@@ -362,49 +453,25 @@
     .destinations-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .about-content-wrapper {
-        flex-direction: column; /* Stack on tablets for better readability */
-        align-items: center;
-    }
+    /* .about-content-wrapper already column by default */
     .about-image-container {
-        max-width: 400px; /* Control image size on tablet */
-        margin-bottom: 20px;
+        max-width: 600px; /* Adjust if needed for tablet */
     }
     .about-text-content {
-        text-align: center;
+        max-width: 600px; /* Adjust if needed for tablet */
     }
     .travel-philosophy {
-        margin-left: auto;
-        margin-right: auto;
-    }
-     .travel-philosophy h3 {
-        text-align: center;
+        max-width: 500px;
     }
 }
 
 @media (min-width: 768px) {
-    .about-content-wrapper { /* Renamed from .about-content for clarity */
-        display: flex;
-        /* flex-direction: row; Already set for larger screens, but explicit here */
-        align-items: flex-start; 
-        gap: 30px;
-    }
+    /* .about-content-wrapper is now column by default, so no need to override flex-direction here */
+    /* Remove specific flex settings for .about-image-container if they were for row layout */
     .about-image-container {
-        flex: 0 0 300px; /* Fixed width for image container */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: var(--border-radius-main);
-        overflow: hidden;
+        /* flex: 0 0 300px; /* REMOVE THIS if it exists from previous row layout */
+        /* height: auto; /* REMOVE THIS if it exists */
     }
-    .about-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .about-text-content {
-        flex: 1; /* Text content takes remaining space */
-        text-align: left;
-    }
-    /* .stats-showcase-wrapper { Already handled by card-grid } */
 }
 
 @media (max-width: 767px) { /* Mobile specific styles */
@@ -457,47 +524,61 @@
         font-size: 0.9rem;
     }
     .card-image {
-        height: 200px; /* Slightly smaller image height on mobile */
+        height: 200px; 
     }
 
     .about-content-wrapper {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px; /* Add padding to the card wrapper on mobile */
+        /* flex-direction: column; /* Already default */
+        /* align-items: center; /* Already default */
+        padding: 0 15px; /* Add horizontal padding within the section for mobile */
+        gap: 20px;
     }
     .about-image-container {
-        width: 100%;
-        max-width: 280px; /* Control image size */
-        margin-bottom: 20px;
+        /* width: 100%; /* Already default */
+        max-width: 100%; /* Allow full width on mobile within padding */
+        aspect-ratio: 16/9; /* Or adjust for mobile, e.g., 4/3 */
+        margin-bottom: 15px;
     }
     .about-text-content {
-        text-align: center;
+        /* text-align: center; /* Already default */
+        padding: 0; /* Remove padding if parent has it */
     }
     .about-text p {
-        font-size: 1rem;
-        padding: 0 10px;
+        font-size: 0.95rem; /* Adjust for mobile */
+        padding: 0;
     }
     .travel-philosophy ul li {
-        font-size: 0.95rem;
-        padding-left: 20px;
+        font-size: 0.9rem;
     }
     .stats-showcase {
-        grid-template-columns: 1fr; /* Stack stat boxes on mobile */
-        gap: 15px;
+        gap: 15px; /* Smaller gap for mobile */
     }
     .stat-box {
-        padding: 20px;
+        width: 90px; /* Smaller circles for mobile */
+        height: 90px;
+        padding: 8px;
     }
     .stat-number {
-        font-size: 2rem;
+        font-size: 1.4rem;
+    }
+    .stat-label {
+        font-size: 0.7rem;
     }
 
     .contact-options {
-        grid-template-columns: 1fr; /* Single column for contact cards */
-        gap: 20px;
+        gap: 20px; /* Smaller gap for mobile */
     }
-    .contact-card p {
-        min-height: auto; /* Allow height to adjust on mobile */
+    .contact-card {
+        width: 110px; /* Smaller circles for mobile */
+        height: 110px;
+        padding: 10px;
+    }
+    .contact-icon {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+    .contact-card h3 {
+        font-size: 0.8rem;
     }
 
     .main-nav .nav-links {
