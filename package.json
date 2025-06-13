@@ -1,0 +1,33 @@
+{
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "clean-css-cli": "^5.6.3",
+    "html-minifier-terser": "^7.2.0",
+    "javascript-obfuscator": "^4.1.1",
+    "terser": "^5.31.0"
+  },
+  "name": "map",
+  "version": "1.0.0",
+  "description": "A comprehensive, interactive travel itinerary web application for a 4-day Langkawi vacation (June 16-19, 2025), featuring detailed route planning, embedded maps, and a modern, responsive design.",
+  "main": "diary_main.js",
+  "scripts": {
+    "clean": "rm -rf dist temp_html",
+    "build:html": "mkdir -p temp_html && cp *.html temp_html/ && html-minifier-terser --input-dir temp_html --output-dir dist --file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true && rm -rf temp_html",
+    "build:css": "cleancss -o dist/diary_styles.css diary_styles.css && cleancss -o dist/index_styles.css index_styles.css && cleancss -o dist/route_styles.css route_styles.css",
+    "build:js": "terser diary_main.js -o dist/diary_main.js -c -m && terser index_templates.js -o dist/index_templates.js -c -m",
+    "obfuscate:js": "javascript-obfuscator dist/diary_main.js --output dist/diary_main.js && javascript-obfuscator dist/index_templates.js --output dist/index_templates.js",
+    "build": "npm run clean && mkdir dist && npm run build:html && npm run build:css && npm run build:js && npm run obfuscate:js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manikandan4/travel_itinerary_manikandan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manikandan4/travel_itinerary_manikandan/issues"
+  },
+  "homepage": "https://github.com/manikandan4/travel_itinerary_manikandan#readme"
+}
