@@ -1,41 +1,24 @@
 /* Global Styles for Travel Diary */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-    --primary-color: #3A7CA5; /* Deep Ocean Blue */
-    --secondary-color: #FFB74D; /* Sunset Orange */
-    --accent-color: #81C784; /* Lush Green */
-    --background-color: #FDF6E3; /* Sandy Beige */
-    --text-color: #333333; /* Dark Gray */
+    /* New Refined Color Palette */
+    --primary-color: #2C3E50; /* Midnight Blue */
+    --secondary-color: #E74C3C; /* Alizarin Crimson */
+    --accent-color: #F39C12; /* Orange */
+    --background-color: #ECF0F1; /* Clouds - Light Gray */
+    --text-color: #34495E; /* Wet Asphalt - Dark Gray */
     --light-text-color: #FFFFFF;
     --card-background: #FFFFFF;
-    --border-radius-main: 12px;
-    --box-shadow-main: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --border-color: #BDC3C7; /* Silver */
 
-    /* Route Page Gradient */
-    --route-bg-gradient-start: #f5f7fa;
-    --route-bg-gradient-end: #c3cfe2;
+    --border-radius-main: 8px; /* Slightly more modern radius */
+    --box-shadow-main: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer, more diffused shadow */
+    --box-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
 
-    /* Glassmorphism Card Background */
-    --card-backdrop-filter-bg: rgba(255, 255, 255, 0.85);
-
-    /* Secondary Button Styles */
-    --button-secondary-bg: rgba(255, 255, 255, 0.9);
-    --button-secondary-hover-bg: rgba(255, 255, 255, 1);
-    --button-secondary-shadow: rgba(0, 0, 0, 0.08);
-    --button-secondary-hover-shadow: rgba(0, 0, 0, 0.12);
-    --button-secondary-border: rgba(255, 255, 255, 0.5);
-
-    /* Info Item Styles */
-    --info-item-bg: rgba(240, 240, 240, 0.5);
-    --info-item-border: rgba(0,0,0,0.05);
-
-    /* Journey Note Styles */
-    --journey-note-bg: rgba(255, 255, 255, 0.7);
-    --journey-note-border: #00cec9; /* Teal accent */
-
-    /* Shopping Info Styles */
-    --shopping-info-bg: rgba(0, 206, 201, 0.1); /* Teal accent light */
+    /* Typography */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Lora', serif;
 }
 
 /* Base Reset */
@@ -46,77 +29,82 @@
 }
 
 body {
-    font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-primary);
     background-color: var(--background-color);
     color: var(--text-color);
-    line-height: 1.7;
-    padding: 15px;
+    line-height: 1.7; /* Increased for better readability */
+    padding: 0; /* Remove body padding, handle in container/sections */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1200px; /* Wider for modern layouts */
     margin: 0 auto;
     width: 100%;
-    padding: 0 15px; /* Consistent padding */
+    padding: 20px; /* Padding for content within container */
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-secondary); /* Elegant serif for headings */
     color: var(--primary-color);
     margin-bottom: 0.75em;
     line-height: 1.3;
+    font-weight: 700;
 }
 
 h1 { font-size: clamp(2.2rem, 5vw, 3rem); }
 h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
-h3 { font-size: clamp(1.4rem, 3vw, 2rem); }
+h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); }
 
 p {
-    margin-bottom: 1em;
+    margin-bottom: 1.3em;
     font-size: clamp(1rem, 1.5vw, 1.1rem);
 }
 
 a {
-    color: var(--secondary-color);
+    color: var(--accent-color); /* Use accent for links */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Use secondary for link hover */
     text-decoration: underline;
 }
 
 /* Buttons */
 .btn {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--primary-color);
+    padding: 12px 28px; /* Slightly more padding */
+    background-color: var(--accent-color); /* Accent for primary actions */
     color: var(--light-text-color);
     border: none;
     border-radius: var(--border-radius-main);
-    font-weight: 700;
+    font-weight: 600;
+    font-family: var(--font-primary);
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .btn:hover {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+    background-color: var(--secondary-color); /* Secondary on hover */
+    color: var(--light-text-color);
     transform: translateY(-2px);
     text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .btn-secondary {
-    background-color: var(--accent-color);
+    background-color: var(--primary-color); /* Primary color for secondary buttons */
+    color: var(--light-text-color);
 }
 .btn-secondary:hover {
-    background-color: var(--primary-color);
+    background-color: #1F2D3D; /* Darker shade of primary */
     color: var(--light-text-color);
 }
 
@@ -126,60 +114,73 @@ a:hover {
     background-color: var(--card-background);
     border-radius: var(--border-radius-main);
     box-shadow: var(--box-shadow-main);
-    padding: 20px;
+    padding: 30px; /* Increased padding */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Ensures content respects border radius */
+    overflow: hidden;
+    border: 1px solid var(--border-color); /* Subtle border */
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px); /* Subtle lift */
+    box-shadow: var(--box-shadow-hover);
 }
 
 .card-grid {
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ensures cards are responsive */
-    /* Removed justify-content: center; as it can conflict with grid distribution */
+    gap: 30px; /* Increased gap */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
 }
 
-/* Responsive adjustments for card grid if needed */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .card-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for smaller screens */
+    .container {
+        padding: 15px;
     }
+    h1 { font-size: clamp(2rem, 5vw, 2.5rem); }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+    h3 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .card-grid {
-        grid-template-columns: 1fr; /* Stack cards on very small screens */
+        grid-template-columns: 1fr; /* Stack cards */
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
     }
 }
 
 /* Navigation - Basic Structure */
 .main-nav {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
     backdrop-filter: blur(10px);
-    padding: 10px 0;
+    padding: 15px 0;
     border-radius: var(--border-radius-main);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     box-shadow: var(--box-shadow-main);
+    position: sticky; /* Sticky nav */
+    top: 10px; /* Offset from top */
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .main-nav .nav-links {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
     list-style: none;
     padding: 0;
 }
 
 .main-nav .nav-link {
-    padding: 8px 15px;
-    font-weight: 500;
+    padding: 10px 20px;
+    font-weight: 600; /* Bolder nav links */
+    font-family: var(--font-primary);
     color: var(--primary-color);
-    border-radius: 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .main-nav .nav-link:hover,
@@ -189,65 +190,86 @@ a:hover {
     text-decoration: none;
 }
 
-/* Footer */
+.main-nav .nav-link i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* Utility classes */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.text-center { text-align: center; }
+
+/* Footer Styling */
 .footer {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Dark footer background */
     color: var(--light-text-color);
+    padding: 40px 0;
+    margin-top: auto; /* Push to bottom */
     text-align: center;
-    padding: 20px 0;
-    margin-top: auto; /* Pushes footer to the bottom */
-    width: 100%;
+}
+
+.footer .container {
+    padding: 0 20px;
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0 15px;
 }
 
-.footer p {
-    margin-bottom: 0;
+.footer-brand h4 {
+    font-family: var(--font-secondary);
+    color: var(--light-text-color); /* Ensure heading is light */
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--light-text-color);
+    margin: 0 10px;
     font-size: 0.9rem;
+    opacity: 0.9;
 }
 
-.footer a {
-    color: var(--secondary-color);
+.footer-links a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
 }
-.footer a:hover {
+
+.social-links .btn {
+    background-color: transparent;
+    border: 1px solid var(--light-text-color);
+    color: var(--light-text-color);
+    padding: 8px 12px; /* Smaller padding for social icons */
+    margin: 0 5px;
+    border-radius: 50%; /* Circular social icons */
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links .btn:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
     color: var(--light-text-color);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    .container {
-        padding: 0 10px;
-    }
-    .main-nav .nav-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .main-nav .nav-link {
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-    .card-grid {
-        grid-template-columns: 1fr; /* Stack cards on smaller screens */
-    }
+.footer-bottom p {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
 }
-
-/* Utility Classes */
-.text-center {
-    text-align: center;
-}
-
-.mb-1 { margin-bottom: 0.5rem !important; }
-.mb-2 { margin-bottom: 1rem !important; }
-.mb-3 { margin-bottom: 1.5rem !important; }
-.mt-1 { margin-top: 0.5rem !important; }
-.mt-2 { margin-top: 1rem !important; }
-.mt-3 { margin-top: 1.5rem !important; }
 

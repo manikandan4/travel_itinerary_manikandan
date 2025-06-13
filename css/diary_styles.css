@@ -1,254 +1,402 @@
 @import url('./global_styles.css');
 
-.hero-section {
+/* Hero Section - Full Width, Modern Look */
+.hero-section-wrapper {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'); /* Example travel image */
+    background-size: cover;
+    background-position: center;
+    color: var(--light-text-color);
+    padding: 80px 0; /* Increased padding */
     text-align: center;
-    margin-bottom: 30px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius-main);
-    padding: 25px 20px; 
-    box-shadow: var(--box-shadow-main);
+    margin-bottom: 0; /* Remove bottom margin, connect with nav */
+}
+
+.hero-section {
+    background: transparent; /* Remove card background */
+    box-shadow: none; /* Remove card shadow */
+    padding: 0; /* Remove card padding */
+    border: none; /* Remove card border */
+    max-width: 800px; /* Constrain content width */
+    margin: 0 auto; /* Center content */
 }
 
 .author-intro {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 20px;
-    text-align: left; 
 }
 
 .author-avatar {
-    width: 70px; 
-    height: 70px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    width: 120px; /* Larger avatar */
+    height: 120px;
     border-radius: 50%;
+    background-color: rgba(255,255,255,0.1); /* Subtle background for avatar */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 20px rgba(0,0,0, 0.15);
+    margin-bottom: 10px;
+    border: 3px solid var(--light-text-color);
 }
 
 .avatar-emoji {
-    font-size: 3rem; 
-}
-
-.author-details {
-    flex: 1; 
+    font-size: 4.5rem;
+    /* Consider replacing emoji with an actual image or SVG for a more polished look */
 }
 
 .author-name {
+    font-family: var(--font-secondary);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
     font-weight: 700;
-    color: var(--primary-color);
-    margin: 0 0 5px 0;
+    color: var(--light-text-color); /* White text on dark background */
+    margin: 0 0 10px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Text shadow for readability */
 }
 
 .author-tagline {
-    font-style: italic;
-    color: var(--text-color); 
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: var(--light-text-color);
     opacity: 0.9;
-    margin: 0 0 10px 0; 
+    margin: 0 0 20px 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300; /* Lighter weight for tagline */
 }
 
 .travel-stats {
     display: flex;
-    gap: 10px; 
+    gap: 20px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .travel-stats .stat-item {
-    padding: 5px 12px; 
-    font-size: 0.9rem;
+    padding: 8px 18px;
+    font-size: 1rem;
+    background-color: rgba(255,255,255,0.15); /* Semi-transparent background */
+    border-radius: var(--border-radius-main);
+    color: var(--light-text-color);
+    font-weight: 400;
 }
+
+/* Section Styling */
+.destinations-section, .about-section, .contact-section {
+    padding: 60px 0; /* Consistent vertical padding for sections */
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
 .section-header h2 {
-    margin-bottom: 20px;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin-bottom: 10px;
+}
+
+.section-header h2 i {
+    color: var(--accent-color); /* Accent color for icons in headers */
+    margin-right: 10px;
 }
 
 .section-header p {
     max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    opacity: 0.8;
+    color: var(--text-color);
 }
 
-.destinations-section {
-    margin: 40px 0;
-}
-
-.destination-card.featured {
-    border: 2px solid var(--secondary-color);
-}
-
-.destination-card.featured::before {
-    content: '✨ Featured';
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-    color: white;
-    padding: 4px 10px;
+/* Destination Card Enhancements */
+.destination-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-background);
     border-radius: var(--border-radius-main);
-    font-size: 0.8rem;
-    font-weight: 600;
-    z-index: 2;
+    box-shadow: var(--box-shadow-main);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Important for image fitting */
 }
 
-.destination-card.completed {
-    border: 2px solid var(--accent-color);
-}
-
-.destination-card.completed::before {
-    content: '✅ Completed';
-    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-    color: white; 
-    padding: 4px 10px; 
-    border-radius: var(--border-radius-main); 
-    font-size: 0.8rem; 
-    font-weight: 600; 
-    z-index: 2; 
+.destination-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--box-shadow-hover);
 }
 
 .card-image {
-    height: 180px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    height: 220px; /* Standardized image height */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden; /* Ensure image fits */
+}
+
+.card-image img, .card-image .destination-emoji-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make images cover the area */
+    transition: transform 0.4s ease;
+}
+
+.destination-card:hover .card-image img, 
+.destination-card:hover .card-image .destination-emoji-bg {
+    transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+.destination-emoji-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); /* Fallback if no image */
 }
 
 .destination-emoji {
-    font-size: 3.5rem;
+    font-size: 5rem;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    color: var(--light-text-color); /* Ensure emoji is visible on gradient */
 }
 
-.card-overlay {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+/* SVG Placeholder Styling */
+.card-image .svg-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Or 'contain' depending on SVG aspect ratio */
+    padding: 20px; /* Add some padding if SVGs are too close to edges */
+    background-color: #f0f0f0; /* Light background for SVGs */
+}
+
+.card-content {
+    padding: 25px;
+    flex-grow: 1; /* Allow content to fill space */
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    align-items: flex-end;
-}
-
-.duration, .status {
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--text-color);
-    padding: 4px 10px;
-    border-radius: var(--border-radius-main);
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.status.coming-soon-badge {
-    background: rgba(255, 193, 7, 0.9);
-    color: #856404;
 }
 
 .card-content h3 {
-    font-family: 'Caveat', cursive;
-    font-size: 1.6rem;
+    font-family: var(--font-secondary);
+    font-size: clamp(1.5rem, 3vw, 1.8rem);
     color: var(--primary-color);
+    margin-bottom: 0.6em;
 }
 
 .card-content p {
     color: var(--text-color);
     opacity: 0.9;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Push button to bottom */
+}
+
+.card-meta {
+    margin-bottom: 1rem;
 }
 
 .card-meta .date {
     color: var(--secondary-color);
     font-weight: 600;
+    font-size: 0.9rem;
+    display: block; /* Make it a block to take full width if needed */
 }
 
-.card-meta .highlights {
-    color: var(--text-color);
-    opacity: 0.8;
-    font-style: italic;
+.destination-card .btn {
+    margin-top: auto; /* Push button to the bottom of the card */
+    width: 100%; /* Make button full width */
 }
 
-.card-stats span {
-    padding: 5px 10px; 
-    font-size: 0.85rem;
+/* Badges for card status */
+.card-status-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--accent-color);
+    color: white;
+    padding: 7px 14px;
+    border-radius: var(--border-radius-main);
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.coming-soon {
-    opacity: 0.7;
+.destination-card.featured .card-status-badge {
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
 }
 
-.about-section {
-    padding: 35px; 
+.destination-card.completed .card-status-badge {
+    background: var(--primary-color);
+}
+
+.destination-card.coming-soon .card-status-badge {
+    background: #7f8c8d; /* Asbestos - a muted gray for coming soon */
+}
+
+/* About Section Styling */
+.about-section .card {
+    border: none; /* Remove card border for a cleaner look if preferred */
+    box-shadow: none; /* Remove shadow if preferred */
+    background-color: transparent; /* Make it blend with section bg */
+    padding: 0; /* Remove padding if content handles it */
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column; /* Default to column for easier management */
+    align-items: center; /* Center content */
+    gap: 30px;
+    text-align: center; /* Center text */
+}
+
+.about-text {
+    max-width: 750px;
 }
 
 .about-text p {
     font-size: 1.1rem;
-    text-align: center;
-    max-width: 800px;
+    line-height: 1.8;
+}
+
+.travel-philosophy {
+    margin-top: 30px;
+    text-align: left; /* Align list items to the left for readability */
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .travel-philosophy h3 {
-    font-family: 'Caveat', cursive;
-    font-size: 1.8rem;
+    text-align: center; /* Center philosophy heading */
+    margin-bottom: 15px;
     color: var(--primary-color);
 }
 
 .travel-philosophy ul {
-    list-style-position: inside;
+    list-style: none; /* Remove default bullets */
     padding-left: 0;
 }
 
-.travel-philosophy li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3)); 
-    font-size: 1rem;
+.travel-philosophy ul li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.travel-philosophy ul li::before {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+    top: 2px;
 }
 
 .stats-showcase {
-    gap: 25px;
+    margin-top: 30px;
+    width: 100%; /* Ensure it takes full width for grid */
 }
 
 .stat-box {
+    background-color: var(--card-background);
+    padding: 25px;
     text-align: center;
-    padding: 25px; 
-    background: var(--background-color);
-    border: 1px solid var(--accent-color-translucent, rgba(129, 199, 132, 0.3));
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--box-shadow-main);
+    border: 1px solid var(--border-color);
 }
 
 .stat-number {
-    font-size: 2.8rem;
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
     color: var(--secondary-color);
+    margin-bottom: 5px;
 }
 
 .stat-label {
+    font-size: 1rem;
     color: var(--text-color);
     opacity: 0.8;
 }
 
-.contact-section {
-    margin: 40px 0;
-}
-
-.contact-card {
+/* Contact Section Styling */
+.contact-options .contact-card {
     text-align: center;
 }
 
 .contact-icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 10px;
+    font-size: 2.5rem;
     color: var(--accent-color);
+    margin-bottom: 15px;
+    display: block;
 }
 
 .contact-card h3 {
-    font-family: 'Caveat', cursive;
-    font-size: 1.5rem;
-    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    margin-bottom: 15px;
+    min-height: 40px; /* Ensure consistent height for p tags */
 }
 
 .contact-link.btn {
-    margin-top: 10px;
     width: 100%;
 }
 
-.social-links .btn {
-    margin: 5px;
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .about-content {
+        flex-direction: row; /* Side-by-side for larger screens */
+        align-items: flex-start; /* Align items to the top */
+        text-align: left; /* Align text to the left */
+    }
+    .about-text {
+        flex: 2; /* Give more space to text */
+    }
+    .stats-showcase-wrapper { /* If you wrap stats showcase for layout */
+        flex: 1;
+    }
+    .travel-philosophy {
+        margin-left: 0; /* Align with left text */
+        margin-right: 0;
+    }
+     .travel-philosophy h3 {
+        text-align: left;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section-wrapper {
+        padding: 60px 0;
+    }
+    .author-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .avatar-emoji {
+        font-size: 3.5rem;
+    }
+    .author-name {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+    }
+    .author-tagline {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+    }
+    .destinations-section, .about-section, .contact-section {
+        padding: 40px 0;
+    }
+    .section-header h2 {
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+    }
+    .card-content h3 {
+        font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    }
 }

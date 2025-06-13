@@ -4,156 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MADK's Travel Diary - Quality Moments & Hidden Gems</title>
-    <link rel="stylesheet" href="css/global_styles.css"> <!-- Added global styles -->
-    <link rel="stylesheet" href="css/diary_styles.css"> <!-- Will be reviewed/merged later -->
+    <link rel="stylesheet" href="css/global_styles.css">
+    <link rel="stylesheet" href="css/diary_styles.css"> 
+    <!-- css/index_styles.css might be redundant or need merging if diary_styles now covers index-specifics -->
     <script src="js/diary_main.js" defer></script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Hero Section -->
-        <header class="hero-section card"> <!-- Added card class for consistency -->
-            <div class="hero-content">
-                <div class="author-intro">
-                    <div class="author-avatar">
-                        <span class="avatar-emoji">🌍</span>
-                    </div>
-                    <div class="author-details">
-                        <h1 class="author-name">MADK's Travel Diary</h1>
-                        <p class="author-tagline">"Quality moments over quantity miles - exploring unique places with style"</p>
-                        <div class="travel-stats">
-                            <span class="stat-item btn btn-secondary">👨‍👩‍👧‍👧 Family of 4</span> <!-- Styled as buttons -->
-                            <span class="stat-item btn btn-secondary">🌍 3 Countries</span>
-                            <span class="stat-item btn btn-secondary">💎 Hidden Gems</span>
-                            <span class="stat-item btn btn-secondary">🍽️ Local Vibes</span>
+    <!-- Hero Section Wrapper for Full Width Background -->
+    <div class="hero-section-wrapper">
+        <div class="container">
+            <header class="hero-section"> <!-- Removed card class, styling handled by hero-section-wrapper and hero-section -->
+                <div class="hero-content">
+                    <div class="author-intro">
+                        <div class="author-avatar">
+                            <!-- Consider using an actual image/SVG: <img src="path/to/avatar.svg" alt="MADK Family Avatar"> -->
+                            <span class="avatar-emoji">✈️</span> 
+                        </div>
+                        <div class="author-details">
+                            <h1 class="author-name">MADK's Travel Diary</h1>
+                            <p class="author-tagline">Crafting unforgettable journeys, exploring hidden gems, and creating quality moments over quantity miles.</p>
+                            <div class="travel-stats">
+                                <span class="stat-item"><i class="fas fa-globe-americas"></i> 3 Continents</span>
+                                <span class="stat-item"><i class="fas fa-flag"></i> 10+ Countries</span>
+                                <span class="stat-item"><i class="fas fa-users"></i> Family Adventures</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
+        </div>
+    </div>
 
-        <!-- Navigation -->
+    <!-- Navigation -->
+    <div class="container">
         <nav class="main-nav">
-            <ul class="nav-links"> <!-- Changed div to ul for semantic navigation -->
-                <li><a href="#destinations" class="nav-link">🗺️ Destinations</a></li>
-                <li><a href="#about" class="nav-link">👋 About</a></li>
-                <li><a href="#contact" class="nav-link">📧 Contact</a></li>
+            <ul class="nav-links">
+                <li><a href="#destinations" class="nav-link"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+                <li><a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> Our Story</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Get in Touch</a></li>
             </ul>
         </nav>
+    </div>
 
+    <!-- Main Content Area -->
+    <div class="container">
         <!-- Destinations Section -->
-        <section id="destinations" class="destinations-section card"> <!-- Added card class -->
+        <section id="destinations" class="destinations-section">
             <div class="section-header">
-                <h2>🌟 Our Travel Adventures</h2>
-                <p>Discover our thoughtfully crafted journeys to unique destinations where we explore with style and savor authentic experiences</p>
+                <h2><i class="fas fa-suitcase-rolling"></i> Our Travel Adventures</h2>
+                <p>Discover thoughtfully crafted journeys where we explore with style, savor authentic experiences, and find hidden gems.</p>
             </div>
 
-            <div class="destinations-grid card-grid"> <!-- Added card-grid class -->
+            <div class="destinations-grid card-grid">
                 <!-- Australia Card (Past Trip) -->
-                <div class="destination-card card"> <!-- Added card class -->
+                <div class="destination-card card completed">
+                    <span class="card-status-badge">Explored</span>
                     <div class="card-image">
-                        <span class="destination-emoji">🦘</span>
-                        <div class="card-overlay">
-                            <span class="duration">19 Days</span>
-                            <span class="status completed-badge btn btn-secondary">Completed</span>
-                        </div>
+                        <!-- Replace with undraw.co SVG or actual image -->
+                        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Australia Travel Illustration" class="svg-placeholder"/>
                     </div>
                     <div class="card-content">
-                        <h3>Australia Discovery</h3>
-                        <p>Our debut international adventure - exploring vibrant cities, unique landscapes, and diverse food culture Down Under</p>
+                        <h3>Australia: The Grand Discovery</h3>
+                        <p>Our debut international family adventure! We explored vibrant cities like Sydney and Melbourne, marveled at unique landscapes, and indulged in Australia's diverse food culture.</p>
                         <div class="card-meta">
-                            <span class="date">Completed 2024</span>
-                            <span class="highlights">Sydney Opera House • Melbourne Laneways • Local Cafés • Wildlife Encounters</span>
+                            <span class="date"><i class="fas fa-calendar-alt"></i> Visited: 2022</span>
                         </div>
-                        <div class="card-stats">
-                            <span class="btn btn-secondary">🏙️ Urban Vibes</span>
-                            <span class="btn btn-secondary">🦘 Wildlife</span>
-                            <span class="btn btn-secondary">☕ Coffee Culture</span>
-                        </div>
+                        <a href="#" class="btn btn-secondary mt-2" style="opacity:0.7; pointer-events:none;">View Journal (Soon)</a>
                     </div>
                 </div>
 
                 <!-- Langkawi Card (Current) -->
-                <div class="destination-card card featured" onclick="window.location.href='langkawi.html'"> <!-- Added card class -->
+                <div class="destination-card card featured" onclick="window.location.href='langkawi.html'">
+                    <span class="card-status-badge">Current Trip!</span>
                     <div class="card-image">
-                        <span class="destination-emoji">🏝️</span>
-                        <div class="card-overlay">
-                            <span class="duration">4 Days</span>
-                            <span class="status btn btn-secondary">Live</span>
-                        </div>
+                        <!-- Replace with undraw.co SVG or actual image -->
+                         <img src="https://images.unsplash.com/photo-1577028040499-5160541303e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Langkawi Travel Illustration" class="svg-placeholder"/>
                     </div>
                     <div class="card-content">
-                        <h3>Langkawi, Malaysia</h3>
-                        <p>Tropical island escape with stunning sky bridges, pristine beaches, and authentic Malay experiences</p>
+                        <h3>Langkawi, Malaysia: Island Paradise</h3>
+                        <p>A tropical escape to Langkawi, featuring breathtaking sky bridges, pristine beaches, lush rainforests, and authentic Malay cultural experiences. Pure bliss!</p>
                         <div class="card-meta">
-                            <span class="date">June 16-19, 2025</span>
-                            <span class="highlights">SkyBridge Adventure • Mangrove Tours • Beach Bliss • Local Delicacies</span>
+                             <span class="date"><i class="fas fa-calendar-check"></i> June 2025</span>
                         </div>
-                        <div class="card-stats">
-                            <span class="btn btn-secondary">🏝️ Island Life</span>
-                            <span class="btn btn-secondary">🌉 Sky High</span>
-                            <span class="btn btn-secondary">🌶️ Spicy Local</span>
-                        </div>
+                        <a href="langkawi.html" class="btn mt-2">Explore Langkawi Diary</a>
                     </div>
                 </div>
 
                 <!-- Dubai Card (Next Trip) -->
-                <div class="destination-card card coming-soon"> <!-- Added card class -->
+                <div class="destination-card card coming-soon">
+                    <span class="card-status-badge">Coming Soon</span>
                     <div class="card-image">
-                        <span class="destination-emoji">🏙️</span>
-                        <div class="card-overlay">
-                            <span class="duration">6 Days</span>
-                            <span class="status coming-soon-badge btn btn-secondary">Next Adventure</span>
-                        </div>
+                        <!-- Replace with undraw.co SVG or actual image -->
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Dubai Travel Illustration" class="svg-placeholder"/>
                     </div>
                     <div class="card-content">
-                        <h3>Dubai, UAE</h3>
-                        <p>Modern marvels meets traditional culture - luxury experiences and architectural wonders await</p>
+                        <h3>Dubai, UAE: Modern Marvels</h3>
+                        <p>Get ready for a journey where modern architectural wonders meet rich traditional culture. We'll explore luxury experiences, desert safaris, and iconic landmarks.</p>
                         <div class="card-meta">
-                            <span class="date">Planning for Late 2025</span>
-                            <span class="highlights">Burj Khalifa • Desert Safari • Gold Souk • Modern Marina</span>
+                            <span class="date"><i class="fas fa-plane-departure"></i> Planned: 2026</span>
                         </div>
-                        <div class="card-stats">
-                            <span class="btn btn-secondary">🏗️ Modern Luxury</span>
-                            <span class="btn btn-secondary">🏜️ Desert Vibes</span>
-                            <span class="btn btn-secondary">🛍️ Shopping</span>
-                        </div>
+                         <a href="#" class="btn btn-secondary mt-2" style="opacity:0.7; pointer-events:none;">Details Coming Soon</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="about-section card"> <!-- Added card class -->
+        <section id="about" class="about-section">
             <div class="section-header">
-                <h2>👋 Meet the MADK Family</h2>
+                <h2><i class="fas fa-heart"></i> Our Story: The MADK Family</h2>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Meet the MADK squad - <strong>Manikandan</strong>, <strong>Kowsalya</strong>, and our adventure-loving daughters <strong>Akshya</strong> and <strong>Divya</strong>! We've cracked the code of traveling smart: maximum fun with minimum chaos, and just enough comfort to keep everyone happy. 😄</p>
+            <div class="about-content-wrapper card"> <!-- Added a wrapper card for styling -->
+                <div class="about-image-container">
+                     <!-- Replace with a family photo or relevant Undraw illustration -->
+                    <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="MADK Family Illustration" class="about-image"/>
+                </div>
+                <div class="about-text-content">
+                    <p>We are the MADK squad - <strong>Manikandan</strong>, <strong>Kowsalya</strong>, and our adventure-loving daughters <strong>Akshya</strong> and <strong>Divya</strong>! We believe in smart travel: maximum fun, minimum chaos, and always comfortable enough for smiles all around. 😄 Our passion is to explore the world together, creating a tapestry of memories woven from diverse cultures, breathtaking landscapes, and shared laughter.</p>
                     
                     <div class="travel-philosophy">
                         <h3>Our Family Travel Philosophy</h3>
                         <ul>
-                            <li>💎 <strong>Quality over Quantity:</strong> Fewer destinations explored deeply and meaningfully</li>
-                            <li>🗺️ <strong>Hidden Gems & Icons:</strong> Less explored places alongside must-see landmarks</li>
-                            <li>🍽️ <strong>Authentic Vibes:</strong> Good food in great vibes with local experiences</li>
-                            <li>👨‍👩‍👧‍👧 <strong>Family First:</strong> Every destination creates bonding moments for all four of us</li>
+                            <li>Seek authentic experiences, not just tourist traps.</li>
+                            <li>Embrace local cultures, cuisines, and connections.</li>
+                            <li>Balance thrilling adventures with moments of quiet relaxation.</li>
+                            <li>Create lasting memories and stories to share.</li>
+                            <li>Travel light, travel smart, travel happy!</li>
                         </ul>
                     </div>
 
-                    <div class="stats-showcase card-grid"> <!-- Added card-grid class -->
-                        <div class="stat-box card"> <!-- Added card class -->
-                            <span class="stat-number">4</span>
-                            <span class="stat-label">Family Members</span>
+                    <div class="stats-showcase card-grid mt-3">
+                        <div class="stat-box">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Years of Travel</span>
                         </div>
-                        <div class="stat-box card"> <!-- Added card class -->
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Countries Explored</span>
+                        <div class="stat-box">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Cities Explored</span>
                         </div>
-                        <div class="stat-box card"> <!-- Added card class -->
+                        <div class="stat-box">
                             <span class="stat-number">∞</span>
-                            <span class="stat-label">Memories Created</span>
+                            <span class="stat-label">Memories Made</span>
                         </div>
                     </div>
                 </div>
@@ -161,55 +154,61 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="contact-section card"> <!-- Added card class -->
+        <section id="contact" class="contact-section">
             <div class="section-header">
-                <h2>📧 Connect with the MADK Family</h2>
-                <p>Have questions about our travels or looking for family-friendly destination advice?</p>
+                <h2><i class="fas fa-paper-plane"></i> Connect With Us</h2>
+                <p>Have questions, suggestions, or just want to share your travel stories? We'd love to hear from you! Let's build a community of passionate explorers.</p>
             </div>
             <div class="contact-content">
-                <div class="contact-options card-grid"> <!-- Added card-grid class -->
-                    <div class="contact-card card"> <!-- Added card class -->
-                        <span class="contact-icon">✉️</span>
-                        <h3>Travel Inquiries</h3>
-                        <p>Get in touch for destination advice or travel collaboration</p>
+                <div class="contact-options card-grid">
+                    <div class="contact-card card">
+                        <span class="contact-icon"><i class="fas fa-envelope-open-text"></i></span>
+                        <h3>Email Us</h3>
+                        <p>For inquiries, collaborations, or a friendly travel chat.</p>
                         <a href="mailto:madkfamily@gmail.com" class="contact-link btn">madkfamily@gmail.com</a>
                     </div>
-                    <div class="contact-card card"> <!-- Added card class -->
-                        <span class="contact-icon">🗺️</span>
-                        <h3>Destination Questions</h3>
-                        <p>Need specific advice about family-friendly spots or hidden gems?</p>
-                        <a href="mailto:madkfamily@gmail.com" class="contact-link btn">madkfamily@gmail.com</a>
+                    <div class="contact-card card">
+                        <span class="contact-icon"><i class="fab fa-instagram"></i></span>
+                        <h3>Follow on Instagram</h3>
+                        <p>See our latest adventures, daily snaps, and travel tips.</p>
+                        <a href="#" class="contact-link btn btn-secondary">@madk_travels</a>
                     </div>
-                    <div class="contact-card card"> <!-- Added card class -->
-                        <span class="contact-icon">🌟</span>
-                        <h3>Follow Our Journey</h3>
-                        <p>Stay updated with our latest family adventures and discoveries</p>
-                        <div class="social-links">
-                            <a href="#" class="social-link btn btn-secondary">📷 Instagram</a>
-                            <a href="#" class="social-link btn btn-secondary">📝 Travel Blog</a>
-                        </div>
+                    <div class="contact-card card">
+                         <span class="contact-icon"><i class="fas fa-feather-alt"></i></span>
+                        <h3>Read Our Blog</h3>
+                        <p>Dive deeper into our travel stories, guides, and tips.</p>
+                        <a href="#" class="contact-link btn btn-secondary" style="opacity:0.7; pointer-events:none;">Coming Soon!</a>
                     </div>
                 </div>
             </div>
         </section>
+    </div>
 
-        <!-- Footer -->
-        <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
+                <div class="footer-brand mb-2">
                     <h4>MADK's Travel Diary</h4>
-                    <p>Creating quality family memories, one destination at a time</p>
+                    <p>Creating quality family memories, one destination at a time. Adventure awaits!</p>
                 </div>
-                <div class="footer-links">
-                    <a href="#destinations">Destinations</a>
-                    <a href="#about">About</a>
+                <div class="footer-links mb-2">
+                    <a href="#destinations">Destinations</a> | 
+                    <a href="#about">Our Story</a> | 
                     <a href="#contact">Contact</a>
                 </div>
+                <div class="social-links mb-3">
+                    <a href="#" class="btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="btn"><i class="fab fa-youtube"></i></a>
+                </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2025 MADK's Travel Diary. Made with ❤️ by a family for fellow travelers.</p>
+                    <p>&copy; 2025 MADK's Travel Diary. Crafted with <i class="fas fa-heart" style="color: var(--secondary-color);"></i> for fellow adventurers.</p>
+                    <p>Inspired by modern travel aesthetics. Illustrations placeholders from Unsplash.</p>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 </body>
 </html>
