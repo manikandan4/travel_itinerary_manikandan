@@ -194,7 +194,7 @@
 
 .group-selection .card.destination-card .card-image {
     width: 100%;
-    height: 180px; /* Consistent height for the image container */
+    height: 220px; /* Consistent height for the image container, increased from 180px */
     overflow: hidden;
     border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
     margin-bottom: 0;
@@ -207,6 +207,10 @@
     object-fit: cover; /* Cover the area, cropping if necessary */
     /* padding: 10px; Removed padding */
     /* background-color: #f8f9fa; Removed specific background for img */
+}
+
+.group-selection .card.destination-card .card-image img[src$=".svg"] {
+    object-fit: contain;
 }
 
 .group-selection .card.destination-card .card-content {
