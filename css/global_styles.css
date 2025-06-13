@@ -1,27 +1,21 @@
-/* Global Styles for Travel Diary */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-    /* New Refined Color Palette */
-    --primary-color: #2C3E50; /* Midnight Blue */
-    --secondary-color: #E74C3C; /* Alizarin Crimson */
-    --accent-color: #F39C12; /* Orange */
-    --background-color: #ECF0F1; /* Clouds - Light Gray */
-    --text-color: #34495E; /* Wet Asphalt - Dark Gray */
+    --primary-color: #2C3E50;
+    --secondary-color: #E74C3C;
+    --accent-color: #F39C12;
+    --background-color: #ECF0F1;
+    --text-color: #34495E;
     --light-text-color: #FFFFFF;
     --card-background: #FFFFFF;
-    --border-color: #BDC3C7; /* Silver */
-
-    --border-radius-main: 8px; /* Slightly more modern radius */
-    --box-shadow-main: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer, more diffused shadow */
+    --border-color: #BDC3C7;
+    --border-radius-main: 8px;
+    --box-shadow-main: 0 4px 12px rgba(0, 0, 0, 0.08);
     --box-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
-
-    /* Typography */
     --font-primary: 'Montserrat', sans-serif;
     --font-secondary: 'Lora', serif;
 }
 
-/* Base Reset */
 * {
     margin: 0;
     padding: 0;
@@ -32,23 +26,22 @@ body {
     font-family: var(--font-primary);
     background-color: var(--background-color);
     color: var(--text-color);
-    line-height: 1.7; /* Increased for better readability */
-    padding: 0; /* Remove body padding, handle in container/sections */
+    line-height: 1.7;
+    padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 .container {
-    max-width: 1200px; /* Wider for modern layouts */
+    max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    padding: 20px; /* Padding for content within container */
+    padding: 20px;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-secondary); /* Elegant serif for headings */
+    font-family: var(--font-secondary);
     color: var(--primary-color);
     margin-bottom: 0.75em;
     line-height: 1.3;
@@ -65,21 +58,20 @@ p {
 }
 
 a {
-    color: var(--accent-color); /* Use accent for links */
+    color: var(--accent-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--secondary-color); /* Use secondary for link hover */
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
-/* Buttons */
 .btn {
     display: inline-block;
-    padding: 12px 28px; /* Slightly more padding */
-    background-color: var(--accent-color); /* Accent for primary actions */
+    padding: 12px 28px;
+    background-color: var(--accent-color);
     color: var(--light-text-color);
     border: none;
     border-radius: var(--border-radius-main);
@@ -92,7 +84,7 @@ a:hover {
 }
 
 .btn:hover {
-    background-color: var(--secondary-color); /* Secondary on hover */
+    background-color: var(--secondary-color);
     color: var(--light-text-color);
     transform: translateY(-2px);
     text-decoration: none;
@@ -100,59 +92,55 @@ a:hover {
 }
 
 .btn-secondary {
-    background-color: var(--primary-color); /* Primary color for secondary buttons */
+    background-color: var(--primary-color);
     color: var(--light-text-color);
 }
 .btn-secondary:hover {
-    background-color: #1F2D3D; /* Darker shade of primary */
+    background-color: #1F2D3D;
     color: var(--light-text-color);
 }
 
-
-/* Cards - Base Styling */
 .card {
     background-color: var(--card-background);
     border-radius: var(--border-radius-main);
     box-shadow: var(--box-shadow-main);
-    padding: 30px; /* Increased padding */
+    padding: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    border: 1px solid var(--border-color); /* Subtle border */
+    border: 1px solid var(--border-color);
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Subtle lift */
+    transform: translateY(-5px);
     box-shadow: var(--box-shadow-hover);
 }
 
 .card-grid {
     display: grid;
-    gap: 30px; /* Increased gap */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-/* Navigation - Basic Structure */
 .main-nav {
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
+    background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     padding: 15px 0;
-    /* Removed border-radius and margin-bottom */
     box-shadow: var(--box-shadow-main);
-    position: sticky; /* Sticky nav */
-    top: 0; /* Stick to the very top */
+    position: sticky;
+    top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
-    width: 100%; /* Make nav full width */
+    width: 100%;
 }
 
-.main-nav .nav-container { /* New class to control content width */
+.main-nav .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* Match container padding */
+    padding: 0 20px;
     display: flex;
-    justify-content: space-between; /* Space out logo/links and toggle */
+    justify-content: space-between;
     align-items: center;
-    position: relative; /* For absolute positioning of mobile menu */
+    position: relative;
 }
 
 .nav-logo .logo-link {
@@ -169,7 +157,7 @@ a:hover {
 }
 
 .mobile-nav-toggle {
-    display: none; /* Hidden by default, shown on mobile */
+    display: none;
     background: none;
     border: none;
     color: var(--primary-color);
@@ -179,22 +167,21 @@ a:hover {
 }
 
 .main-nav .nav-links-wrapper {
-    display: flex; /* Default for desktop */
+    display: flex;
 }
 
 .main-nav .nav-links {
     display: flex;
-    /* justify-content: center; */ /* Handled by nav-container or flex end */
     align-items: center;
     gap: 25px;
     list-style: none;
     padding: 0;
-    margin: 0; /* Ensure no default margin */
+    margin: 0;
 }
 
 .main-nav .nav-link {
     padding: 10px 20px;
-    font-weight: 600; /* Bolder nav links */
+    font-weight: 600;
     font-family: var(--font-primary);
     color: var(--primary-color);
     border-radius: 6px;
@@ -209,18 +196,17 @@ a:hover {
 }
 
 .main-nav .nav-link i {
-    margin-right: 8px; /* Space between icon and text */
+    margin-right: 8px;
 }
 
-/* Responsive Navigation (Hamburger Menu) */
 @media (max-width: 768px) {
     .main-nav .nav-container {
-        justify-content: space-between; /* Logo left, toggle right */
+        justify-content: space-between;
     }
 
     .mobile-nav-toggle {
-        display: block; /* Show hamburger icon */
-        order: 2; /* Ensure it's on the right */
+        display: block;
+        order: 2;
     }
 
     .nav-logo {
@@ -228,35 +214,35 @@ a:hover {
     }
 
     .main-nav .nav-links-wrapper {
-        display: none; /* Hide links by default on mobile */
+        display: none;
         position: absolute;
-        top: 100%; /* Position below the nav bar */
+        top: 100%;
         right: 0;
-        background-color: rgba(255, 255, 255, 0.98); /* Slightly more opaque for dropdown */
+        background-color: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
-        width: 250px; /* Width of the dropdown menu */
+        width: 250px;
         box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
         padding: 15px;
-        z-index: 999; /* Below main nav but above content */
+        z-index: 999;
         border-top: 1px solid var(--border-color);
     }
 
     .main-nav .nav-links-wrapper.active {
-        display: flex; /* Show when active */
+        display: flex;
     }
 
     .main-nav .nav-links {
-        flex-direction: column; /* Stack links vertically */
-        align-items: flex-start; /* Align links to the left */
+        flex-direction: column;
+        align-items: flex-start;
         width: 100%;
     }
 
     .main-nav .nav-link {
-        padding: 12px 15px; /* Adjust padding for vertical layout */
+        padding: 12px 15px;
         width: 100%;
         text-align: left;
-        border-bottom: 1px solid var(--border-color); /* Separator for links */
+        border-bottom: 1px solid var(--border-color);
     }
     .main-nav .nav-link:last-child {
         border-bottom: none;
@@ -269,7 +255,6 @@ a:hover {
     }
 }
 
-/* Utility classes */
 .mt-1 { margin-top: 0.5rem; }
 .mt-2 { margin-top: 1rem; }
 .mt-3 { margin-top: 1.5rem; }
@@ -278,12 +263,11 @@ a:hover {
 .mb-3 { margin-bottom: 1.5rem; }
 .text-center { text-align: center; }
 
-/* Footer Styling */
 .footer {
-    background-color: var(--primary-color); /* Dark footer background */
+    background-color: var(--primary-color);
     color: var(--light-text-color);
     padding: 40px 0;
-    margin-top: auto; /* Push to bottom */
+    margin-top: auto;
     text-align: center;
 }
 
@@ -298,7 +282,7 @@ a:hover {
 
 .footer-brand h4 {
     font-family: var(--font-secondary);
-    color: var(--light-text-color); /* Ensure heading is light */
+    color: var(--light-text-color);
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
@@ -325,9 +309,9 @@ a:hover {
     background-color: transparent;
     border: 1px solid var(--light-text-color);
     color: var(--light-text-color);
-    padding: 8px 12px; /* Smaller padding for social icons */
+    padding: 8px 12px;
     margin: 0 5px;
-    border-radius: 50%; /* Circular social icons */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     display: inline-flex;

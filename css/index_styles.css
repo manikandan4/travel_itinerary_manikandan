@@ -60,7 +60,6 @@
     color: var(--secondary-color);
 }
 
-/* Back to Home Navigation */
 .back-to-home {
     text-align: left;
     margin-bottom: 15px;
@@ -98,25 +97,24 @@
 
 .destination-name {
     font-weight: 700;
-    color: var(--primary-color); /* Global h1/h2 */
-    margin: 0 0 5px 0; /* Adjusted margin */
+    color: var(--primary-color); 
+    margin: 0 0 5px 0; 
 }
 
 .destination-tagline {
     font-style: italic;
-    color: var(--text-color); /* Global p */
+    color: var(--text-color); 
     opacity: 0.9;
     margin: 0 0 10px 0; 
 }
 
-/* Langkawi Hero Section Styles */
 .langkawi-hero-wrapper {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1630921094887-dc80ea389698?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
     background-position: center;
     color: var(--light-text-color);
-    padding: 40px 0; /* Adjusted padding */
-    text-align: center; /* Center content by default */
+    padding: 40px 0; 
+    text-align: center; 
 }
 
 .langkawi-hero .back-to-home {
@@ -136,14 +134,14 @@
 
 .langkawi-hero-content {
     display: flex;
-    flex-direction: column; /* Stack on mobile first */
+    flex-direction: column; 
     align-items: center;
     gap: 20px;
     text-align: center;
 }
 
 .langkawi-hero-image-container {
-    display: none; /* Hide the img element as image is on wrapper */
+    display: none; 
 }
 
 .langkawi-hero-details .destination-name-hero {
@@ -175,42 +173,38 @@
 }
 
 .langkawi-hero-details .trip-info-hero .btn.btn-outline {
-    background-color: rgba(44, 62, 80, 0.5); /* Darker, semi-transparent background (from --primary-color with alpha) */
-    border: 1px solid rgba(255, 255, 255, 0.6); /* Slightly more opaque white border */
+    background-color: rgba(44, 62, 80, 0.5); 
+    border: 1px solid rgba(255, 255, 255, 0.6); 
     color: var(--light-text-color);
     font-size: 0.85rem;
     padding: 8px 15px;
-    backdrop-filter: blur(5px); /* Keep the blur for glassmorphism */
-    -webkit-backdrop-filter: blur(5px); /* Safari support */
-    text-shadow: 0 0 5px rgba(0,0,0,0.7); /* Add a subtle text shadow for better contrast */
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px); 
+    text-shadow: 0 0 5px rgba(0,0,0,0.7); 
 }
 
 .langkawi-hero-details .trip-info-hero .btn.btn-outline:hover {
-    background-color: rgba(44, 62, 80, 0.7); /* Darken further on hover */
+    background-color: rgba(44, 62, 80, 0.7); 
     border-color: rgba(255,255,255,0.8);
 }
 
-/* Styles for group-selection cards to make them like destination-card */
 .group-selection .card.destination-card {
-    flex-direction: column; /* Ensure content stacks vertically */
-    /* padding: 0; Remove padding if card-image and card-content handle it */
+    flex-direction: column; 
 }
 
 .group-selection .card.destination-card .card-image {
     width: 100%;
-    height: 220px; /* Consistent height for the image container, increased from 180px */
+    height: 220px; 
     overflow: hidden;
     border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
     margin-bottom: 0;
-    background-color: #f0f0f0; /* Fallback background for images */
+    background-color: #f0f0f0; 
 }
 
 .group-selection .card.destination-card .card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover the area, cropping if necessary */
-    /* padding: 10px; Removed padding */
-    /* background-color: #f8f9fa; Removed specific background for img */
+    object-fit: cover; 
 }
 
 .group-selection .card.destination-card .card-image img[src$=".svg"] {
@@ -219,12 +213,12 @@
 
 .group-selection .card.destination-card .card-content {
     padding: 15px;
-    text-align: center; /* Center text content */
-    width: 100%; /* Ensure it takes full width */
+    text-align: center; 
+    width: 100%; 
 }
 
 .group-selection .card.destination-card .card-content h3 {
-    margin-top: 0; /* Adjust if needed */
+    margin-top: 0; 
 }
 
 
@@ -234,7 +228,6 @@
     flex-wrap: wrap;
 }
 
-/* Group Selection Cards - Flexbox Layout */
 .group-selection {
     display: flex;
     flex-wrap: wrap;
@@ -251,9 +244,9 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    position: relative; /* For ::before */
-    border: 2px solid transparent; /* For hover effect */
-    transition: all 0.3s ease; /* Combined transition */
+    position: relative; 
+    border: 2px solid transparent; 
+    transition: all 0.3s ease; 
 }
 
 .group-selection .card::before {
@@ -298,28 +291,26 @@
     color: var(--text-color);
     opacity: 0.85;
     margin-bottom: 0;
-    line-height: 1.4; /* Adjust line height for card paragraphs */
+    line-height: 1.4; 
 }
 
-/* Mobile Responsive - iPhone 15/16 Optimized */
 @media (max-width: 768px) {
     
     .group-selection {
-        flex-direction: column; /* Stack cards */
+        flex-direction: column; 
         gap: 1.2rem;
     }
     
     .group-selection .card {
-        min-width: 0; /* Allow full width */
-        /* max-width: 100%; Ensure cards can go full width if needed */
+        min-width: 0; 
     }
 
     .langkawi-hero-details .destination-name-hero {
-        font-size: clamp(1.8rem, 5vw, 2.5rem); /* Adjust size for mobile */
+        font-size: clamp(1.8rem, 5vw, 2.5rem); 
     }
 
     .langkawi-hero-details .destination-tagline-hero {
-        font-size: clamp(0.9rem, 3vw, 1.1rem); /* Adjust size for mobile */
+        font-size: clamp(0.9rem, 3vw, 1.1rem); 
     }
 
     .langkawi-hero-details .trip-info-hero .btn.btn-outline {
@@ -328,25 +319,23 @@
     }
 }
 
-@media (min-width: 769px) { /* Desktop styles for Langkawi Hero */
+@media (min-width: 769px) { 
     .langkawi-hero-wrapper {
         padding: 60px 0;
     }
 
     .langkawi-hero-content {
-        flex-direction: row; /* Side-by-side on desktop */
+        flex-direction: row; 
         text-align: left;
-        align-items: flex-start; /* Align items to the top */
+        align-items: flex-start; 
     }
 
     .langkawi-hero-image-container {
-        display: block; /* Show image container on desktop */
+        display: block; 
         flex-shrink: 0;
         margin-right: 30px;
-        width: 250px; /* Adjust as needed */
+        width: 250px; 
         height: auto; 
-        /* The actual image is a background on langkawi-hero-wrapper, 
-           this container can be used for spacing or if we revert to an <img> */
     }
 
     .langkawi-hero-details {
@@ -363,53 +352,45 @@
     }
 }
 
-/* Smooth scrolling */
 html {
     scroll-behavior: smooth;
 }
 
-/* Touch-friendly sizing for mobile */
 @media (hover: none) and (pointer: coarse) {
     .group-selection .card { 
         min-height: 120px; 
     }
 }
 
-/* Styles for Daily Itinerary Cards (e.g., #cards-june16) */
-/* Container for the daily cards */
 .card-grid[id^="cards-"] {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px; /* Consistent gap */
+    gap: 24px; 
     justify-content: center;
-    margin: 32px 0; /* Consistent margin */
+    margin: 32px 0; 
 }
 
-/* Individual daily itinerary card */
 .card-grid[id^="cards-"] .card {
-    flex: 1 1 280px; /* Base size, allows wrapping */
-    min-width: 280px; /* Minimum width before wrapping */
-    max-width: 420px; /* Max width to maintain a good layout */
+    flex: 1 1 280px; 
+    min-width: 280px; 
+    max-width: 420px; 
     display: flex;
     flex-direction: column;
-    text-align: left; /* Content aligned to the left */
+    text-align: left; 
     background-color: var(--card-background);
     border-radius: var(--border-radius-main);
     box-shadow: var(--box-shadow-main);
-    padding: 25px; /* MODIFIED: Increased padding */
+    padding: 25px; 
     position: relative;
-    /* REMOVED: border: 2px solid transparent; */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* MODIFIED: Standardized transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
     cursor: pointer;
 }
 
 .card-grid[id^="cards-"] .card:hover {
-    transform: translateY(-8px); /* MODIFIED: Matched index card hover */
-    box-shadow: var(--box-shadow-hover); /* MODIFIED: Matched index card hover */
-    /* REMOVED: border-color: var(--primary-color); */
+    transform: translateY(-8px); 
+    box-shadow: var(--box-shadow-hover); 
 }
 
-/* Disabled state for cards without a link */
 .card-grid[id^="cards-"] .card.card-disabled {
     cursor: not-allowed;
     opacity: 0.7;
@@ -425,65 +406,59 @@ html {
     transform: scaleX(0);
 }
 
-/* Icon within the card */
 .card-grid[id^="cards-"] .card .card-icon {
-    font-size: 2rem; /* MODIFIED: Adjusted size */
-    color: var(--accent-color); /* MODIFIED: Changed to accent color */
-    margin-bottom: 1rem; /* MODIFIED: Adjusted margin */
+    font-size: 2rem; 
+    color: var(--accent-color); 
+    margin-bottom: 1rem; 
     line-height: 1;
     text-align: left;
 }
 
-/* Title (h3) within the card */
 .card-grid[id^="cards-"] .card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.3rem, 2.5vw, 1.6rem); /* MODIFIED: Adjusted size */
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem); 
     color: var(--primary-color);
     margin-top: 0;
-    margin-bottom: 0.75rem; /* MODIFIED: Adjusted margin */
+    margin-bottom: 0.75rem; 
     line-height: 1.3;
 }
 
-/* Description (p) within the card */
 .card-grid[id^="cards-"] .card p {
-    font-size: clamp(0.9rem, 2vw, 1rem); /* Consistent with index */
+    font-size: clamp(0.9rem, 2vw, 1rem); 
     color: var(--text-color);
     opacity: 0.9;
-    margin-bottom: 1rem; /* MODIFIED: Adjusted margin */
+    margin-bottom: 1rem; 
     line-height: 1.6;
     flex-grow: 1;
 }
 
-/* Meta information container */
 .card-grid[id^="cards-"] .card .card-meta {
     font-size: 0.8rem;
-    color: var(--text-color); /* Base color for meta text */
+    color: var(--text-color); 
     opacity: 0.8;
     margin-top: auto;
     padding-top: 10px;
 }
 
-/* Individual meta items (spans) */
 .card-grid[id^="cards-"] .card .card-meta span {
     display: inline-block;
     margin-right: 8px;
     margin-bottom: 5px;
-    padding: 5px 10px; /* MODIFIED: Adjusted padding */
-    background-color: rgba(var(--primary-color-rgb), 0.07); /* MODIFIED: Subtle primary background */
-    border-radius: var(--border-radius-soft); /* MODIFIED: Softer radius */
-    border: 1px solid transparent; /* MODIFIED: Cleaner border */
-    color: var(--primary-color); /* MODIFIED: Primary color for text */
-    font-size: 0.75rem; /* MODIFIED: Slightly smaller */
-    font-weight: 500; /* MODIFIED: Added font weight */
+    padding: 5px 10px; 
+    background-color: rgba(var(--primary-color-rgb), 0.07); 
+    border-radius: var(--border-radius-soft); 
+    border: 1px solid transparent; 
+    color: var(--primary-color); 
+    font-size: 0.75rem; 
+    font-weight: 500; 
 }
 
-/* Responsive adjustments for daily itinerary cards */
 @media (max-width: 768px) {
     .card-grid[id^="cards-"] {
-        gap: 1.0rem; /* Slightly reduce gap on mobile */
+        gap: 1.0rem; 
     }
     .card-grid[id^="cards-"] .card {
-        min-width: 100%; /* Make cards full width on smaller mobile */
+        min-width: 100%; 
         flex-basis: 100%;
     }
 
@@ -500,70 +475,52 @@ html {
     }
 }
 
-/* --- Minimal & Elegant Trip Timeline Styles --- */
 .trip-timeline {
     position: relative;
     padding: 20px 0;
-    margin-top: 30px; /* Space above the timeline */
+    margin-top: 30px; 
     list-style: none;
 }
 
-/* The main vertical connecting line */
 .trip-timeline::before {
     content: '';
     position: absolute;
-    left: 10px; /* Position to the left of the dot */
+    left: 10px; 
     top: 0;
     bottom: 0;
-    width: 3px; /* Slightly thicker line */
-    background-color: var(--border-color); /* Use a subtle border color */
+    width: 3px; 
+    background-color: var(--border-color); 
     border-radius: 2px;
 }
 
-/* Individual timeline item */
 .timeline-item {
     position: relative;
-    padding-left: 40px; /* Space for the dot and some breathing room */
-    margin-bottom: 25px; /* Space between items */
+    padding-left: 40px; 
+    margin-bottom: 25px; 
 }
 
 .timeline-item:last-child {
     margin-bottom: 0;
 }
 
-/* Dot on the timeline */
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: 0; /* Align with the main line's left edge */
-    top: 5px; /* Adjust vertical alignment with text */
-    width: 20px; /* Larger dot */
+    left: 0; 
+    top: 5px; 
+    width: 20px; 
     height: 20px;
     border-radius: 50%;
-    background-color: var(--card-background); /* Match card background */
-    border: 3px solid var(--accent-color); /* Accent color border for the dot */
+    background-color: var(--card-background); 
+    border: 3px solid var(--accent-color); 
     z-index: 1;
-    box-shadow: 0 0 0 3px var(--card-background); /* Creates a "cutout" effect against the line */
+    box-shadow: 0 0 0 3px var(--card-background); 
 }
 
-/* SVG Icon - Hidden by default, can be re-enabled if desired with display: block; */
 .timeline-item .timeline-svg {
-    display: none; /* Keeping it hidden as per previous preference */
-    /* position: absolute; */
-    /* left: 0; */
-    /* top: 2px; */
-    /* width: 20px; */
-    /* height: 20px; */
-    /* fill: var(--accent-color); */
+    display: none; 
 }
-/*
-.timeline-item .timeline-svg svg {
-    width: 100%;
-    height: 100%;
-}
-*/
 
-/* Content wrapper for time and description */
 .timeline-item .timeline-details {
     background-color: var(--card-background);
     padding: 15px;
@@ -578,7 +535,6 @@ html {
     transform: translateY(-3px);
 }
 
-/* Timeline Time */
 .timeline-item .timeline-time {
     font-weight: 700;
     color: var(--primary-color);
@@ -587,20 +543,18 @@ html {
     display: block;
 }
 
-/* Timeline Description */
 .timeline-item .timeline-desc {
     font-size: 1rem;
     color: var(--text-color);
     line-height: 1.6;
 }
 
-/* Responsive adjustments for the minimal timeline */
 @media (max-width: 768px) {
     .trip-timeline::before {
-        left: 8px; /* Adjust line position for smaller screens */
+        left: 8px; 
     }
     .timeline-item {
-        padding-left: 30px; /* Adjust padding for smaller screens */
+        padding-left: 30px; 
     }
     .timeline-item::before {
         width: 16px;

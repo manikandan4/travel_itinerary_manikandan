@@ -1,23 +1,22 @@
 @import url('./global_styles.css');
 
-/* Hero Section - Full Width, Modern Look */
 .hero-section-wrapper {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'); /* Example travel image */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
     background-size: cover;
     background-position: center;
     color: var(--light-text-color);
-    padding: 80px 0; /* Increased padding */
+    padding: 80px 0;
     text-align: center;
-    margin-bottom: 0; /* Remove bottom margin, connect with nav */
+    margin-bottom: 0;
 }
 
 .hero-section {
-    background: transparent; /* Remove card background */
-    box-shadow: none; /* Remove card shadow */
-    padding: 0; /* Remove card padding */
-    border: none; /* Remove card border */
-    max-width: 800px; /* Constrain content width */
-    margin: 0 auto; /* Center content */
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    border: none;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .author-intro {
@@ -28,36 +27,35 @@
 }
 
 .author-avatar {
-    width: 160px; /* Larger avatar */
+    width: 160px;
     height: 160px;
     border-radius: 50%;
-    background-color: rgba(255,255,255,0.1); /* Subtle background for avatar */
+    background-color: rgba(255,255,255,0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
     border: 3px solid var(--light-text-color);
-    overflow: hidden; /* Ensure image respects border-radius */
+    overflow: hidden;
 }
 
-.avatar-image { /* New style for the image */
+.avatar-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensure the image covers the circle */
+    object-fit: cover;
 }
 
 .avatar-emoji {
     font-size: 4.5rem;
-    /* Consider replacing emoji with an actual image or SVG for a more polished look */
 }
 
 .author-name {
     font-family: var(--font-secondary);
     font-size: clamp(2.5rem, 6vw, 3.5rem);
     font-weight: 700;
-    color: var(--light-text-color); /* White text on dark background */
+    color: var(--light-text-color);
     margin: 0 0 10px 0;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Text shadow for readability */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .author-tagline {
@@ -69,7 +67,7 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    font-weight: 300; /* Lighter weight for tagline */
+    font-weight: 300;
 }
 
 .travel-stats {
@@ -82,15 +80,14 @@
 .travel-stats .stat-item {
     padding: 8px 18px;
     font-size: 1rem;
-    background-color: rgba(255,255,255,0.15); /* Semi-transparent background */
+    background-color: rgba(255,255,255,0.15);
     border-radius: var(--border-radius-main);
     color: var(--light-text-color);
     font-weight: 400;
 }
 
-/* Section Styling */
 .destinations-section, .about-section, .contact-section {
-    padding: 60px 0; /* Consistent vertical padding for sections */
+    padding: 60px 0;
 }
 
 .section-header {
@@ -104,7 +101,7 @@
 }
 
 .section-header h2 i {
-    color: var(--accent-color); /* Accent color for icons in headers */
+    color: var(--accent-color);
     margin-right: 10px;
 }
 
@@ -117,7 +114,6 @@
     color: var(--text-color);
 }
 
-/* Destination Card Enhancements */
 .destination-card {
     display: flex;
     flex-direction: column;
@@ -125,7 +121,7 @@
     border-radius: var(--border-radius-main);
     box-shadow: var(--box-shadow-main);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Important for image fitting */
+    overflow: hidden;
 }
 
 .destination-card:hover {
@@ -134,52 +130,51 @@
 }
 
 .card-image {
-    height: 220px; /* Standardized image height */
+    height: 220px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden; /* Ensure image fits */
+    overflow: hidden;
 }
 
 .card-image img, .card-image .destination-emoji-bg {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Make images cover the area */
+    object-fit: cover;
     transition: transform 0.4s ease;
 }
 
 .destination-card:hover .card-image img, 
 .destination-card:hover .card-image .destination-emoji-bg {
-    transform: scale(1.05); /* Subtle zoom on hover */
+    transform: scale(1.05);
 }
 
 .destination-emoji-bg {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); /* Fallback if no image */
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
 }
 
 .destination-emoji {
     font-size: 5rem;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-    color: var(--light-text-color); /* Ensure emoji is visible on gradient */
+    color: var(--light-text-color);
 }
 
-/* SVG Placeholder Styling */
 .card-image .svg-placeholder {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Or 'contain' depending on SVG aspect ratio */
-    padding: 20px; /* Add some padding if SVGs are too close to edges */
-    background-color: #f0f0f0; /* Light background for SVGs */
+    object-fit: cover;
+    padding: 20px;
+    background-color: #f0f0f0;
 }
 
 .card-content {
     padding: 25px;
-    flex-grow: 1; /* Allow content to fill space */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
@@ -197,7 +192,7 @@
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
-    flex-grow: 1; /* Push button to bottom */
+    flex-grow: 1;
 }
 
 .card-meta {
@@ -208,15 +203,14 @@
     color: var(--secondary-color);
     font-weight: 600;
     font-size: 0.9rem;
-    display: block; /* Make it a block to take full width if needed */
+    display: block;
 }
 
 .destination-card .btn {
-    margin-top: auto; /* Push button to the bottom of the card */
-    width: 100%; /* Make button full width */
+    margin-top: auto;
+    width: 100%;
 }
 
-/* Badges for card status */
 .card-status-badge {
     position: absolute;
     top: 12px;
@@ -240,74 +234,69 @@
 }
 
 .destination-card.coming-soon .card-status-badge {
-    background: #C0C0C0; /* Silver - for a cleaner, lighter grey for Planned */
-    color: #333; /* Darker text for better contrast on silver */
+    background: #C0C0C0;
+    color: #333;
 }
 
-/* About Section Styling */
-.about-section .about-content-wrapper.card { /* Explicitly target the card wrapper */
+.about-section .about-content-wrapper.card {
     background-color: var(--card-background);
     box-shadow: var(--box-shadow-main);
     border-radius: var(--border-radius-main);
-    padding: 30px; /* Add padding inside the card */
-    /* border: none; /* Already set, but ensure no conflicts */
-    /* box-shadow: none; /* Already set, but ensure no conflicts */
+    padding: 30px;
 }
 
 .about-content-wrapper {
     display: flex;
-    flex-direction: column; /* Image on top, text below */
-    align-items: center; /* Center items horizontally */
-    gap: 25px; /* Space between image container and text content */
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
     width: 100%;
 }
 
 .about-image-container {
     width: 100%;
-    max-width: 100%; /* Image container takes full width of the card padding box */
+    max-width: 100%;
     aspect-ratio: 16/9; 
     border-radius: var(--border-radius-main);
-    overflow: hidden; /* Crucial for object-fit: cover */
-    background-color: #f0f0f0; /* Fallback for image loading */
+    overflow: hidden;
+    background-color: #f0f0f0;
 }
 
 .about-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image covers the container */
-    display: block; /* Remove any extra space below image */
+    object-fit: cover;
+    display: block;
 }
 
 .about-text-content {
     width: 100%;
-    max-width: 100%; /* Text content also takes full width of the card padding box */
+    max-width: 100%;
     text-align: center; 
-    padding: 0; /* Remove previous padding, parent card now has it */
-    background-color: transparent; /* Remove subtle background, parent card has it */
-    /* border-radius: var(--border-radius-main); /* Parent card has radius */
+    padding: 0;
+    background-color: transparent;
 }
 
-/* Style for the main introductory paragraph */
 .about-text-content > p:first-of-type {
-    font-size: clamp(1.1rem, 2.5vw, 1.25rem); /* Responsive font size */
-    line-height: 1.75; /* Increased line height for better flow */
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+    line-height: 1.75;
     color: var(--text-color);
-    margin-bottom: 25px; /* More space after the intro paragraph */
-    font-weight: 300; /* Lighter font weight for a softer look */
+    margin-bottom: 25px;
+    font-weight: 300;
 }
 
 .about-text-content > p:first-of-type strong {
-    font-weight: 600; /* Make names slightly bolder */
-    color: var(--primary-color); /* Use primary color for names */
+    font-weight: 600;
+    color: var(--primary-color);
 }
 
 .travel-philosophy {
     margin-top: 25px;
     text-align: left; 
-    max-width: 550px; /* Constrain width for better readability */
+    max-width: 550px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 15px; /* Add some padding for list items */
+    padding: 0 15px;
 }
 
 .travel-philosophy h3 {
@@ -325,7 +314,7 @@
     padding-left: 25px;
     position: relative;
     margin-bottom: 10px;
-    font-size: 1rem; /* Adjusted font size */
+    font-size: 1rem;
 }
 
 .travel-philosophy ul li::before {
@@ -335,65 +324,64 @@
     color: var(--accent-color);
     position: absolute;
     left: 0;
-    top: 3px; /* Fine-tune alignment */
+    top: 3px;
 }
 
 .stats-showcase {
     margin-top: 30px;
     width: 100%;
-    display: flex; /* Changed from grid to flex for easier centering/wrapping of circles */
+    display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Allow circles to wrap on smaller screens */
-    gap: 20px; /* Gap between circles */
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .stat-box {
     background-color: var(--card-background);
-    width: 110px; /* Diameter of the circle */
-    height: 110px; /* Diameter of the circle */
-    border-radius: 50%; /* Make it a circle */
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 10px; /* Reduced padding */
-    box-shadow: var(--box-shadow-light); /* Lighter shadow */
-    border: 1px solid var(--border-color); /* Optional: keep or remove */
+    padding: 10px;
+    box-shadow: var(--box-shadow-light);
+    border: 1px solid var(--border-color);
     transition: transform 0.2s ease-out;
 }
 
 .stat-box:hover {
-    transform: scale(1.05); /* Subtle hover effect */
+    transform: scale(1.05);
 }
 
 .stat-number {
     display: block;
-    font-size: 1.6rem; /* Reduced font size */
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--secondary-color);
-    margin-bottom: 3px; /* Reduced margin */
+    margin-bottom: 3px;
 }
 
 .stat-label {
-    font-size: 0.75rem; /* Reduced font size */
+    font-size: 0.75rem;
     color: var(--text-color);
     opacity: 0.8;
-    line-height: 1.2; /* Ensure text fits well */
+    line-height: 1.2;
 }
 
-/* Contact Section Styling */
-.contact-options { /* Changed from card-grid to flex layout */
+.contact-options {
     display: flex;
     justify-content: center;
-    align-items: stretch; /* Align items to have same height if they wrap differently */
+    align-items: stretch;
     flex-wrap: wrap;
-    gap: 25px; /* Gap between contact circles */
-    padding-top: 20px; /* Add some space above the circles */
+    gap: 25px;
+    padding-top: 20px;
 }
 
-.contact-card { /* Styling for each circular contact item */
+.contact-card {
     background-color: var(--card-background);
     width: 140px; 
     height: 140px; 
@@ -407,8 +395,8 @@
     box-shadow: var(--box-shadow-light);
     border: 1px solid var(--border-color);
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-    text-decoration: none; /* Remove underline if the whole card is a link */
-    color: var(--text-color); /* Default text color */
+    text-decoration: none;
+    color: var(--text-color);
 }
 
 .contact-card:hover {
@@ -416,13 +404,13 @@
     box-shadow: var(--box-shadow-hover);
 }
 
-.contact-icon { /* Icon within the circle */
-    font-size: 2.2rem; /* Adjusted size for circle */
+.contact-icon {
+    font-size: 2.2rem;
     color: var(--accent-color);
-    margin-bottom: 8px; /* Space between icon and text */
+    margin-bottom: 8px;
 }
 
-.contact-card h3 { /* Text within the circle - e.g., "Email" */
+.contact-card h3 {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--primary-color);
@@ -430,29 +418,28 @@
 }
 
 .contact-card p {
-   display: none; /* Hide paragraph to keep circles compact, or make it very short */
+   display: none;
 }
 
-.contact-link.btn { /* If you keep a button, it needs to be small or integrated */
+.contact-link.btn {
     display: none;
 }
-/* Responsive adjustments */
-@media (min-width: 992px) { /* Adjusted breakpoint for 3 cards per row */
+
+@media (min-width: 992px) {
     .destinations-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) { /* For 2 cards per row on tablets */
+@media (min-width: 768px) and (max-width: 991px) {
     .destinations-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    /* .about-content-wrapper already column by default */
     .about-image-container {
-        max-width: 600px; /* Adjust if needed for tablet */
+        max-width: 600px;
     }
     .about-text-content {
-        max-width: 600px; /* Adjust if needed for tablet */
+        max-width: 600px;
     }
     .travel-philosophy {
         max-width: 500px;
@@ -460,13 +447,11 @@
 }
 
 @media (min-width: 768px) {
-    /* .about-content-wrapper is now column by default, so no need to override flex-direction here */
-    /* Remove specific flex settings for .about-image-container if they were for row layout */
 }
 
-@media (max-width: 767px) { /* Mobile specific styles */
+@media (max-width: 767px) {
     .hero-section-wrapper {
-        padding: 50px 20px; /* Adjusted padding for mobile */
+        padding: 50px 20px;
     }
     .author-avatar {
         width: 160px;
@@ -476,15 +461,15 @@
         font-size: 3rem;
     }
     .author-name {
-        font-size: clamp(1.8rem, 7vw, 2.5rem); /* Adjusted for mobile */
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
     }
     .author-tagline {
-        font-size: clamp(0.9rem, 4vw, 1.1rem); /* Adjusted for mobile */
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
         padding: 0 10px;
     }
     .travel-stats {
-        gap: 10px; /* Smaller gap for mobile */
-        flex-direction: column; /* Stack stats on mobile */
+        gap: 10px;
+        flex-direction: column;
         align-items: center;
     }
     .travel-stats .stat-item {
@@ -493,103 +478,56 @@
     }
 
     .destinations-section, .about-section, .contact-section {
-        padding: 30px 0; /* Reduced padding for mobile sections */
+        padding: 30px 0;
     }
     .section-header h2 {
-        font-size: clamp(1.6rem, 6vw, 2.2rem); /* Adjusted for mobile */
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
     }
     .section-header p {
-        font-size: clamp(0.9rem, 3.5vw, 1rem);
-        padding: 0 15px;
+        font-size: clamp(0.9rem, 3vw, 1.05rem);
     }
 
-    .destinations-grid {
-        grid-template-columns: 1fr; /* Single column for cards on mobile */
-        gap: 20px; /* Reduced gap for mobile */
-    }
-    .card-content h3 {
-        font-size: clamp(1.2rem, 5vw, 1.5rem); /* Adjusted for mobile */
-    }
-    .card-content p {
-        font-size: 0.9rem;
+    .destination-card {
+        margin-bottom: 20px;
     }
     .card-image {
-        height: 200px; 
+        height: 180px;
+    }
+    .card-content h3 {
+        font-size: clamp(1.3rem, 4vw, 1.6rem);
+    }
+    .card-content p {
+        font-size: 0.95rem;
     }
 
-    .about-content-wrapper {
-        /* flex-direction: column; /* Already default */
-        /* align-items: center; /* Already default */
-        padding: 0 15px; /* Add horizontal padding within the section for mobile */
-        gap: 20px;
-    }
     .about-image-container {
-        /* width: 100%; /* Already default */
-        max-width: 100%; /* Allow full width on mobile within padding */
-        aspect-ratio: 16/9; /* Or adjust for mobile, e.g., 4/3 */
-        margin-bottom: 15px;
+        height: auto;
+        max-height: 250px;
     }
-    .about-text-content {
-        /* text-align: center; /* Already default */
-        padding: 0; /* Remove padding if parent has it */
-    }
-    .about-text p {
-        font-size: 0.95rem; /* Adjust for mobile */
-        padding: 0;
+    .about-text-content > p:first-of-type {
+        font-size: clamp(1rem, 3.5vw, 1.15rem);
     }
     .travel-philosophy ul li {
-        font-size: 0.9rem;
-    }
-    .stats-showcase {
-        gap: 15px; /* Smaller gap for mobile */
+        font-size: 0.95rem;
     }
     .stat-box {
-        width: 90px; /* Smaller circles for mobile */
+        width: 90px;
         height: 90px;
-        padding: 8px;
     }
     .stat-number {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     .stat-label {
         font-size: 0.7rem;
     }
-
-    .contact-options {
-        gap: 20px; /* Smaller gap for mobile */
-    }
     .contact-card {
-        width: 110px; /* Smaller circles for mobile */
-        height: 110px;
-        padding: 10px;
+        width: 120px;
+        height: 120px;
     }
     .contact-icon {
         font-size: 1.8rem;
-        margin-bottom: 5px;
     }
     .contact-card h3 {
         font-size: 0.8rem;
-    }
-
-    .main-nav .nav-links {
-        flex-direction: column; /* Stack nav links on mobile */
-        align-items: center;
-    }
-    .main-nav .nav-links li {
-        margin-bottom: 10px;
-    }
-    .main-nav .nav-links li:last-child {
-        margin-bottom: 0;
-    }
-
-    .footer-content {
-        text-align: center;
-    }
-    .footer-links a {
-        display: block;
-        margin: 5px 0;
-    }
-    .social-links .btn {
-        margin: 5px;
     }
 }

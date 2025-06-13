@@ -18,7 +18,7 @@ const timelineData = [
       {
         icon: '🚗',
         title: 'Airport to Bayview Hotel',
-        desc: 'Your arrival journey from Langkawi International Airport to your accommodation at Bayview Hotel.',
+        desc: 'Arrival journey from Langkawi International Airport to our accommodation at Bayview Hotel.',
         meta: ['3:30 - 4:00 PM', 'June 16', '~30 mins'],
         link: 'routePages/airport_bayview.html',
       },
@@ -32,7 +32,7 @@ const timelineData = [
       {
         icon: '🛍️',
         title: 'Eagle Square to Shopping Mall',
-        desc: 'Quick shopping visit at Langkawi Fair Shopping Mall before dinner - browse local goods and souvenirs.',
+        desc: 'Quick shopping visit at Langkawi Fair Shopping Mall before dinner - browse duty free goods and souvenirs.',
         meta: ['6:45 - 7:00 PM', 'June 16', '~15 mins'],
         link: 'routePages/eagle_shopping.html',
       },
@@ -46,7 +46,7 @@ const timelineData = [
       {
         icon: '🌙',
         title: 'Dinner to Hotel',
-        desc: 'Return journey back to Bayview Hotel after a delicious dinner to end the first day of your Langkawi adventure.',
+        desc: 'Return journey back to Bayview Hotel after a delicious dinner to end the first day of our Langkawi adventure.',
         meta: ['9:15 - 9:30 PM', 'June 16', '~15 mins'],
         link: 'routePages/dinner_hotel.html',
       },
@@ -257,13 +257,13 @@ const timelineData = [
   },
   {
     date: 'Travel Companion',
-    subtitle: 'Guides, references, and memories for your Langkawi adventure',
+    subtitle: 'Guides, references, and memories for our Langkawi adventure',
     timeline: [],
     cards: [
       {
         icon: '📖',
         title: 'Langkawi Travel Guide & References',
-        desc: 'Essential guides, reference links, and a placeholder for your post-trip photos and videos.',
+        desc: 'Essential guides, reference links, and a placeholder for our post-trip photos and videos.',
         meta: ['All days', 'Langkawi', 'Guide'],
         link: 'routePages/companion_guide.html',
       }
