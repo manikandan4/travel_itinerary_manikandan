@@ -13,7 +13,7 @@
   "scripts": {
     "clean": "rm -rf dist temp_html",
     "build:html": "mkdir -p temp_html && cp *.html temp_html/ && mkdir -p temp_html/routePages && cp routePages/*.html temp_html/routePages/ && html-minifier-terser --input-dir temp_html --output-dir dist --file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true && rm -rf temp_html",
-    "build:css": "mkdir -p dist/css && cleancss -o dist/css/diary_styles.css css/diary_styles.css && cleancss -o dist/css/index_styles.css css/index_styles.css && cleancss -o dist/css/route_styles.css css/route_styles.css",
+    "build:css": "mkdir -p dist/css && cleancss -o dist/css/global_styles.css css/global_styles.css && cleancss -o dist/css/diary_styles.css css/diary_styles.css && cleancss -o dist/css/index_styles.css css/index_styles.css && cleancss -o dist/css/route_styles.css css/route_styles.css",
     "build:js": "mkdir -p dist/js && terser js/diary_main.js -o dist/js/diary_main.js -c -m && terser js/index_templates.js -o dist/js/index_templates.js -c -m",
     "obfuscate:js": "javascript-obfuscator dist/js/diary_main.js --output dist/js/diary_main.js && javascript-obfuscator dist/js/index_templates.js --output dist/js/index_templates.js",
     "build": "npm run clean && mkdir dist && npm run build:html && npm run build:css && npm run build:js && npm run obfuscate:js",
