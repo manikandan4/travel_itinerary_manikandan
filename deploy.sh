@@ -6,8 +6,6 @@ PI_HOST="raspberrypi.local"
 PI_REPO_PATH="/home/${PI_USER}/travel_itinerary_manikandan" # Where the git repo lives on Pi
 PROJECT_ROOT_ON_PI="/home/${PI_USER}/docker/madk-travel-blog" # Where Docker assets will go
 GIT_REPO_URL="https://github.com/manikandan4/travel_itinerary_manikandan.git"
-FRONTEND_IMAGE_NAME="madk-travel-blog-frontend"
-BACKEND_IMAGE_NAME="madk-travel-blog-backend"
 
 # --- Branch Name (Defaults to 'main' if not provided as argument) ---
 BRANCH_NAME=${1:-main}
@@ -18,169 +16,162 @@ set -e # Exit immediately if any command fails.
 echo "--- Starting Automated Full-Stack Docker Deployment ---"
 echo "Deploying branch: ${BRANCH_NAME}"
 
-# --- 1. Build the Static Site Locally (on MacBook) ---
-echo "1. Building static site locally..."
-npm run build # Runs your 'build' script defined in package.json
-echo "Static site built locally."
-
-# --- 2. (Skipped: Manual Git Push) ---
-echo "2. Skipping Git push. Please ensure your desired branch ('${BRANCH_NAME}') is pushed to GitHub."
+# --- 1. (Skipped: Manual Git Push) ---
+echo "➡️  Skipping Git push. Please ensure your desired branch ('${BRANCH_NAME}') is pushed to GitHub."
 echo "   (e.g., git add . && git commit -m '...' && git push origin ${BRANCH_NAME})"
+read -p "Press Enter to continue once the branch is pushed..."
 
-# --- 3. Execute Deployment Steps on Raspberry Pi (via SSH) ---
-echo "3. Connecting to Raspberry Pi to deploy full-stack application..."
-ssh "${PI_USER}@${PI_HOST}" 'bash -s' << EOF
-  set -e # Ensure commands within this SSH session exit immediately if any fail
-  set -x # Enable shell debugging: prints each command before execution
+# --- 2. Execute Deployment Steps on Raspberry Pi (via SSH) ---
+echo "🚀 Connecting to Raspberry Pi to deploy full-stack application..."
 
-  echo "  - Navigating to or cloning repository on Pi..."
-  if [ -d "${PI_REPO_PATH}" ]; then
-    echo "    Repository already exists. Pulling latest changes from branch: ${BRANCH_NAME}..."
-    cd "${PI_REPO_PATH}" || exit 1
-    git checkout "${BRANCH_NAME}"
-    git pull origin "${BRANCH_NAME}"
-  else
-    echo "    Cloning repository: ${GIT_REPO_URL} into ${PI_REPO_PATH}..."
-    mkdir -p "$(dirname "${PI_REPO_PATH}")"
-    git clone -b "${BRANCH_NAME}" "${GIT_REPO_URL}" "${PI_REPO_PATH}"
-    cd "${PI_REPO_PATH}" || exit 1
-  fi
+# We pass the local variables as arguments to the remote script.
+# This is safer than trying to expand them inside the heredoc.
+# Note the 'EOF' is quoted to prevent any local shell expansion.
+ssh "${PI_USER}@${PI_HOST}" 'bash -s' \
+  "${BRANCH_NAME}" \
+  "${PI_REPO_PATH}" \
+  "${GIT_REPO_URL}" \
+  "${PROJECT_ROOT_ON_PI}" <<'EOF'
+set -e # Exit on error for the remote script too
 
-  echo "  - Stopping and disabling host Nginx service (if running)..."
-  sudo systemctl stop nginx || true
-  sudo systemctl disable nginx || true
-  echo "  - Host Nginx service ensured to be stopped and disabled."
+# --- (Remote) Assign Arguments to Variables for Clarity ---
+REMOTE_BRANCH_NAME="$1"
+REMOTE_PI_REPO_PATH="$2"
+REMOTE_GIT_REPO_URL="$3"
+REMOTE_PROJECT_ROOT_ON_PI="$4"
 
-  echo "  - Building static site on Pi (npm install & npm run build)..."
-  npm install
-  npm run build
-  echo "  - Static site rebuilt on Pi."
+echo "--- (Remote) Starting Deployment on Raspberry Pi ---"
+echo "--- (Remote) Deploying branch: ${REMOTE_BRANCH_NAME}"
 
-  echo "  - Creating Docker deployment directory: ${PROJECT_ROOT_ON_PI}..."
-  mkdir -p "${PROJECT_ROOT_ON_PI}"
+# --- (Remote) 1. Navigate to Project Directory & Update from Git ---
+echo "1. Updating repository from Git..."
+if [ ! -d "${REMOTE_PI_REPO_PATH}" ]; then
+    echo "Cloning repository for the first time..."
+    git clone --branch "${REMOTE_BRANCH_NAME}" "${REMOTE_GIT_REPO_URL}" "${REMOTE_PI_REPO_PATH}"
+fi
 
-  echo "  - Copying Docker assets to deployment directory..."
-  # Copy main docker files
-  cp "${PI_REPO_PATH}/docker-compose.yml" "${PROJECT_ROOT_ON_PI}/docker-compose.yml"
-  cp "${PI_REPO_PATH}/Dockerfile" "${PROJECT_ROOT_ON_PI}/Dockerfile"
-  cp "${PI_REPO_PATH}/madk-travel-blog-frontend.conf" "${PROJECT_ROOT_ON_PI}/madk-travel-blog-frontend.conf"
-  
-  # Clean and copy build output (ensure no nested dist directories)
-  rm -rf "${PROJECT_ROOT_ON_PI}/dist"
-  cp -R "${PI_REPO_PATH}/dist" "${PROJECT_ROOT_ON_PI}/dist"
-  
-  # Copy backend directory (ensure clean copy, but preserve .env if it exists)
-  echo "  - Copying backend files (preserving .env if exists)..."
-  if [ -f "${PROJECT_ROOT_ON_PI}/backend/.env" ]; then
-    echo "    ℹ️  Preserving existing .env file"
-    mv "${PROJECT_ROOT_ON_PI}/backend/.env" "${PROJECT_ROOT_ON_PI}/.env.temp"
-  fi
-  
-  rm -rf "${PROJECT_ROOT_ON_PI}/backend"
-  cp -R "${PI_REPO_PATH}/backend" "${PROJECT_ROOT_ON_PI}/"
-  
-  if [ -f "${PROJECT_ROOT_ON_PI}/.env.temp" ]; then
-    mv "${PROJECT_ROOT_ON_PI}/.env.temp" "${PROJECT_ROOT_ON_PI}/backend/.env"
-    echo "    ✅ Existing .env file restored"
-  fi
+cd "${REMOTE_PI_REPO_PATH}"
+echo "Fetching latest changes from origin..."
+git fetch origin
+echo "Checking out branch ${REMOTE_BRANCH_NAME}..."
+git checkout "${REMOTE_BRANCH_NAME}"
+echo "Resetting to latest version from origin..."
+git reset --hard "origin/${REMOTE_BRANCH_NAME}"
+echo "Cleaning the repository..."
+git clean -fd
+echo "Repository updated."
 
-  echo "  - Checking backend environment file (.env)..."
-  if [ -f "${PROJECT_ROOT_ON_PI}/backend/.env" ]; then
-    echo "    ✅ .env file already exists - PRESERVING current configuration"
-    echo "     To update manually: ssh ${PI_USER}@${PI_HOST} && cd ${PROJECT_ROOT_ON_PI}/backend && nano .env"
-  else
-    echo "    Creating new .env file from template..."
-    if [ -f "${PROJECT_ROOT_ON_PI}/backend/.env.example" ]; then
-      cp "${PROJECT_ROOT_ON_PI}/backend/.env.example" "${PROJECT_ROOT_ON_PI}/backend/.env"
-      echo "    ✅ .env created from .env.example template"
-    else
-      # Create a basic .env file with required variables
-      cat > "${PROJECT_ROOT_ON_PI}/backend/.env" << 'ENVEOF'
-# Environment Variables for MADK Travel Blog Backend
+# --- (Remote) 2. Build Frontend Assets ---
+echo "2. Building production frontend assets (creating the 'dist' directory)..."
+# We need to install devDependencies to run the build script
+# Using --omit=dev would skip the packages needed for the build
+cd "${REMOTE_PI_REPO_PATH}"
+npm install
+npm run build
+echo "Frontend assets built."
+
+# --- (Remote) 3. Prepare Docker Assets ---
+echo "3. Preparing Docker assets for deployment..."
+# Ensure the project root exists and is clean (except for .env)
+mkdir -p "${REMOTE_PROJECT_ROOT_ON_PI}"
+cd "${REMOTE_PROJECT_ROOT_ON_PI}"
+# Use -mindepth 1 to avoid trying to remove the current directory '.'
+find . -mindepth 1 -maxdepth 1 ! -name '.env' -exec rm -rf {} +
+
+# Copy all necessary files from repo to Docker project root
+echo "Copying built assets and Docker files..."
+
+# Copy backend code
+mkdir -p "${REMOTE_PROJECT_ROOT_ON_PI}/backend"
+cp -a "${REMOTE_PI_REPO_PATH}/backend/." "${REMOTE_PROJECT_ROOT_ON_PI}/backend/"
+
+# Copy the entire 'dist' directory with production assets
+cp -a "${REMOTE_PI_REPO_PATH}/dist/." "${REMOTE_PROJECT_ROOT_ON_PI}/dist/"
+
+# Copy root-level configuration files for Docker and Nginx
+cp "${REMOTE_PI_REPO_PATH}/docker-compose.yml" "${REMOTE_PROJECT_ROOT_ON_PI}/"
+cp "${REMOTE_PI_REPO_PATH}/Dockerfile" "${REMOTE_PROJECT_ROOT_ON_PI}/"
+cp "${REMOTE_PI_REPO_PATH}/madk-travel-blog-frontend.conf" "${REMOTE_PROJECT_ROOT_ON_PI}/"
+echo "Docker assets copied."
+
+# --- (Remote) 4. Handle Production .env File ---
+ENV_FILE_PATH="${REMOTE_PROJECT_ROOT_ON_PI}/.env"
+if [ ! -f "${ENV_FILE_PATH}" ]; then
+    echo "⚠️  No .env file found on server. Creating one from template."
+    echo "   >>> IMPORTANT: You must edit this file with your production secrets! <<<"
+    # The 'ENVEOF' is quoted, so no variables inside are expanded. This is correct.
+    cat > "${ENV_FILE_PATH}" <<'ENVEOF'
+# Environment Variables for MADK Travel Blog Backend (Production)
 
 # Server Configuration
 NODE_ENV=production
 PORT=3001
 
 # Google OAuth Configuration
-# Get these from Google Cloud Console: https://console.cloud.google.com/
-GOOGLE_CLIENT_ID=your_google_client_id_here
-GOOGLE_CLIENT_SECRET=your_google_client_secret_here
+GOOGLE_CLIENT_ID=your_production_google_client_id_here
+GOOGLE_CLIENT_SECRET=your_production_google_client_secret_here
 
-# Session Configuration
-SESSION_SECRET=generate_a_secure_random_string_here
+# JWT Configuration
+# This is a secret key for signing JWTs. Use a long, random string.
+# Generate one with: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+JWT_SECRET=your_super_secret_jwt_key_here_change_this_in_production
 
-# Application URLs
-FRONTEND_URL=https://your-domain.com
-BACKEND_URL=https://your-domain.com
+# Application URLs (MUST match your production domain)
+FRONTEND_URL=https://madk-travel-blog.kandan4.xyz
+BACKEND_URL=https://madk-travel-blog.kandan4.xyz
 
 # Family Email Whitelist (comma-separated)
-ALLOWED_EMAILS=family1@gmail.com,family2@gmail.com
+ALLOWED_EMAILS=famil_email1@gmail.com,famil_email2@gmail.com,famil_email3@gmail.com,famil_email4@gmail.com,famil_email5@gmail.com
 
-# Security Settings
+# Security
 RATE_LIMIT_WINDOW_MS=900000
 RATE_LIMIT_MAX_REQUESTS=100
-
-# Additional Production Settings
-TRUST_PROXY=true
 ENVEOF
-      echo "    ✅ Basic .env template created"
-    fi
-    echo "    🔑 IMPORTANT: Edit .env with your actual Google OAuth credentials!"
-  fi
+    echo "✅ Template .env file created at ${ENV_FILE_PATH}"
+    echo "   Please SSH into the Pi and edit it before the first run."
+else
+    echo "✅ Existing .env file found. Preserving it."
+fi
 
-  echo "  - Building Docker images on Pi..."
-  cd "${PROJECT_ROOT_ON_PI}" || exit 1
-  
-  # Build frontend image
-  docker build -t "${FRONTEND_IMAGE_NAME}:latest" .
-  
-  # Build backend image  
-  docker build -t "${BACKEND_IMAGE_NAME}:latest" ./backend
+# --- (Remote) 5. Build and Restart Docker Containers ---
+echo "5. Building and restarting Docker containers..."
+cd "${REMOTE_PROJECT_ROOT_ON_PI}"
+docker compose down
+docker compose build --no-cache # Rebuild both backend and frontend images
+docker compose up -d
+echo "Docker containers are up and running."
 
-  echo "  - Stopping existing containers..."
-  docker compose down || true
+# --- (Remote) 6. Clean Up Old Docker Images ---
+echo "6. Cleaning up old Docker images..."
+docker image prune -f
+echo "Cleanup complete."
 
-  echo "  - Deploying full-stack application with Docker Compose..."
-  docker compose up -d --remove-orphans
-
-  echo "  - Cleaning up old Docker images..."
-  docker image prune -f
-
-  echo "  - Checking container status..."
-  docker compose ps
-
+echo "--- (Remote) Deployment Finished ---"
 EOF
 
 echo "--- Automated Full-Stack Docker Deployment Finished! ---"
 echo ""
 echo "🎉 Your authenticated travel blog containers are deployed!"
-echo "📱 Frontend: https://your-domain.com/"
-echo "🔧 Backend API: Available internally on port 3001"
+echo "📱 Frontend should be available at your production URL shortly."
 echo ""
 echo "⚠️  IMPORTANT CONFIGURATION NOTES:"
 echo ""
-echo "📁 .env File Status:"
-echo "   - If .env exists: PRESERVED during deployment"
-echo "   - If .env missing: Created from template (needs configuration)"
+echo "📁 .env File Status on Raspberry Pi:"
+echo "   - If .env existed: It was PRESERVED."
+echo "   - If .env was missing: A new template was created. YOU MUST EDIT IT."
 echo ""
-echo "🔧 To manage .env manually:"
+echo "🔧 To manage .env on the Pi:"
 echo "   ssh ${PI_USER}@${PI_HOST}"
-echo "   cd ${PROJECT_ROOT_ON_PI}/backend"
-echo "   nano .env"
+echo "   nano ${PROJECT_ROOT_ON_PI}/.env"
 echo ""
-echo "🔑 Required .env values (only if using new template):"
-echo "   - GOOGLE_CLIENT_ID=your_actual_client_id"
-echo "   - GOOGLE_CLIENT_SECRET=your_actual_client_secret"
-echo "   - SESSION_SECRET=\$(node -e \"console.log(require('crypto').randomBytes(64).toString('hex'))\")"
-echo "   - FRONTEND_URL=https://your-actual-domain.com"
-echo "   - BACKEND_URL=https://your-actual-domain.com"
-echo "   - ALLOWED_EMAILS=family1@gmail.com,family2@gmail.com"
+echo "🔑 Required .env values for production:"
+echo "   - GOOGLE_CLIENT_ID (use your production credentials)"
+echo "   - GOOGLE_CLIENT_SECRET (use your production credentials)"
+echo "   - JWT_SECRET (generate a new strong secret for production)"
+echo "   - FRONTEND_URL & BACKEND_URL (should match your domain)"
+echo "   - ALLOWED_EMAILS"
 echo ""
-echo "🔄 Restart backend after any .env changes:"
+echo "🔍 To check logs:"
+echo "   ssh ${PI_USER}@${PI_HOST}"
 echo "   cd ${PROJECT_ROOT_ON_PI}"
-echo "   docker compose restart backend"
-echo ""
-echo "✅ Verify deployment:"
-echo "   docker compose ps"
-echo "   curl http://localhost:3001/health"
+echo "   docker compose logs -f backend"

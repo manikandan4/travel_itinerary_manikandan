@@ -21,8 +21,7 @@ class LoginManager {
 
     init() {
         this.bindEvents();
-        this.checkAuthStatus();
-        this.handleUrlParams();
+        this.handleUrlErrors();
     }
 
     bindEvents() {
@@ -32,37 +31,14 @@ class LoginManager {
         }
     }
 
-    async checkAuthStatus() {
-        try {
-            const response = await fetch(`${this.backendUrl}/auth/status`, {
-                credentials: 'include'
-            });
-            const data = await response.json();
-
-            if (data.authenticated) {
-                this.showAuthStatus('success', `Welcome back, ${data.user.name}! Redirecting to your family diary...`);
-                setTimeout(() => {
-                    window.location.href = '/index.html';
-                }, 2000);
-            }
-        } catch (error) {
-            console.log('Not authenticated or server not available');
-        }
-    }
-
-    handleUrlParams() {
+    handleUrlErrors() {
         const urlParams = new URLSearchParams(window.location.search);
-        const auth = urlParams.get('auth');
         const error = urlParams.get('error');
 
-        if (auth === 'success') {
-            this.showAuthStatus('success', 'Authentication successful! Redirecting...');
-            setTimeout(() => {
-                // Redirect to the homepage (current domain, different port in dev)
-                window.location.href = '/index.html';
-            }, 2000);
-        } else if (error === 'unauthorized') {
+        if (error === 'unauthorized') {
             this.showAuthStatus('error', 'Sorry, your email is not authorized for family access. Please contact a family member.');
+            // Clean the URL
+            window.history.replaceState({}, document.title, window.location.pathname);
         }
     }
 

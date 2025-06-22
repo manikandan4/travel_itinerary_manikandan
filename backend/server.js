@@ -1,7 +1,9 @@
 const express = require('express');
-const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -11,14 +13,22 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// --- Environment Variable Validation ---
+const requiredEnv = ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'JWT_SECRET', 'FRONTEND_URL', 'BACKEND_URL'];
+const missingEnv = requiredEnv.filter(v => !process.env[v]);
+if (missingEnv.length > 0) {
+    console.error(`❌ FATAL ERROR: Missing required environment variables: ${missingEnv.join(', ')}`);
+    process.exit(1);
+}
+
 // Trust proxy for production (Cloudflare + Nginx)
 if (process.env.NODE_ENV === 'production') {
-    app.set('trust proxy', 1);
+    app.set('trust proxy', 2); // Cloudflare + Nginx
 }
 
 // Security middleware
 app.use(helmet({
-    contentSecurityPolicy: false, // We'll handle CSP separately if needed
+    contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false
 }));
 
@@ -32,54 +42,45 @@ app.use(limiter);
 
 // CORS configuration
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
 
+// Disable caching for all API and auth routes
+const noCache = (req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    next();
+};
+app.use('/api', noCache);
+app.use('/auth', noCache);
+
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Session configuration
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'your-secret-key',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: process.env.NODE_ENV === 'production',
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
-    }
-}));
-
-// Passport configuration
+// --- Passport & JWT Configuration ---
 app.use(passport.initialize());
-app.use(passport.session());
 
 // Allowed family emails
 const allowedEmails = process.env.ALLOWED_EMAILS ? 
     process.env.ALLOWED_EMAILS.split(',').map(email => email.trim().toLowerCase()) : 
     [];
 
-// Google OAuth Strategy
-const callbackURL = `${process.env.BACKEND_URL || 'http://localhost:3001'}/auth/google/callback`;
-console.log(`🔗 OAuth Callback URL configured as: ${callbackURL}`);
-
+// Google OAuth Strategy (for initial login)
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: callbackURL
+    callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         const email = profile.emails[0].value.toLowerCase();
-        
-        // Check if email is in the allowed list
         if (!allowedEmails.includes(email)) {
             return done(null, false, { message: 'Email not authorized for family access' });
         }
-
         const user = {
             id: profile.id,
             email: email,
@@ -87,35 +88,28 @@ passport.use(new GoogleStrategy({
             photo: profile.photos[0]?.value || null,
             provider: 'google'
         };
-
         return done(null, user);
     } catch (error) {
         return done(error, null);
     }
 }));
 
-// Serialize/Deserialize user for session
-passport.serializeUser((user, done) => {
-    done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
-
-// Middleware to check if user is authenticated
-const ensureAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.status(401).json({ 
-        authenticated: false, 
-        message: 'Authentication required',
-        loginUrl: '/auth/google'
-    });
+// JWT Strategy (for protecting API routes)
+const jwtOptions = {
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.JWT_SECRET
 };
 
-// Routes
+passport.use(new JwtStrategy(jwtOptions, (jwt_payload, done) => {
+    // We can trust the payload because it's been verified.
+    // The payload contains the user object we signed earlier.
+    return done(null, jwt_payload.user);
+}));
+
+// Middleware to protect routes using JWT
+const ensureAuthenticated = passport.authenticate('jwt', { session: false });
+
+// --- Routes ---
 
 // Health check
 app.get('/health', (req, res) => {
@@ -126,85 +120,57 @@ app.get('/health', (req, res) => {
     });
 });
 
-// Authentication status
-app.get('/auth/status', (req, res) => {
-    if (req.isAuthenticated()) {
-        res.json({
-            authenticated: true,
-            user: {
-                name: req.user.name,
-                email: req.user.email,
-                photo: req.user.photo
-            }
-        });
-    } else {
-        res.json({
-            authenticated: false,
-            loginUrl: '/auth/google'
-        });
-    }
+// Get current user info (replaces /auth/status)
+app.get('/auth/me', ensureAuthenticated, (req, res) => {
+    // If ensureAuthenticated passes, req.user is populated from the JWT
+    res.json({
+        authenticated: true,
+        user: {
+            name: req.user.name,
+            email: req.user.email,
+            photo: req.user.photo
+        }
+    });
 });
 
 // Google OAuth routes
+// Step 1: Redirect user to Google to sign in
 app.get('/auth/google',
     passport.authenticate('google', {
-        scope: ['profile', 'email']
+        scope: ['profile', 'email'],
+        session: false, // We are not using sessions
+        prompt: 'select_account' // This forces the account chooser to appear every time
     })
 );
 
+// Step 2: Google redirects back to this callback
 app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/auth/failure' }),
+    passport.authenticate('google', { failureRedirect: '/auth/failure', session: false }),
     (req, res) => {
-        // Successful authentication, redirect to frontend
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
-        res.redirect(`${frontendUrl}?auth=success`);
+        // Successful authentication! Now, create a JWT.
+        const payload = { user: req.user };
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: '24h' // Token expires in 24 hours
+        });
+
+        // Redirect to the frontend, passing the token in the URL
+        res.redirect(`${process.env.FRONTEND_URL}?token=${token}`);
     }
 );
 
 // Authentication failure
 app.get('/auth/failure', (req, res) => {
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
-    res.redirect(`${frontendUrl}/login?error=unauthorized`);
+    res.redirect(`${process.env.FRONTEND_URL}/login.html?error=unauthorized`);
 });
 
-// Logout
-app.post('/auth/logout', (req, res) => {
-    req.logout((err) => {
-        if (err) {
-            return res.status(500).json({ message: 'Logout failed' });
-        }
-        req.session.destroy((err) => {
-            if (err) {
-                return res.status(500).json({ message: 'Session destruction failed' });
-            }
-            res.clearCookie('connect.sid');
-            res.json({ message: 'Logged out successfully' });
-        });
-    });
-});
-
-// Protected route example - check if user can access the main site
+// Protected API route example
 app.get('/api/verify-access', ensureAuthenticated, (req, res) => {
     res.json({
         access: true,
-        user: {
-            name: req.user.name,
-            email: req.user.email,
-            photo: req.user.photo
-        },
+        user: req.user,
         message: 'Access granted to family member'
     });
 });
-
-// Serve static files from the frontend (in production)
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../dist')));
-    
-    // Handle React routing, return all requests to React app
-    app.get('*', ensureAuthenticated, (req, res) => {
-        res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-    });
-}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -227,7 +193,7 @@ app.listen(PORT, () => {
     console.log(`👨‍👩‍👧‍👦 Allowed family emails: ${allowedEmails.length} configured`);
     
     if (process.env.NODE_ENV !== 'production') {
-        console.log(`🔗 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
+        console.log(`🔗 Frontend URL: ${process.env.FRONTEND_URL}`);
         console.log(`🔑 Google OAuth: ${process.env.GOOGLE_CLIENT_ID ? '✅ Configured' : '❌ Not configured'}`);
     }
 });

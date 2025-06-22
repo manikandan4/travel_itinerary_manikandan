@@ -3,7 +3,7 @@ class AuthGuard {
     constructor() {
         // Detect the current environment and set backend URL accordingly
         this.backendUrl = this.detectBackendUrl();
-        this.checkingAuth = false;
+        this.token = null;
         this.init();
     }
 
@@ -21,241 +21,150 @@ class AuthGuard {
     }
 
     init() {
+        this.handleTokenFromUrl();
         this.checkAuthentication();
         this.addLogoutFunctionality();
     }
 
+    handleTokenFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        if (token) {
+            localStorage.setItem('jwt_token', token);
+            // Clean the URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }
+
+    getToken() {
+        if (!this.token) {
+            this.token = localStorage.getItem('jwt_token');
+        }
+        return this.token;
+    }
+
     async checkAuthentication() {
-        if (this.checkingAuth) return;
-        this.checkingAuth = true;
+        const token = this.getToken();
+
+        if (!token) {
+            this.redirectToLogin();
+            return;
+        }
 
         try {
-            const response = await fetch(`${this.backendUrl}/auth/status`, {
-                credentials: 'include',
-                mode: 'cors'
+            const response = await fetch(`${this.backendUrl}/auth/me`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
             if (!response.ok) {
-                throw new Error('Authentication check failed');
+                // Token is invalid or expired
+                this.logout(); // Clear token and redirect
+                return;
             }
 
             const data = await response.json();
 
             if (!data.authenticated) {
-                this.redirectToLogin();
+                this.logout();
                 return;
             }
 
             // User is authenticated, add user info to page if needed
-            this.addUserInfo(data.user);
-            this.addLogoutButton();
+            this.addAuthControls(data.user);
+            this.setupMobileMenu();
 
         } catch (error) {
             console.error('Auth check error:', error);
-            // If we can't reach the auth server, redirect to login
             this.redirectToLogin();
-        } finally {
-            this.checkingAuth = false;
         }
     }
 
     redirectToLogin() {
-        window.location.href = '/login.html';
-    }
-
-    addUserInfo(user) {
-        // Add a small user indicator in the navigation
-        const navContainer = document.querySelector('.nav-container');
-        if (navContainer && !document.querySelector('.user-info')) {
-            const userInfo = document.createElement('div');
-            userInfo.className = 'user-info';
-            userInfo.innerHTML = `
-                <div class="user-avatar">
-                    ${user.photo ? 
-                        `<img src="${user.photo}" alt="${user.name}" class="user-photo">` : 
-                        `<i class="fas fa-user"></i>`
-                    }
-                </div>
-                <span class="user-name">Hi, ${user.name.split(' ')[0]}!</span>
-            `;
-            navContainer.appendChild(userInfo);
-        }
-    }
-
-    addLogoutButton() {
-        // Add logout button to navigation
-        const navLinks = document.querySelector('.nav-links');
-        if (navLinks && !document.querySelector('.logout-link')) {
-            const logoutItem = document.createElement('li');
-            logoutItem.innerHTML = `
-                <a href="#" class="nav-link logout-link" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i> Sign Out
-                </a>
-            `;
-            navLinks.appendChild(logoutItem);
-        }
-    }
-
-    addLogoutFunctionality() {
-        document.addEventListener('click', async (event) => {
-            if (event.target.closest('#logoutBtn')) {
-                event.preventDefault();
-                await this.handleLogout();
-            }
-        });
-    }
-
-    async handleLogout() {
-        try {
-            const response = await fetch(`${this.backendUrl}/auth/logout`, {
-                method: 'POST',
-                credentials: 'include',
-                mode: 'cors'
-            });
-
-            if (response.ok) {
-                // Clear any local storage/session storage if used
-                localStorage.clear();
-                sessionStorage.clear();
-                
-                // Redirect to login page
-                window.location.href = '/login.html';
-            } else {
-                console.error('Logout failed');
-                // Force redirect anyway
-                window.location.href = '/login.html';
-            }
-        } catch (error) {
-            console.error('Logout error:', error);
-            // Force redirect anyway
+        // Avoid redirect loops on the login page itself
+        if (!window.location.pathname.endsWith('login.html')) {
             window.location.href = '/login.html';
         }
     }
 
-    // Method for pages to verify access before loading content
-    async verifyAccess() {
-        try {
-            const response = await fetch(`${this.backendUrl}/api/verify-access`, {
-                credentials: 'include',
-                mode: 'cors'
-            });
+    logout() {
+        localStorage.removeItem('jwt_token');
+        this.token = null;
+        // Optional: Call a backend logout endpoint if it exists to blacklist token
+        // fetch(`${this.backendUrl}/auth/logout`, { method: 'POST' });
+        this.redirectToLogin();
+    }
 
-            if (!response.ok) {
-                this.redirectToLogin();
-                return false;
+    addLogoutFunctionality() {
+        // Event delegation for logout link
+        document.addEventListener('click', (event) => {
+            // Find the closest ancestor which is a link inside a .logout-link element
+            const logoutLink = event.target.closest('.logout-link a');
+            if (logoutLink || event.target.closest('.logout-link')) {
+                event.preventDefault();
+                this.logout();
+            }
+        });
+    }
+
+    addAuthControls(user) {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks && !document.querySelector('.user-info-item')) {
+            // 1. Create User Info Item
+            const userInfoItem = document.createElement('li');
+            userInfoItem.className = 'user-info-item';
+
+            let photoHtml = '<i class="fas fa-user-circle"></i>';
+            if (user.photo) {
+                const photoUrl = user.photo.startsWith('http') ? user.photo : `${this.backendUrl}${user.photo}`;
+                photoHtml = `<img src="${photoUrl}" alt="${user.name}" class="user-photo" referrerpolicy="no-referrer">`;
             }
 
-            return true;
-        } catch (error) {
-            console.error('Access verification error:', error);
-            this.redirectToLogin();
-            return false;
+            userInfoItem.innerHTML = `
+                <div class="user-avatar">
+                    ${photoHtml}
+                </div>
+                <span class="user-name">Hi, ${user.name.split(' ')[0]}!</span>
+            `;
+
+            // 2. Create Logout Item
+            const logoutItem = document.createElement('li');
+            logoutItem.className = 'logout-link';
+            logoutItem.innerHTML = `<a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>`;
+
+            // 3. Append to the end of the nav links (for right-side alignment on desktop)
+            navLinks.appendChild(userInfoItem);
+            navLinks.appendChild(logoutItem);
+        }
+    }
+
+    setupMobileMenu() {
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navLinksWrapper = document.querySelector('.nav-links-wrapper');
+
+        if (mobileNavToggle && navLinksWrapper) {
+            mobileNavToggle.addEventListener('click', () => {
+                navLinksWrapper.classList.toggle('active');
+                const isExpanded = navLinksWrapper.classList.contains('active');
+                mobileNavToggle.setAttribute('aria-expanded', isExpanded);
+                const icon = mobileNavToggle.querySelector('i');
+                if (isExpanded) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
         }
     }
 }
 
-// Initialize auth guard on protected pages
-document.addEventListener('DOMContentLoaded', () => {
-    // Only initialize on non-login pages
-    if (!window.location.pathname.includes('login.html')) {
-        const authGuard = new AuthGuard();
-        window.authGuard = authGuard;
-    }
-});
-
-// CSS for user info in navigation
-const userInfoStyles = `
-<style>
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 15px;
-    background: rgba(243, 156, 18, 0.1);
-    border-radius: 20px;
-    border: 1px solid rgba(243, 156, 18, 0.3);
-    font-size: 0.9rem;
-    color: var(--primary-color);
+// Initialize the guard on all protected pages
+// The login page will have its own logic and won't include this script.
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new AuthGuard());
+} else {
+    new AuthGuard();
 }
-
-.user-avatar {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--accent-color);
-    color: white;
-}
-
-.user-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.user-name {
-    font-weight: 600;
-    white-space: nowrap;
-}
-
-/* Auth controls styling */
-.auth-controls {
-    margin-left: auto;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.auth-buttons .nav-link {
-    padding: 8px 12px !important;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-}
-
-.auth-buttons .nav-link:hover {
-    background: var(--primary-color);
-    color: white !important;
-    transform: scale(1.1);
-}
-
-.logout-link {
-    color: var(--secondary-color) !important;
-}
-
-#switchAccountBtn {
-    color: var(--accent-color) !important;
-}
-
-@media (max-width: 768px) {
-    .user-info {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-    
-    .user-name {
-        display: none;
-    }
-    
-    .auth-buttons .nav-link {
-        width: 35px;
-        height: 35px;
-        padding: 6px !important;
-    }
-}
-</style>
-`;
-
-// Inject user info styles
-document.head.insertAdjacentHTML('beforeend', userInfoStyles);
