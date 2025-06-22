@@ -72,6 +72,7 @@ redisClient.on('connect', () => {
 
 // Session configuration
 app.use(session({
+    name: 'madk.travel.session', // Custom cookie name
     store: new RedisStore({ client: redisClient }),
     secret: process.env.SESSION_SECRET || 'your-secret-key',
     resave: false,
@@ -80,7 +81,7 @@ app.use(session({
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
-        sameSite: 'lax' // Use 'lax' for both dev and prod
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
     }
 }));
 
@@ -211,7 +212,7 @@ app.post('/auth/logout', (req, res) => {
             if (err) {
                 return res.status(500).json({ message: 'Session destruction failed' });
             }
-            res.clearCookie('connect.sid');
+            res.clearCookie('madk.travel.session'); // Use custom cookie name
             res.json({ message: 'Logged out successfully' });
         });
     });
