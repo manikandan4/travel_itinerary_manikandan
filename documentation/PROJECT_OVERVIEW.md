@@ -15,8 +15,8 @@ A private, authenticated family travel blog that showcases travel itineraries, p
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
          │              ┌─────────────────┐               │
-         │              │     Redis       │               │
-         └──────────────│ (Session Store) │───────────────┘
+         │              │   Sessions      │               │
+         └──────────────│   (In-Memory)   │───────────────┘
                         └─────────────────┘
 ```
 
@@ -38,8 +38,7 @@ A private, authenticated family travel blog that showcases travel itineraries, p
 - **Rate Limiting** - DDoS protection
 
 #### Data Layer
-- **Redis** - Session storage (production)
-- **Memory Store** - Session storage (development)
+- **In-Memory Sessions** - Session storage 
 - **JSON Configuration** - Family email whitelist
 
 #### Infrastructure Layer
@@ -141,9 +140,9 @@ madk-travel-blog/
 
 ### Authentication Data Flow
 ```
-Frontend → Backend → Google OAuth → Backend → Redis → Frontend
-   ↓         ↓           ↓           ↓        ↓        ↓
-Request → Validate → Authenticate → Store → Session → Response
+Frontend → Backend → Google OAuth → Backend → Session → Frontend
+   ↓         ↓           ↓           ↓         ↓         ↓
+Request → Validate → Authenticate → Store → Memory → Response
 ```
 
 ### Static Content Flow
@@ -160,12 +159,12 @@ Request → Cache → Proxy → Serve HTML/CSS/JS
 - **Image Optimization** - Responsive images
 - **CSS/JS Bundling** - Fewer HTTP requests
 - **Cloudflare CDN** - Global content delivery
-- **Redis Caching** - Fast session storage
+- **Session Management** - In-memory session storage
 
 ### Scalability
 - **Horizontal Scaling** - Docker containers
 - **Load Balancing** - Multiple container instances
-- **Database Optimization** - Redis for sessions
+- **Session Considerations** - Sessions reset on restart
 - **CDN Caching** - Reduced server load
 
 ## 🎯 Feature Set
@@ -218,5 +217,3 @@ Request → Cache → Proxy → Serve HTML/CSS/JS
 - **Version Control** - Git-based workflow
 
 ---
-
-*This project represents a modern, secure approach to family content sharing with professional-grade infrastructure on commodity hardware.*

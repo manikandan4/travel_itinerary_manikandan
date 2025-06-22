@@ -39,10 +39,8 @@ Simply visit the website and sign in with your Google account!
 **Complete documentation is available in the [`documentation/`](./documentation/) folder:**
 
 - **[📖 Documentation Index](./documentation/README.md)** - Start here for all guides
-- **[🚀 Development Guide](./documentation/DEV_GUIDE.md)** - Local development setup
-- **[🔐 Authentication Setup](./documentation/AUTHENTICATION_SETUP.md)** - Google OAuth configuration
-- **[🌐 Google OAuth Setup](./documentation/GOOGLE_OAUTH_SETUP.md)** - Step-by-step OAuth guide
-- **[🚢 Deployment Guide](./documentation/DEPLOYMENT_GUIDE.md)** - Deploy to Raspberry Pi
+- **[🚀 Development Guide](./documentation/DEV_GUIDE.md)** - Local development setup  
+- **[🚢 Deployment Guide](./documentation/DEPLOYMENT_GUIDE.md)** - Deploy to production
 - **[🏗️ Project Overview](./documentation/PROJECT_OVERVIEW.md)** - Architecture and tech stack
 - **[🔌 API Documentation](./documentation/API_DOCUMENTATION.md)** - Backend API reference
 
@@ -58,7 +56,7 @@ Simply visit the website and sign in with your Google account!
 ### Backend
 - **Node.js & Express** - Authentication server
 - **Passport.js** - Google OAuth integration
-- **Redis** - Session storage
+- **Express Session** - Session storage
 
 ### Infrastructure
 - **Docker** - Containerized deployment
@@ -107,9 +105,7 @@ The project is designed for easy deployment with Docker containerization and sup
 
 - **Self-hosted**: Raspberry Pi with Docker deployment
 - **Cloudflare Integration**: SSL, CDN, and tunneling support
-- **Container Architecture**: Frontend (Nginx) + Backend (Node.js) + Redis
-
-**For complete deployment instructions, see the [Deployment Guide](./documentation/DEPLOYMENT_GUIDE.md) and [Production Checklist](./documentation/PRODUCTION_CHECKLIST.md).**
+- **Container Architecture**: Frontend (Nginx) + Backend (Node.js) + Session Management
 
 ---
 

@@ -19,7 +19,7 @@ The MADK Travel Blog backend provides authentication services and API endpoints 
 
 ### Session Management
 - **Session Duration:** 24 hours
-- **Storage:** Redis (production) / Memory (development)
+- **Storage:** In-memory sessions
 - **Security:** HTTP-only cookies, secure in production
 
 ## 📋 API Endpoints
@@ -199,7 +199,6 @@ When user's email is not in the family whitelist:
 | `SESSION_SECRET` | Yes | Session encryption secret |
 | `FRONTEND_URL` | Yes | Frontend application URL |
 | `BACKEND_URL` | Yes | Backend API URL |
-| `REDIS_URL` | No | Redis connection string |
 | `NODE_ENV` | No | Environment (development/production) |
 | `PORT` | No | Server port (default: 3001) |
 
@@ -225,7 +224,7 @@ BACKEND_URL=http://localhost:3001
 #### Session Issues
 - **Session not persisting:** Check cookie settings
 - **Frequent logouts:** Verify session secret
-- **Redis connection:** Check Redis container status
+- **Server restarts:** Sessions are lost (in-memory storage)
 
 #### Access Denied
 - **Email not authorized:** Update `ALLOWED_EMAILS`
@@ -255,9 +254,9 @@ The `/health` endpoint provides basic server status:
 - ✅ Timestamp for uptime tracking
 
 ### Session Monitoring
-- Track active sessions via Redis
+- Track active sessions in memory
 - Monitor session duration
-- Detect unusual login patterns
+- Sessions reset on server restart
 
 ### Performance Metrics
 - Response times

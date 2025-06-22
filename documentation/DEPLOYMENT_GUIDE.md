@@ -4,10 +4,7 @@
 
 This guide covers deploying your authenticated travel blog to a Raspberry Pi using Docker, with Cloudflare tunnel for internet access.
 
-## 🎯 Critical Production Update for Authentication
-
-**⚠️ BEFORE DEPLOYMENT:** Your authentication system is now ready for production, but requires **ONE CRITICAL STEP**:
-
+**⚠️ BEFORE DEPLOYMENT:** 
 ### 🔑 Google OAuth Production URLs (MANDATORY)
 
 **You MUST update Google Cloud Console before deploying:**
@@ -32,16 +29,11 @@ This guide covers deploying your authenticated travel blog to a Raspberry Pi usi
 ## 🔧 Prerequisites
 
 ### Hardware & Software
-- Raspberry Pi (4GB+ RAM recommended)
+- Raspberry Pi (8GB+ RAM recommended)
 - Docker and Docker Compose installed on Pi
 - Cloudflare account and tunnel configured
 - Domain/subdomain pointing to your Pi
 
-### Development Complete
-- ✅ Local development working
-- ✅ Google OAuth configured
-- ✅ Family emails tested
-- ✅ Authentication flow verified
 
 ## 🚀 Deployment Process
 
@@ -74,9 +66,6 @@ ALLOWED_EMAILS=family1@gmail.com,family2@gmail.com,family3@gmail.com
 
 # Production Session Secret (generate new one)
 SESSION_SECRET=production_secret_different_from_dev
-
-# Redis for session storage
-REDIS_URL=redis://redis:6379
 
 # Security
 RATE_LIMIT_WINDOW_MS=900000
@@ -133,7 +122,6 @@ docker compose ps
 NAME                          STATUS        PORTS
 madk-travel-blog-backend      Up (healthy)  3001/tcp
 madk-travel-blog-frontend     Up            0.0.0.0:80->80/tcp
-madk-travel-blog-redis        Up            6379/tcp
 ```
 
 **Check logs:**
@@ -228,7 +216,7 @@ docker compose restart backend
 - ✅ Backend container not running
 - ✅ Check backend logs for startup errors
 - ✅ Verify environment configuration
-- ✅ Check Redis container status
+- ✅ Check backend container health
 
 ### Debug Commands
 
@@ -249,21 +237,6 @@ docker compose restart backend
 docker compose logs -f backend
 ```
 
-## 🔒 Security Considerations
-
-### Production Security
-- ✅ Use strong session secrets
-- ✅ Enable rate limiting
-- ✅ Keep family email list updated
-- ✅ Regular security updates
-- ✅ Monitor access logs
-
-### Environment Variables
-- ✅ Never commit `.env` files
-- ✅ Use different secrets for production
-- ✅ Rotate credentials periodically
-- ✅ Backup environment configuration
-
 ## 📊 Monitoring
 
 ### Health Checks
@@ -277,14 +250,6 @@ docker compose logs -f backend
 - Network status via Cloudflare dashboard
 
 ## 🎉 Success!
-
-Once deployed successfully:
-- ✅ Your family travel blog is live
-- ✅ Only authorized family members can access
-- ✅ Secure authentication via Google OAuth
-- ✅ Self-hosted on your Raspberry Pi
-- ✅ Accessible worldwide via Cloudflare
-
 **Your travel blog is now live at:** `https://madk-travel-blog.kandan4.xyz` 🎊
 
 ---
