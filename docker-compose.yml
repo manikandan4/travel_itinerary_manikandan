@@ -14,13 +14,10 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
-      - REDIS_URL=redis://redis:6379
     env_file:
       - ./backend/.env
     networks:
       - webnet
-    depends_on:
-      - redis
     healthcheck:
       test: ["CMD", "node", "healthcheck.js"]
       interval: 30s
@@ -38,14 +35,6 @@ services:
       - webnet
     depends_on:
       - backend
-
-  # Redis service for session storage
-  redis:
-    image: "redis:alpine"
-    container_name: madk-travel-blog-redis
-    restart: unless-stopped
-    networks:
-      - webnet
 
 networks:
   webnet:
