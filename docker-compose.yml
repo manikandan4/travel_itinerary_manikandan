@@ -1,0 +1,14 @@
+# docker-compose.yml (travel_itinerary_manikandan project root on MacBook)
+services:
+  web:
+    image: madk-travel-blog:latest # We'll use 'latest' for the running service
+    container_name: madk-travel-blog-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
