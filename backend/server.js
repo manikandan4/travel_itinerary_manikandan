@@ -40,6 +40,17 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// Disable caching for all API and auth routes to prevent 304 responses
+const noCache = (req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    next();
+};
+
+app.use('/api', noCache);
+app.use('/auth', noCache);
+
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
