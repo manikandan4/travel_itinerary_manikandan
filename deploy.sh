@@ -45,17 +45,20 @@ echo "--- (Remote) Deploying branch: ${REMOTE_BRANCH_NAME}"
 
 # --- (Remote) 1. Navigate to Project Directory & Update from Git ---
 echo "1. Updating repository from Git..."
-if [ -d "${REMOTE_PI_REPO_PATH}" ]; then
-    cd "${REMOTE_PI_REPO_PATH}"
-    git fetch origin
-    git reset --hard "origin/${REMOTE_BRANCH_NAME}"
-    git clean -fd
-else
+if [ ! -d "${REMOTE_PI_REPO_PATH}" ]; then
     echo "Cloning repository for the first time..."
-    git clone "${REMOTE_GIT_REPO_URL}" "${REMOTE_PI_REPO_PATH}"
-    cd "${REMOTE_PI_REPO_PATH}"
-    git checkout "${REMOTE_BRANCH_NAME}"
+    git clone --branch "${REMOTE_BRANCH_NAME}" "${REMOTE_GIT_REPO_URL}" "${REMOTE_PI_REPO_PATH}"
 fi
+
+cd "${REMOTE_PI_REPO_PATH}"
+echo "Fetching latest changes from origin..."
+git fetch origin
+echo "Checking out branch ${REMOTE_BRANCH_NAME}..."
+git checkout "${REMOTE_BRANCH_NAME}"
+echo "Resetting to latest version from origin..."
+git reset --hard "origin/${REMOTE_BRANCH_NAME}"
+echo "Cleaning the repository..."
+git clean -fd
 echo "Repository updated."
 
 # --- (Remote) 2. Build Frontend Assets ---
