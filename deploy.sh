@@ -58,15 +58,39 @@ else
 fi
 echo "Repository updated."
 
-# --- (Remote) 2. Prepare Docker Assets ---
-echo "2. Preparing Docker assets..."
+# --- (Remote) 2. Build Frontend Assets ---
+echo "2. Building production frontend assets (creating the 'dist' directory)..."
+# We need to install devDependencies to run the build script
+# Using --omit=dev would skip the packages needed for the build
+cd "${REMOTE_PI_REPO_PATH}"
+npm install
+npm run build
+echo "Frontend assets built."
+
+# --- (Remote) 3. Prepare Docker Assets ---
+echo "3. Preparing Docker assets for deployment..."
+# Ensure the project root exists and is clean (except for .env)
+mkdir -p "${REMOTE_PROJECT_ROOT_ON_PI}"
+cd "${REMOTE_PROJECT_ROOT_ON_PI}"
+find . -maxdepth 1 ! -name '.env' -exec rm -rf {} +
+
+# Copy all necessary files from repo to Docker project root
+echo "Copying built assets and Docker files..."
+
+# Copy backend code
 mkdir -p "${REMOTE_PROJECT_ROOT_ON_PI}/backend"
-cp -R "${REMOTE_PI_REPO_PATH}/backend" "${REMOTE_PROJECT_ROOT_ON_PI}/"
+cp -a "${REMOTE_PI_REPO_PATH}/backend/." "${REMOTE_PROJECT_ROOT_ON_PI}/backend/"
+
+# Copy the entire 'dist' directory with production assets
+cp -a "${REMOTE_PI_REPO_PATH}/dist/." "${REMOTE_PROJECT_ROOT_ON_PI}/dist/"
+
+# Copy root-level configuration files for Docker and Nginx
 cp "${REMOTE_PI_REPO_PATH}/docker-compose.yml" "${REMOTE_PROJECT_ROOT_ON_PI}/"
+cp "${REMOTE_PI_REPO_PATH}/Dockerfile" "${REMOTE_PROJECT_ROOT_ON_PI}/"
 cp "${REMOTE_PI_REPO_PATH}/madk-travel-blog-frontend.conf" "${REMOTE_PROJECT_ROOT_ON_PI}/"
 echo "Docker assets copied."
 
-# --- (Remote) 3. Handle Production .env File ---
+# --- (Remote) 4. Handle Production .env File ---
 ENV_FILE_PATH="${REMOTE_PROJECT_ROOT_ON_PI}/.env"
 if [ ! -f "${ENV_FILE_PATH}" ]; then
     echo "⚠️  No .env file found on server. Creating one from template."
@@ -105,16 +129,16 @@ else
     echo "✅ Existing .env file found. Preserving it."
 fi
 
-# --- (Remote) 4. Build and Restart Docker Containers ---
-echo "4. Building and restarting Docker containers..."
+# --- (Remote) 5. Build and Restart Docker Containers ---
+echo "5. Building and restarting Docker containers..."
 cd "${REMOTE_PROJECT_ROOT_ON_PI}"
 docker compose down
-docker compose build --no-cache backend # Rebuild backend to get new dependencies
+docker compose build --no-cache # Rebuild both backend and frontend images
 docker compose up -d
 echo "Docker containers are up and running."
 
-# --- (Remote) 5. Clean Up Old Docker Images ---
-echo "5. Cleaning up old Docker images..."
+# --- (Remote) 6. Clean Up Old Docker Images ---
+echo "6. Cleaning up old Docker images..."
 docker image prune -f
 echo "Cleanup complete."
 

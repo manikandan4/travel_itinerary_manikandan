@@ -24,7 +24,9 @@ services:
 
   # Frontend web service  
   frontend:
-    image: madk-travel-blog-frontend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: madk-travel-blog-frontend
     restart: unless-stopped
     ports:
