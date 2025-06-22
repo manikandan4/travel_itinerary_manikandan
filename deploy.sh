@@ -73,10 +73,12 @@ ssh "${PI_USER}@${PI_HOST}" 'bash -s' << EOF
 
   echo "  - Creating environment file for backend (if not exists)..."
   if [ ! -f "${PROJECT_ROOT_ON_PI}/backend/.env" ]; then
-    echo "    Creating .env file from example..."
-    cp "${PROJECT_ROOT_ON_PI}/backend/.env.example" "${PROJECT_ROOT_ON_PI}/backend/.env"
-    echo "    WARNING: Please edit ${PROJECT_ROOT_ON_PI}/backend/.env with your actual configuration!"
-    echo "    Required: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, ALLOWED_EMAILS, SESSION_SECRET"
+    echo "    Creating .env file from production template..."
+    cp "${PROJECT_ROOT_ON_PI}/backend/.env.production" "${PROJECT_ROOT_ON_PI}/backend/.env"
+    echo "    ✅ Production .env created with Google OAuth and family emails configured"
+    echo "    🔑 IMPORTANT: Update SESSION_SECRET in .env for security!"
+  else
+    echo "    ✅ .env file already exists, keeping current configuration"
   fi
 
   echo "  - Building Docker images on Pi..."

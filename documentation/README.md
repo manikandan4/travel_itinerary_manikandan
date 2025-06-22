@@ -11,6 +11,7 @@ Welcome to the complete documentation for the MADK Travel Blog project! This fol
 ### 🔧 Technical Setup
 - **[Google OAuth Setup](./GOOGLE_OAUTH_SETUP.md)** - Configure Google OAuth for family access
 - **[Deployment Guide](./DEPLOYMENT_GUIDE.md)** - Deploy to Raspberry Pi with Docker
+- **[Production Checklist](./PRODUCTION_CHECKLIST.md)** - Final production deployment steps
 
 ### 📖 Project Information
 - **[Project Overview](./PROJECT_OVERVIEW.md)** - Architecture and technology stack
@@ -22,10 +23,15 @@ Welcome to the complete documentation for the MADK Travel Blog project! This fol
 1. Start here: [Development Guide](./DEV_GUIDE.md)
 2. Set up authentication: [Google OAuth Setup](./GOOGLE_OAUTH_SETUP.md)
 3. Deploy to production: [Deployment Guide](./DEPLOYMENT_GUIDE.md)
+4. Final production setup: [Production Checklist](./PRODUCTION_CHECKLIST.md)
 
 ### For Family Members
 - Just visit the website and sign in with your Google account!
-- Contact the administrator if you need access.
+- Contact the administrator if you need access
+
+### For Production Deployment
+- **Ready to deploy?** Start with [Production Checklist](./PRODUCTION_CHECKLIST.md)
+- **Need help?** Check [Deployment Guide](./DEPLOYMENT_GUIDE.md) for detailed instructions
 
 ## 🏗️ Project Architecture
 

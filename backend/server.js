@@ -11,6 +11,11 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Trust proxy for production (Cloudflare + Nginx)
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1);
+}
+
 // Security middleware
 app.use(helmet({
     contentSecurityPolicy: false, // We'll handle CSP separately if needed

@@ -103,9 +103,13 @@ map/
 
 ## 🌐 Deployment
 
-The project is designed for easy deployment on static hosting platforms like Netlify or GitHub Pages, with a self-hosted authentication backend.
+The project is designed for easy deployment with Docker containerization and supports various hosting options:
 
-**Current deployment:** Self-hosted on Raspberry Pi with Cloudflare tunnel
+- **Self-hosted**: Raspberry Pi with Docker deployment
+- **Cloudflare Integration**: SSL, CDN, and tunneling support
+- **Container Architecture**: Frontend (Nginx) + Backend (Node.js) + Redis
+
+**For complete deployment instructions, see the [Deployment Guide](./documentation/DEPLOYMENT_GUIDE.md) and [Production Checklist](./documentation/PRODUCTION_CHECKLIST.md).**
 
 ---
 

@@ -4,6 +4,31 @@
 
 This guide covers deploying your authenticated travel blog to a Raspberry Pi using Docker, with Cloudflare tunnel for internet access.
 
+## 🎯 Critical Production Update for Authentication
+
+**⚠️ BEFORE DEPLOYMENT:** Your authentication system is now ready for production, but requires **ONE CRITICAL STEP**:
+
+### 🔑 Google OAuth Production URLs (MANDATORY)
+
+**You MUST update Google Cloud Console before deploying:**
+
+1. **Go to:** https://console.cloud.google.com/
+2. **Navigate to:** APIs & Services > Credentials  
+3. **Edit your OAuth 2.0 Client ID**
+4. **Add to Authorized JavaScript origins:**
+   ```
+   https://madk-travel-blog.kandan4.xyz
+   ```
+5. **Add to Authorized redirect URIs:**
+   ```
+   https://madk-travel-blog.kandan4.xyz/auth/google/callback
+   ```
+6. **Save and wait 15 minutes for Google to propagate changes**
+
+**Why this works:** Your Nginx configuration proxies `/auth/*` requests to the backend container, so OAuth uses the same domain as your frontend.
+
+---
+
 ## 🔧 Prerequisites
 
 ### Hardware & Software
@@ -40,7 +65,7 @@ PORT=3001
 GOOGLE_CLIENT_ID=your_actual_google_client_id
 GOOGLE_CLIENT_SECRET=your_actual_google_client_secret
 
-# Production URLs
+# Production URLs - CRITICAL: Backend URL must match frontend domain!
 FRONTEND_URL=https://madk-travel-blog.kandan4.xyz
 BACKEND_URL=https://madk-travel-blog.kandan4.xyz
 

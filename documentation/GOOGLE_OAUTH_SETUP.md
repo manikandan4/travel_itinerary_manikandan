@@ -32,6 +32,9 @@ http://localhost:3001/auth/google/callback
 https://madk-travel-blog.kandan4.xyz/auth/google/callback
 ```
 
+### 🔥 **CRITICAL FOR PRODUCTION**: 
+Your production callback URL is `https://madk-travel-blog.kandan4.xyz/auth/google/callback` - **NOT** a separate backend domain. This works because Nginx proxies `/auth/*` requests to your backend container.
+
 ### Step 4: Save Changes
 Click **Save** at the bottom
 

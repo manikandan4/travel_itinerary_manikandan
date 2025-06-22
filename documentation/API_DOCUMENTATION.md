@@ -205,10 +205,10 @@ When user's email is not in the family whitelist:
 
 ### Example Configuration
 ```env
-GOOGLE_CLIENT_ID=123456789-abc.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=GOCSPX-abc123def456
-ALLOWED_EMAILS=dad@gmail.com,mom@gmail.com,kid@gmail.com
-SESSION_SECRET=super-secret-random-string
+GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=GOCSPX-your-client-secret
+ALLOWED_EMAILS=family1@gmail.com,family2@gmail.com,family3@gmail.com
+SESSION_SECRET=generate-a-secure-random-string
 FRONTEND_URL=http://localhost:3000
 BACKEND_URL=http://localhost:3001
 ```
