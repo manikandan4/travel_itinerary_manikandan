@@ -1,4 +1,4 @@
-# Dockerfile (in your travel_itinerary_manikandan project root on MacBook)
+# Frontend Dockerfile (in your travel_itinerary_manikandan project root on MacBook)
 
 # Stage 1: Build the static site (if not already built)
 # This stage is optional. If you always run 'npm run build' locally
@@ -20,7 +20,7 @@ LABEL maintainer="manikandan4"
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy custom Nginx configuration for this site into the container
-COPY madk-travel-blog.conf /etc/nginx/conf.d/madk-travel-blog.conf
+COPY madk-travel-blog-frontend.conf /etc/nginx/conf.d/madk-travel-blog-frontend.conf
 
 # Copy the built static files from your local 'dist' folder into the Nginx serving directory INSIDE the container
 # If you uncommented the builder stage above, change this to:
