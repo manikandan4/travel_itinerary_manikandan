@@ -14,8 +14,8 @@ class LoginManager {
             // Local development - backend runs on port 3001
             return `${protocol}//localhost:3001`;
         } else {
-            // Production - use API path on same domain
-            return `${protocol}//${hostname}/api`;
+            // Production - use same domain, nginx will proxy /auth to backend
+            return `${protocol}//${hostname}`;
         }
     }
 
