@@ -409,7 +409,7 @@ function renderCards(cardsArr, container) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const dateSections = document.querySelectorAll('.date-section');
   timelineData.forEach((day, i) => {
     if (!dateSections[i]) return;
@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('group-content').style.display = 'none';
   // Group card click
   document.querySelectorAll('#group-selection .card').forEach(card => {
-    card.onclick = function() {
+    card.onclick = function () {
       showGroupSection(this.dataset.group);
     };
   });
@@ -447,28 +447,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Optionally scroll into view for accessibility
     setTimeout(() => {
       const el = document.getElementById(hash.replace('#', ''));
-      if (el) el.scrollIntoView({behavior: 'smooth'});
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   }
 
-  // Hamburger Menu Toggle Functionality
-  const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-  const navLinksWrapper = document.querySelector('.nav-links-wrapper');
-
-  if (mobileNavToggle && navLinksWrapper) {
-      mobileNavToggle.addEventListener('click', () => {
-          const isExpanded = mobileNavToggle.getAttribute('aria-expanded') === 'true' || false;
-          mobileNavToggle.setAttribute('aria-expanded', !isExpanded);
-          navLinksWrapper.classList.toggle('active');
-          // Optional: Change icon on toggle
-          const icon = mobileNavToggle.querySelector('i');
-          if (navLinksWrapper.classList.contains('active')) {
-              icon.classList.remove('fa-bars');
-              icon.classList.add('fa-times');
-          } else {
-              icon.classList.remove('fa-times');
-              icon.classList.add('fa-bars');
-          }
-      });
-  }
 });

@@ -72,8 +72,8 @@ class AuthGuard {
             }
 
             // User is authenticated, add user info to page if needed
-            this.addUserInfo(data.user);
-            this.addLogoutButton();
+            this.addAuthControls(data.user);
+            this.setupMobileMenu();
 
         } catch (error) {
             console.error('Auth check error:', error);
@@ -108,33 +108,55 @@ class AuthGuard {
         });
     }
 
-    addUserInfo(user) {
-        // Add a small user indicator in the navigation
-        const navContainer = document.querySelector('.nav-container');
-        if (navContainer && !document.querySelector('.user-info')) {
-            const userInfo = document.createElement('div');
-            userInfo.className = 'user-info';
-            userInfo.innerHTML = `
+    addAuthControls(user) {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks && !document.querySelector('.user-info-item')) {
+            // 1. Create User Info Item
+            const userInfoItem = document.createElement('li');
+            userInfoItem.className = 'user-info-item';
+
+            let photoHtml = '<i class="fas fa-user-circle"></i>';
+            if (user.photo) {
+                const photoUrl = user.photo.startsWith('http') ? user.photo : `${this.backendUrl}${user.photo}`;
+                photoHtml = `<img src="${photoUrl}" alt="${user.name}" class="user-photo" referrerpolicy="no-referrer">`;
+            }
+
+            userInfoItem.innerHTML = `
                 <div class="user-avatar">
-                    ${user.photo ? 
-                        `<img src="${user.photo}" alt="${user.name}" class="user-photo">` : 
-                        `<i class="fas fa-user"></i>`
-                    }
+                    ${photoHtml}
                 </div>
                 <span class="user-name">Hi, ${user.name.split(' ')[0]}!</span>
             `;
-            navContainer.appendChild(userInfo);
+
+            // 2. Create Logout Item
+            const logoutItem = document.createElement('li');
+            logoutItem.className = 'logout-link';
+            logoutItem.innerHTML = `<a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>`;
+
+            // 3. Append to the end of the nav links (for right-side alignment on desktop)
+            navLinks.appendChild(userInfoItem);
+            navLinks.appendChild(logoutItem);
         }
     }
 
-    addLogoutButton() {
-        // Add logout button to navigation
-        const navLinks = document.querySelector('.nav-links');
-        if (navLinks && !document.querySelector('.logout-link')) {
-            const logoutItem = document.createElement('li');
-            logoutItem.className = 'logout-link';
-            logoutItem.innerHTML = `<a href="#">Logout</a>`;
-            navLinks.appendChild(logoutItem);
+    setupMobileMenu() {
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navLinksWrapper = document.querySelector('.nav-links-wrapper');
+
+        if (mobileNavToggle && navLinksWrapper) {
+            mobileNavToggle.addEventListener('click', () => {
+                navLinksWrapper.classList.toggle('active');
+                const isExpanded = navLinksWrapper.classList.contains('active');
+                mobileNavToggle.setAttribute('aria-expanded', isExpanded);
+                const icon = mobileNavToggle.querySelector('i');
+                if (isExpanded) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
         }
     }
 }
