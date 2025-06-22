@@ -171,21 +171,6 @@ app.get('/api/verify-access', ensureAuthenticated, (req, res) => {
     });
 });
 
-// Serve static files from the frontend (in production)
-if (process.env.NODE_ENV === 'production') {
-    const staticPath = path.join(__dirname, '../'); // Root of the project
-    
-    // Serve all static files from the root
-    app.use(express.static(staticPath));
-
-    // For any route that is not a static file, serve index.html
-    // This allows client-side routing to work.
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(staticPath, 'index.html'));
-    });
-}
-
-
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error('Error:', err);

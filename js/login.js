@@ -22,22 +22,12 @@ class LoginManager {
     init() {
         this.bindEvents();
         this.handleUrlErrors();
-        this.redirectIfLoggedIn();
     }
 
     bindEvents() {
         const googleSigninBtn = document.getElementById('googleSigninBtn');
         if (googleSigninBtn) {
             googleSigninBtn.addEventListener('click', this.handleGoogleSignin.bind(this));
-        }
-    }
-
-    redirectIfLoggedIn() {
-        const token = localStorage.getItem('jwt_token');
-        if (token) {
-            // A token exists, redirect to the main page where the AuthGuard will validate it.
-            // This prevents logged-in users from staying on the login page.
-            window.location.href = '/index.html';
         }
     }
 

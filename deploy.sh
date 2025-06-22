@@ -67,7 +67,7 @@ cp "${REMOTE_PI_REPO_PATH}/madk-travel-blog-frontend.conf" "${REMOTE_PROJECT_ROO
 echo "Docker assets copied."
 
 # --- (Remote) 3. Handle Production .env File ---
-ENV_FILE_PATH="${REMOTE_PROJECT_ROOT_ON_PI}/backend/.env"
+ENV_FILE_PATH="${REMOTE_PROJECT_ROOT_ON_PI}/.env"
 if [ ! -f "${ENV_FILE_PATH}" ]; then
     echo "⚠️  No .env file found on server. Creating one from template."
     echo "   >>> IMPORTANT: You must edit this file with your production secrets! <<<"
@@ -134,7 +134,7 @@ echo "   - If .env was missing: A new template was created. YOU MUST EDIT IT."
 echo ""
 echo "🔧 To manage .env on the Pi:"
 echo "   ssh ${PI_USER}@${PI_HOST}"
-echo "   nano ${PROJECT_ROOT_ON_PI}/backend/.env"
+echo "   nano ${PROJECT_ROOT_ON_PI}/.env"
 echo ""
 echo "🔑 Required .env values for production:"
 echo "   - GOOGLE_CLIENT_ID (use your production credentials)"
