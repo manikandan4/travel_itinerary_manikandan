@@ -6,7 +6,6 @@ PI_HOST="raspberrypi.local"
 PI_REPO_PATH="/home/${PI_USER}/travel_itinerary_manikandan" # Where the git repo lives on Pi
 PROJECT_ROOT_ON_PI="/home/${PI_USER}/docker/madk-travel-blog" # Where Docker assets will go
 GIT_REPO_URL="https://github.com/manikandan4/travel_itinerary_manikandan.git"
-FRONTEND_IMAGE_NAME="madk-travel-blog-frontend"
 
 # --- Branch Name (Defaults to 'main' if not provided as argument) ---
 BRANCH_NAME=${1:-main}
@@ -24,39 +23,55 @@ read -p "Press Enter to continue once the branch is pushed..."
 
 # --- 2. Execute Deployment Steps on Raspberry Pi (via SSH) ---
 echo "🚀 Connecting to Raspberry Pi to deploy full-stack application..."
-ssh "${PI_USER}@${PI_HOST}" 'bash -s' <<'EOF'
+
+# We pass the local variables as arguments to the remote script.
+# This is safer than trying to expand them inside the heredoc.
+# Note the 'EOF' is quoted to prevent any local shell expansion.
+ssh "${PI_USER}@${PI_HOST}" 'bash -s' \
+  "${BRANCH_NAME}" \
+  "${PI_REPO_PATH}" \
+  "${GIT_REPO_URL}" \
+  "${PROJECT_ROOT_ON_PI}" <<'EOF'
 set -e # Exit on error for the remote script too
 
+# --- (Remote) Assign Arguments to Variables for Clarity ---
+REMOTE_BRANCH_NAME="$1"
+REMOTE_PI_REPO_PATH="$2"
+REMOTE_GIT_REPO_URL="$3"
+REMOTE_PROJECT_ROOT_ON_PI="$4"
+
 echo "--- (Remote) Starting Deployment on Raspberry Pi ---"
+echo "--- (Remote) Deploying branch: ${REMOTE_BRANCH_NAME}"
 
 # --- (Remote) 1. Navigate to Project Directory & Update from Git ---
 echo "1. Updating repository from Git..."
-if [ -d "'"${PI_REPO_PATH}"'" ]; then
-    cd "'"${PI_REPO_PATH}"'"
+if [ -d "${REMOTE_PI_REPO_PATH}" ]; then
+    cd "${REMOTE_PI_REPO_PATH}"
     git fetch origin
-    git reset --hard origin/'"${BRANCH_NAME}"'
+    git reset --hard "origin/${REMOTE_BRANCH_NAME}"
     git clean -fd
 else
     echo "Cloning repository for the first time..."
-    git clone "'"${GIT_REPO_URL}"'" "'"${PI_REPO_PATH}"'"
-    cd "'"${PI_REPO_PATH}"'"
-    git checkout '"${BRANCH_NAME}"'
+    git clone "${REMOTE_GIT_REPO_URL}" "${REMOTE_PI_REPO_PATH}"
+    cd "${REMOTE_PI_REPO_PATH}"
+    git checkout "${REMOTE_BRANCH_NAME}"
 fi
 echo "Repository updated."
 
 # --- (Remote) 2. Prepare Docker Assets ---
 echo "2. Preparing Docker assets..."
-mkdir -p "'"${PROJECT_ROOT_ON_PI}"'/backend"
-cp -R "'"${PI_REPO_PATH}"'/backend" "'"${PROJECT_ROOT_ON_PI}"'/"
-cp "'"${PI_REPO_PATH}"'/docker-compose.yml" "'"${PROJECT_ROOT_ON_PI}"'/"
-cp "'"${PI_REPO_PATH}"'/madk-travel-blog-frontend.conf" "'"${PROJECT_ROOT_ON_PI}"'/"
+mkdir -p "${REMOTE_PROJECT_ROOT_ON_PI}/backend"
+cp -R "${REMOTE_PI_REPO_PATH}/backend" "${REMOTE_PROJECT_ROOT_ON_PI}/"
+cp "${REMOTE_PI_REPO_PATH}/docker-compose.yml" "${REMOTE_PROJECT_ROOT_ON_PI}/"
+cp "${REMOTE_PI_REPO_PATH}/madk-travel-blog-frontend.conf" "${REMOTE_PROJECT_ROOT_ON_PI}/"
 echo "Docker assets copied."
 
 # --- (Remote) 3. Handle Production .env File ---
-ENV_FILE_PATH="'"${PROJECT_ROOT_ON_PI}"'/backend/.env"
+ENV_FILE_PATH="${REMOTE_PROJECT_ROOT_ON_PI}/backend/.env"
 if [ ! -f "${ENV_FILE_PATH}" ]; then
     echo "⚠️  No .env file found on server. Creating one from template."
     echo "   >>> IMPORTANT: You must edit this file with your production secrets! <<<"
+    # The 'ENVEOF' is quoted, so no variables inside are expanded. This is correct.
     cat > "${ENV_FILE_PATH}" <<'ENVEOF'
 # Environment Variables for MADK Travel Blog Backend (Production)
 
@@ -92,10 +107,10 @@ fi
 
 # --- (Remote) 4. Build and Restart Docker Containers ---
 echo "4. Building and restarting Docker containers..."
-cd "'"${PROJECT_ROOT_ON_PI}"'"
-docker-compose down
-docker-compose build --no-cache backend # Rebuild backend to get new dependencies
-docker-compose up -d
+cd "${REMOTE_PROJECT_ROOT_ON_PI}"
+docker compose down
+docker compose build --no-cache backend # Rebuild backend to get new dependencies
+docker compose up -d
 echo "Docker containers are up and running."
 
 # --- (Remote) 5. Clean Up Old Docker Images ---
@@ -131,4 +146,4 @@ echo ""
 echo "🔍 To check logs:"
 echo "   ssh ${PI_USER}@${PI_HOST}"
 echo "   cd ${PROJECT_ROOT_ON_PI}"
-echo "   docker-compose logs -f backend"
+echo "   docker compose logs -f backend"

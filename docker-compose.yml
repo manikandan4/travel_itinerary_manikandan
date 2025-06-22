@@ -1,5 +1,4 @@
 # docker-compose.yml (travel_itinerary_manikandan project root)
-version: '3.8'
 
 services:
   # Backend API service
@@ -11,11 +10,10 @@ services:
     restart: unless-stopped
     ports:
       - "3001:3001"
-    environment:
-      - NODE_ENV=production
-      - PORT=3001
+    # The .env file in the project root will be used to provide
+    # all necessary environment variables (NODE_ENV, PORT, secrets, etc.).
     env_file:
-      - ./backend/.env
+      - .env
     networks:
       - webnet
     healthcheck:
