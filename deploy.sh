@@ -65,21 +65,57 @@ ssh "${PI_USER}@${PI_HOST}" 'bash -s' << EOF
   cp "${PI_REPO_PATH}/Dockerfile" "${PROJECT_ROOT_ON_PI}/Dockerfile"
   cp "${PI_REPO_PATH}/madk-travel-blog-frontend.conf" "${PROJECT_ROOT_ON_PI}/madk-travel-blog-frontend.conf"
   
-  # Copy built frontend files
+  # Copy complete build output (includes all files)
   cp -R "${PI_REPO_PATH}/dist" "${PROJECT_ROOT_ON_PI}/dist"
   
   # Copy backend directory (ensure clean copy)
   rm -rf "${PROJECT_ROOT_ON_PI}/backend"
   cp -R "${PI_REPO_PATH}/backend" "${PROJECT_ROOT_ON_PI}/"
 
-  echo "  - Creating environment file for backend (if not exists)..."
-  if [ ! -f "${PROJECT_ROOT_ON_PI}/backend/.env" ]; then
-    echo "    Creating .env file from production template..."
-    cp "${PROJECT_ROOT_ON_PI}/backend/.env.production" "${PROJECT_ROOT_ON_PI}/backend/.env"
-    echo "    ✅ Production .env created with Google OAuth and family emails configured"
-    echo "    🔑 IMPORTANT: Update SESSION_SECRET in .env for security!"
+  echo "  - Checking backend environment file (.env)..."
+  if [ -f "${PROJECT_ROOT_ON_PI}/backend/.env" ]; then
+    echo "    ✅ .env file already exists - PRESERVING current configuration"
+    echo "    📝 Your existing Google OAuth credentials and settings will NOT be overwritten"
+    echo "    🔧 To update manually: ssh ${PI_USER}@${PI_HOST} && cd ${PROJECT_ROOT_ON_PI}/backend && nano .env"
   else
-    echo "    ✅ .env file already exists, keeping current configuration"
+    echo "    Creating new .env file from template..."
+    if [ -f "${PROJECT_ROOT_ON_PI}/backend/.env.example" ]; then
+      cp "${PROJECT_ROOT_ON_PI}/backend/.env.example" "${PROJECT_ROOT_ON_PI}/backend/.env"
+      echo "    ✅ .env created from .env.example template"
+    else
+      # Create a basic .env file with required variables
+      cat > "${PROJECT_ROOT_ON_PI}/backend/.env" << 'ENVEOF'
+# Environment Variables for MADK Travel Blog Backend
+
+# Server Configuration
+NODE_ENV=production
+PORT=3001
+
+# Google OAuth Configuration
+# Get these from Google Cloud Console: https://console.cloud.google.com/
+GOOGLE_CLIENT_ID=your_google_client_id_here
+GOOGLE_CLIENT_SECRET=your_google_client_secret_here
+
+# Session Configuration
+SESSION_SECRET=generate_a_secure_random_string_here
+
+# Application URLs
+FRONTEND_URL=https://your-domain.com
+BACKEND_URL=https://your-domain.com
+
+# Family Email Whitelist (comma-separated)
+ALLOWED_EMAILS=family1@gmail.com,family2@gmail.com
+
+# Security Settings
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# Additional Production Settings
+TRUST_PROXY=true
+ENVEOF
+      echo "    ✅ Basic .env template created"
+    fi
+    echo "    🔑 IMPORTANT: Edit .env with your actual Google OAuth credentials!"
   fi
 
   echo "  - Building Docker images on Pi..."
@@ -107,23 +143,33 @@ EOF
 
 echo "--- Automated Full-Stack Docker Deployment Finished! ---"
 echo ""
-echo "🎉 Your authenticated travel blog should be running!"
-echo "📱 Frontend: https://${FRONTEND_IMAGE_NAME%%-*}.kandan4.xyz/"
+echo "🎉 Your authenticated travel blog containers are deployed!"
+echo "📱 Frontend: https://your-domain.com/"
 echo "🔧 Backend API: Available internally on port 3001"
 echo ""
-echo "⚠️  IMPORTANT NEXT STEPS:"
-echo "1. SSH into your Pi and configure the backend environment:"
+echo "⚠️  IMPORTANT CONFIGURATION NOTES:"
+echo ""
+echo "📁 .env File Status:"
+echo "   - If .env exists: PRESERVED (your credentials safe)"
+echo "   - If .env missing: Created from template (needs configuration)"
+echo ""
+echo "🔧 To update .env manually (if needed):"
 echo "   ssh ${PI_USER}@${PI_HOST}"
-echo "   nano ${PROJECT_ROOT_ON_PI}/backend/.env"
+echo "   cd ${PROJECT_ROOT_ON_PI}/backend"
+echo "   nano .env"
 echo ""
-echo "2. Set up Google OAuth credentials:"
-echo "   - Go to: https://console.cloud.google.com/"
-echo "   - Create OAuth 2.0 credentials"
-echo "   - Add your domain to authorized origins"
-echo "   - Update GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in .env"
+echo "🔑 Required .env values (only if using new template):"
+echo "   - GOOGLE_CLIENT_ID=your_actual_client_id"
+echo "   - GOOGLE_CLIENT_SECRET=your_actual_client_secret"
+echo "   - SESSION_SECRET=\$(node -e \"console.log(require('crypto').randomBytes(64).toString('hex'))\")"
+echo "   - FRONTEND_URL=https://your-actual-domain.com"
+echo "   - BACKEND_URL=https://your-actual-domain.com"
+echo "   - ALLOWED_EMAILS=family1@gmail.com,family2@gmail.com"
 echo ""
-echo "3. Configure family email access:"
-echo "   - Update ALLOWED_EMAILS in .env with family Gmail addresses"
+echo "🔄 Restart backend after any .env changes:"
+echo "   cd ${PROJECT_ROOT_ON_PI}"
+echo "   docker compose restart backend"
 echo ""
-echo "4. Restart containers after configuration:"
-echo "   docker compose restart"
+echo "✅ Verify deployment:"
+echo "   docker compose ps"
+echo "   curl http://localhost:3001/health"
