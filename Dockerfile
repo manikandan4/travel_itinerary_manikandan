@@ -22,9 +22,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Copy custom Nginx configuration for this site into the container
 COPY madk-travel-blog-frontend.conf /etc/nginx/conf.d/madk-travel-blog-frontend.conf
 
-# Copy the built static files from your local 'dist' folder into the Nginx serving directory INSIDE the container
-# If you uncommented the builder stage above, change this to:
-# COPY --from=builder /app/dist /usr/share/nginx/html
+# Copy the complete build output
 COPY dist /usr/share/nginx/html
 
 # Expose port 80 (this is the container's internal port)
