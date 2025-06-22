@@ -6,6 +6,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
+const redis = require('redis');
+const RedisStore = require('connect-redis').default;
 require('dotenv').config();
 
 const app = express();
@@ -42,8 +44,24 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Redis client setup
+const redisClient = redis.createClient({
+    url: process.env.REDIS_URL || 'redis://redis:6379'
+});
+redisClient.connect().catch(console.error);
+
+redisClient.on('error', err => {
+    console.error('Redis error:', err);
+});
+
+redisClient.on('connect', () => {
+    console.log('Connected to Redis');
+});
+
+
 // Session configuration
 app.use(session({
+    store: new RedisStore({ client: redisClient }),
     secret: process.env.SESSION_SECRET || 'your-secret-key',
     resave: false,
     saveUninitialized: false,
@@ -106,6 +124,7 @@ passport.deserializeUser((user, done) => {
 
 // Middleware to check if user is authenticated
 const ensureAuthenticated = (req, res, next) => {
+    console.log(`[AuthCheck] Path: ${req.path}, Authenticated: ${req.isAuthenticated()}`);
     if (req.isAuthenticated()) {
         return next();
     }
@@ -129,6 +148,9 @@ app.get('/health', (req, res) => {
 
 // Authentication status
 app.get('/auth/status', (req, res) => {
+    console.log('[AuthStatus] Authenticated:', req.isAuthenticated());
+    console.log('[AuthStatus] Session:', req.session);
+    console.log('[AuthStatus] User:', req.user);
     if (req.isAuthenticated()) {
         res.json({
             authenticated: true,
