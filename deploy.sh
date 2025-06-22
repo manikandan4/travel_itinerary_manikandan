@@ -72,7 +72,8 @@ echo "3. Preparing Docker assets for deployment..."
 # Ensure the project root exists and is clean (except for .env)
 mkdir -p "${REMOTE_PROJECT_ROOT_ON_PI}"
 cd "${REMOTE_PROJECT_ROOT_ON_PI}"
-find . -maxdepth 1 ! -name '.env' -exec rm -rf {} +
+# Use -mindepth 1 to avoid trying to remove the current directory '.'
+find . -mindepth 1 -maxdepth 1 ! -name '.env' -exec rm -rf {} +
 
 # Copy all necessary files from repo to Docker project root
 echo "Copying built assets and Docker files..."

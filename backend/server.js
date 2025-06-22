@@ -138,7 +138,8 @@ app.get('/auth/me', ensureAuthenticated, (req, res) => {
 app.get('/auth/google',
     passport.authenticate('google', {
         scope: ['profile', 'email'],
-        session: false // We are not using sessions
+        session: false, // We are not using sessions
+        prompt: 'select_account' // This forces the account chooser to appear every time
     })
 );
 
