@@ -14,8 +14,8 @@ class LoginManager {
             // Local development - backend runs on port 3001
             return `${protocol}//localhost:3001`;
         } else {
-            // Production - use API subdomain
-            return `${protocol}//api.madk-travel-blog.kandan4.xyz`;
+            // Production - use API path on same domain
+            return `${protocol}//${hostname}/api`;
         }
     }
 
