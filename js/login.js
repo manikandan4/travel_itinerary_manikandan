@@ -14,8 +14,8 @@ class LoginManager {
             // Local development - backend runs on port 3001
             return `${protocol}//localhost:3001`;
         } else {
-            // Production - same domain as frontend
-            return `${protocol}//${hostname}`;
+            // Production - backend runs on port 3001 of same domain
+            return `${protocol}//${hostname}:3001`;
         }
     }
 

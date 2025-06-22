@@ -65,18 +65,29 @@ ssh "${PI_USER}@${PI_HOST}" 'bash -s' << EOF
   cp "${PI_REPO_PATH}/Dockerfile" "${PROJECT_ROOT_ON_PI}/Dockerfile"
   cp "${PI_REPO_PATH}/madk-travel-blog-frontend.conf" "${PROJECT_ROOT_ON_PI}/madk-travel-blog-frontend.conf"
   
-  # Copy complete build output (includes all files)
+  # Clean and copy build output (ensure no nested dist directories)
+  rm -rf "${PROJECT_ROOT_ON_PI}/dist"
   cp -R "${PI_REPO_PATH}/dist" "${PROJECT_ROOT_ON_PI}/dist"
   
-  # Copy backend directory (ensure clean copy)
+  # Copy backend directory (ensure clean copy, but preserve .env if it exists)
+  echo "  - Copying backend files (preserving .env if exists)..."
+  if [ -f "${PROJECT_ROOT_ON_PI}/backend/.env" ]; then
+    echo "    ℹ️  Preserving existing .env file"
+    mv "${PROJECT_ROOT_ON_PI}/backend/.env" "${PROJECT_ROOT_ON_PI}/.env.temp"
+  fi
+  
   rm -rf "${PROJECT_ROOT_ON_PI}/backend"
   cp -R "${PI_REPO_PATH}/backend" "${PROJECT_ROOT_ON_PI}/"
+  
+  if [ -f "${PROJECT_ROOT_ON_PI}/.env.temp" ]; then
+    mv "${PROJECT_ROOT_ON_PI}/.env.temp" "${PROJECT_ROOT_ON_PI}/backend/.env"
+    echo "    ✅ Existing .env file restored"
+  fi
 
   echo "  - Checking backend environment file (.env)..."
   if [ -f "${PROJECT_ROOT_ON_PI}/backend/.env" ]; then
     echo "    ✅ .env file already exists - PRESERVING current configuration"
-    echo "    📝 Your existing Google OAuth credentials and settings will NOT be overwritten"
-    echo "    🔧 To update manually: ssh ${PI_USER}@${PI_HOST} && cd ${PROJECT_ROOT_ON_PI}/backend && nano .env"
+    echo "     To update manually: ssh ${PI_USER}@${PI_HOST} && cd ${PROJECT_ROOT_ON_PI}/backend && nano .env"
   else
     echo "    Creating new .env file from template..."
     if [ -f "${PROJECT_ROOT_ON_PI}/backend/.env.example" ]; then
@@ -150,10 +161,10 @@ echo ""
 echo "⚠️  IMPORTANT CONFIGURATION NOTES:"
 echo ""
 echo "📁 .env File Status:"
-echo "   - If .env exists: PRESERVED (your credentials safe)"
+echo "   - If .env exists: PRESERVED during deployment"
 echo "   - If .env missing: Created from template (needs configuration)"
 echo ""
-echo "🔧 To update .env manually (if needed):"
+echo "🔧 To manage .env manually:"
 echo "   ssh ${PI_USER}@${PI_HOST}"
 echo "   cd ${PROJECT_ROOT_ON_PI}/backend"
 echo "   nano .env"
