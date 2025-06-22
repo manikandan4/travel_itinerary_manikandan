@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 
 // Trust proxy for production (Cloudflare + Nginx)
 if (process.env.NODE_ENV === 'production') {
-    app.set('trust proxy', true);
+    app.set('trust proxy', 2); // Cloudflare + Nginx
 }
 
 // Security middleware
