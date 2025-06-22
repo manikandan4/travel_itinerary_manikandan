@@ -68,8 +68,9 @@ ssh "${PI_USER}@${PI_HOST}" 'bash -s' << EOF
   # Copy built frontend files
   cp -R "${PI_REPO_PATH}/dist" "${PROJECT_ROOT_ON_PI}/dist"
   
-  # Copy backend directory
-  cp -R "${PI_REPO_PATH}/backend" "${PROJECT_ROOT_ON_PI}/backend"
+  # Copy backend directory (ensure clean copy)
+  rm -rf "${PROJECT_ROOT_ON_PI}/backend"
+  cp -R "${PI_REPO_PATH}/backend" "${PROJECT_ROOT_ON_PI}/"
 
   echo "  - Creating environment file for backend (if not exists)..."
   if [ ! -f "${PROJECT_ROOT_ON_PI}/backend/.env" ]; then
