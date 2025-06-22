@@ -29,6 +29,17 @@ class AuthGuard {
         if (this.checkingAuth) return;
         this.checkingAuth = true;
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const isPostLogin = urlParams.has('auth');
+
+        // If this is the first load after a login attempt, give it a moment
+        if (isPostLogin) {
+            // Clean the URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+            // Wait a fraction of a second for the session cookie to be processed
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+
         try {
             const response = await fetch(`${this.backendUrl}/auth/status`, {
                 credentials: 'include',
